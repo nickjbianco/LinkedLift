@@ -1,24 +1,8 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+- This project will be a clone of the popular professional networking website 'LinkedIn'. 
 
-Things you may want to cover:
+- Instead of having a website rooting in professional networking and development, this spin off will seek to set up a networking
+website for power lifters, hence being dubbed 'LinkedLift'.
 
-* Ruby version
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
