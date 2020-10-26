@@ -1,5 +1,5 @@
 import React from 'react'
-import { Switch, Route } from 'react-router-dom'
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import HomePage from './HomePage'
 import HeaderPage from './HeaderPage'
 
@@ -7,9 +7,7 @@ export default () => {
     return (
         <div>
             <HeaderPage />
-            <Switch>
-                <Route path='/' component={HomePage} exact={true}/>
-            </Switch>
+            <p>This is the linked lift app, the header is above</p>
         </div>
     )
 }
