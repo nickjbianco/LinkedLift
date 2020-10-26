@@ -5,10 +5,13 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import LinkedLiftApp from '../components/LinkedLiftApp'
+import { BrowserRouter, Route } from 'react-router-dom'
 
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
-    <LinkedLiftApp />,
+    <BrowserRouter>
+      <Route path='/' component={LinkedLiftApp} />
+    </BrowserRouter>,
     document.body.appendChild(document.createElement('div')),
   )
 })
