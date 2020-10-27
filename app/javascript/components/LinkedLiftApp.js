@@ -1,13 +1,9 @@
 import React from 'react'
-import { BrowserRouter, Switch, Route } from 'react-router-dom'
-import HomePage from './HomePage'
-import HeaderPage from './HeaderPage'
 
 export default () => {
     return (
         <div>
-            <HeaderPage />
-            <p>This is the linked lift app, the header is above</p>
+            <p>This is the linked lift app, the header is above. The user will be able to view this page *after* signing in or up</p>
         </div>
     )
 }
