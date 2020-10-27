@@ -7,7 +7,6 @@ export default () => {
     const handleSearch = (e) => {
         e.preventDefault()
         setSearchText(e.target.value)
-        console.log(searchText)
         setSearchText('')
     }
 
