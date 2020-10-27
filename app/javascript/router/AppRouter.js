@@ -4,6 +4,7 @@ import LinkedLiftApp from '../components/LinkedLiftApp'
 import MyNetworkPage from '../components/MyNetworkPage'
 import JobsPage from '../components/JobsPage'
 import HeaderPage from '../components/HeaderPage'
+import NotificationsPage from '../components/NotificationsPage'
 
 export default () => {
     return (
@@ -14,6 +15,7 @@ export default () => {
                     <Route path="/" component={LinkedLiftApp} exact={true}/>
                     <Route path="/mynetwork" component={MyNetworkPage} />
                     <Route path="/jobs" component={JobsPage} />
+                    <Route path="/notifications" component={NotificationsPage} />
                 </Switch>
             </div>
         </BrowserRouter>

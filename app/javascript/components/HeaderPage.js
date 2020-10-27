@@ -23,6 +23,7 @@ export default () => {
             <NavLink to="/" exact={true} activeClassName="is-active" >Home</NavLink>
             <NavLink to="/mynetwork" activeClassName="is-active" >My Network</NavLink>
             <NavLink to="/jobs" activeClassName="is-active" >Jobs</NavLink>
+            <NavLink to="/notifications" activeClassName="is-active" >Notifications</NavLink>
         </div>
     )
 }
