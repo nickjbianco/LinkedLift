@@ -1,20 +1,42 @@
 import React, { useState } from 'react'
+import PostsFeed from './PostsFeed'
 
 export default () => {
-    const [myPost, setMyPost] = useState('')
+    const [posts, setPosts] = useState([])
+    const [title] = useState('Name, Job Title, Company (dynamic)')
+    const [description, setDescription] = useState('')
 
-    const handleSubmitPost = () => {
-        setMyPost('')
+    const addPost = (e) => {
+        e.preventDefault()
+        setPosts([
+            ...posts, 
+            { title, description }
+        ])
+        setDescription('')
+    }
+
+    const removePost = (postIdx) => {
+        setPosts(posts.filter((post, idx) => idx !== postIdx))
     }
 
     return (
         <div>
-            <p>This is the MyPost component</p>
+            <h1>Posts Feed</h1>
+            <form onSubmit={addPost}>
                 <textarea
-                    value={myPost}
-                    onChange={(e) => setMyPost(e.target.value)}
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
                 />
-                <button onClick={handleSubmitPost}>Post</button>
+                <button>Write a post</button>
+            </form>
+            {posts.map((post, idx) => (
+                <div key={idx}>
+                    <h3>{post.title}</h3>
+                    <p>{post.description}</p>
+                    <button onClick={() => removePost(idx)}>Remove this post</button>
+                </div>
+            ))}
+            <PostsFeed />
         </div>
     )
 }
