@@ -1,27 +1,22 @@
 import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
 import PostsFeed from './PostsFeed'
+import { addMyPost } from '../../reducers/PostsReducer'
 
 export default () => {
-    const [posts, setPosts] = useState([])
-    const [title] = useState('Name, Job Title, Company (dynamic)')
     const [description, setDescription] = useState('')
+    const dispatch = useDispatch() 
 
     const addPost = (e) => {
         e.preventDefault()
-        setPosts([
-            ...posts, 
-            { title, description }
-        ])
+        dispatch(addMyPost({ description }))
         setDescription('')
-    }
-
-    const removePost = (postIdx) => {
-        setPosts(posts.filter((post, idx) => idx !== postIdx))
     }
 
     return (
         <div>
             <h1>Posts Feed</h1>
+
             <form onSubmit={addPost}>
                 <textarea
                     value={description}
@@ -29,13 +24,7 @@ export default () => {
                 />
                 <button>Write a post</button>
             </form>
-            {posts.map((post, idx) => (
-                <div key={idx}>
-                    <h3>{post.title}</h3>
-                    <p>{post.description}</p>
-                    <button onClick={() => removePost(idx)}>Remove this post</button>
-                </div>
-            ))}
+            
             <PostsFeed />
         </div>
     )

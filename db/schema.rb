@@ -15,25 +15,25 @@ ActiveRecord::Schema.define(version: 2020_10_27_235905) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "gyms", force: :cascade do |t|
-    t.string "name"
-    t.text "description"
-    t.string "location"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "gyms_users", id: false, force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "gym_id", null: false
+  create_table "employments", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "gym_id"
     t.datetime "start_date"
     t.datetime "end_date"
     t.text "description"
     t.string "title"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["gym_id"], name: "index_gyms_users_on_gym_id"
-    t.index ["user_id"], name: "index_gyms_users_on_user_id"
+    t.index ["gym_id"], name: "index_employments_on_gym_id"
+    t.index ["user_id"], name: "index_employments_on_user_id"
+  end
+
+  create_table "gyms", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.string "location"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "posts", force: :cascade do |t|

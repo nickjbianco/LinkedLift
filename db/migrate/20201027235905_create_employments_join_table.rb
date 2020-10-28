@@ -1,8 +1,8 @@
-class CreateUsersGymsJoinTable < ActiveRecord::Migration[6.0]
+class CreateEmploymentsJoinTable < ActiveRecord::Migration[6.0]
   def change
-    create_join_table :users, :gyms do |t|
-      t.index :user_id
-      t.index :gym_id
+    create_table :employments do |t|
+      t.belongs_to :user
+      t.belongs_to :gym
 
       t.datetime :start_date
       t.datetime :end_date

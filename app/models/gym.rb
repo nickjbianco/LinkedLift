@@ -1,5 +1,6 @@
 class Gym < ApplicationRecord
     validates :name, presence: true, length: { maximum: 50 }
     validates :location, presence: true 
-    has_and_belongs_to_many :users
+    has_many :employments
+    has_many :users, through: :employments
 end
