@@ -28,6 +28,8 @@ ActiveRecord::Schema.define(version: 2020_10_27_235905) do
     t.bigint "gym_id", null: false
     t.datetime "start_date"
     t.datetime "end_date"
+    t.text "description"
+    t.string "title"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["gym_id"], name: "index_gyms_users_on_gym_id"

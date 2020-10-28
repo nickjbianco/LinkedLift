@@ -6,6 +6,10 @@ class CreateUsersGymsJoinTable < ActiveRecord::Migration[6.0]
 
       t.datetime :start_date
       t.datetime :end_date
+
+      t.text :description
+      t.string :title 
+
       t.timestamps
     end
   end
