@@ -7,11 +7,11 @@ export const addMyPost = (payload) => ({
 
 const defaultState = {
     byId: {
-        1: { description: 'description-1' }, 
+        3: { description: 'description-3' },
         2: { description: 'description-2' }, 
-        3: { description: 'description-3' }
+        1: { description: 'description-1' }
     }, 
-    allIds: [1, 2, 3]
+    allIds: [3, 2, 1]
 }
 
 export default (state = defaultState, action) => {
@@ -25,8 +25,8 @@ export default (state = defaultState, action) => {
                     [newId]: action.payload
                 },
                 allIds: [
-                    ...state.allIds, 
-                    newId
+                    newId,
+                    ...state.allIds   
                 ]
             }
         default: 

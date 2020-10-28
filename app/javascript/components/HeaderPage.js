@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
+import './HeaderPage.scss'
 
 const Button = styled.button`
     background-color: var(--blue-70,#0073b1);
@@ -16,6 +17,12 @@ const Button = styled.button`
 `
 const Header = styled.header`
     background-color: var(--cool-gray-80,#283e4a);
+    display: flex;
+    padding: 0 30px;
+    line-height: 24px;
+    width: 100vw;
+    min-height: 52px;
+    justify-content: center;
 `
 
 const Input = styled.input`
@@ -28,9 +35,18 @@ const Input = styled.input`
     vertical-align: middle;
 `
 
-const Span = styled.span`
-    float: right;
+const Navbar = styled.nav`
     cursor: pointer;
+    display: flex;
+    min-width: 300px;
+    justify-content: space-between;
+    overflow: hidden;
+`
+const Wrapper = styled.div`
+    display: flex; 
+    justify-content: space-between;
+    min-width: 800px;
+    padding-top: 15px;
 `
 
 export default () => {
@@ -45,19 +61,21 @@ export default () => {
     return (
         <div>
             <Header>
-                <form onSubmit={handleSearch}>
-                    <Input
-                        value={searchText}
-                        onChange={(e) => setSearchText(e.target.value)}
-                    />
-                    <Button>Search</Button>
-                </form>
-                <Span>
-                    <NavLink to="/" exact={true} activeClassName="is-active" >Home</NavLink>
-                    <NavLink to="/mynetwork" activeClassName="is-active" >My Network</NavLink>
-                    <NavLink to="/jobs" activeClassName="is-active" >Jobs</NavLink>
-                    <NavLink to="/notifications" activeClassName="is-active" >Notifications</NavLink>
-                </Span>
+                <Wrapper>
+                    <form onSubmit={handleSearch}>
+                        <Input
+                            value={searchText}
+                            onChange={(e) => setSearchText(e.target.value)}
+                        />
+                        <Button>Search</Button>
+                    </form>
+                    <Navbar>
+                        <NavLink to="/" exact={true} className='navlink'>Home</NavLink>
+                        <NavLink to="/mynetwork" className='navlink'>My Network</NavLink>
+                        <NavLink to="/jobs" className='navlink'>Jobs</NavLink>
+                        <NavLink to="/notifications" className='navlink'>Notifications</NavLink>
+                    </Navbar>
+                </Wrapper>
             </Header>
         </div>
     )

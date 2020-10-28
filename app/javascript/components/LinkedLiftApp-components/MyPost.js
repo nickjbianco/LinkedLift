@@ -19,11 +19,10 @@ const Button = styled.button`
     background-color: var(--blue-70,#0073b1);
     color: white;
     font-weight: 600;
-    width: 10%;
+    width: 100%;
     padding: 0;
     font-size: 100%;
     cursor: pointer;
-    margin-left: 8px;
     line-height: 1.2;
     font-family: -apple-system,system-ui,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Fira Sans,Ubuntu,Oxygen,Oxygen Sans,Cantarell,Droid Sans,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Lucida Grande,Helvetica,Arial,sans-serif;
     -webkit-font-smoothing: antialiased;
