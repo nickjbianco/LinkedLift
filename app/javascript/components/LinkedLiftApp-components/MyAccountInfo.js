@@ -1,17 +1,20 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { nameAndTitleThunk } from '../../reducers/UsersReducer'
 
 export default () => {
-    const name = useSelector(state => state.users.name)
-    const title = useSelector(state => state.users.title)
+    const users = useSelector(state => state.users)
     const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(nameAndTitleThunk())
+    }, [])
 
     return (
         <div>
-            <h3>{name}</h3>
-            <p>{title}</p>
-            <button onClick={() => dispatch(nameAndTitleThunk())}>Get Name and Title</button>
+            <ul>
+                {users.map((user) => <li key={user.id}>{user.name}</li>)}
+            </ul>
         </div>
     )
 }
