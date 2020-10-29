@@ -1,14 +1,19 @@
 import React from 'react'
 import UserInfo from './UserInfo'
-import EmploymentInfo from './EmploymentInfo'
 import SuggestedConnections from '../LinkedLiftApp/SuggestedConnections'
+import styled from 'styled-components'
+
+const Wrapper = styled.div`
+    display: flex; 
+    justify-content: space-around;
+    
+`
 
 export default () => {
     return (
-        <div>
+        <Wrapper>
             <UserInfo />
-            <EmploymentInfo />
             <SuggestedConnections />
-        </div>
+        </Wrapper>
     )
 }

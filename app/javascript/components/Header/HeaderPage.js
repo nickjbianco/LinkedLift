@@ -38,7 +38,7 @@ const Input = styled.input`
 const Navbar = styled.nav`
     cursor: pointer;
     display: flex;
-    min-width: 300px;
+    min-width: 400px;
     justify-content: space-between;
     overflow: hidden;
 `
@@ -75,6 +75,7 @@ export default () => {
                         <NavLink to="/mynetwork" className='navlink'>My Network</NavLink>
                         <NavLink to="/jobs" className='navlink'>Jobs</NavLink>
                         <NavLink to="/notifications" className='navlink'>Notifications</NavLink>
+                        <NavLink to="/myprofile" className='navlink'>My Profile</NavLink>
                     </Navbar>
                 </Wrapper>
             </Header>
