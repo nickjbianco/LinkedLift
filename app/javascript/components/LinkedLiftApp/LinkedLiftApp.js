@@ -1,6 +1,7 @@
 import React from 'react'
-import MyPost from './LinkedLiftApp-components/MyPost'
-import MyAccountInfo from './LinkedLiftApp-components/MyAccountInfo'
+import MyPost from './MyPost'
+import MyAccountInfo from './MyAccountInfo'
+import SuggestedConnections from './SuggestedConnections'
 import styled from 'styled-components'
 
 const Wrapper = styled.div`
@@ -42,7 +43,7 @@ export default () => {
                     <MyPost />
                 </MiddleColumn>
                 <RightColumn>
-
+                    <SuggestedConnections />
                 </RightColumn>
             </ColumnContainer>
         </Wrapper>

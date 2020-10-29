@@ -69,6 +69,7 @@ export default () => {
                         />
                         <Button>Search</Button>
                     </form>
+                    
                     <Navbar>
                         <NavLink to="/" exact={true} className='navlink'>Home</NavLink>
                         <NavLink to="/mynetwork" className='navlink'>My Network</NavLink>

@@ -13,7 +13,12 @@ export default () => {
     return (
         <div>
             <ul>
-                {users.map((user) => <li key={user.id}>{user.name}</li>)}
+                {users.map((user) => (
+                    <ul key={user.id}>
+                        <li>{user.name}</li>
+                        <p>{user.title}</p>
+                    </ul>
+                ))}
             </ul>
         </div>
     )
