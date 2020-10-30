@@ -1,19 +1,19 @@
 import axios from 'axios'
 
-const fetchNameAndTitle = () => {
+const fetchUsers = () => {
     return axios.get('http://localhost:3000/users/index.json').then(response => response.data)
 }
 
-const RECEIVED_NAME_AND_TITLE = 'RECEIVED_NAME_AND_TITLE'
-const receivedNameAndTitle = (payload) => ({
-    type: RECEIVED_NAME_AND_TITLE,
+const RECEIVED_USERS = 'RECEIVED_USERS'
+const receivedUsers = (payload) => ({
+    type: RECEIVED_USERS,
     payload
 })
 
-export const nameAndTitleThunk = () => {
+export const usersThunk = () => {
     return (dispatch) => {
-        fetchNameAndTitle().then((nameAndTitle) => {
-            dispatch(receivedNameAndTitle(nameAndTitle))
+        fetchUsers().then((users) => {
+            dispatch(receivedUsers(users))
         })
     }
 }
@@ -22,7 +22,7 @@ const defaultState = []
 
 export default (state = defaultState, action) => {
     switch (action.type) {
-        case RECEIVED_NAME_AND_TITLE:
+        case RECEIVED_USERS:
             return [
                 ...state, 
                 ...action.payload

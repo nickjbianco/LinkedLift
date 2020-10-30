@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { nameAndTitleThunk } from '../../reducers/UsersReducer'
+import { usersThunk } from '../../reducers/UsersReducer'
 
 export default () => {
     const users = useSelector(state => state.users)
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(nameAndTitleThunk())
+        dispatch(usersThunk())
     }, [])
 
     return (

@@ -3,11 +3,13 @@ import thunk from 'redux-thunk'
 import PostsReducer from '../reducers/PostsReducer'
 import UsersReducer from '../reducers/UsersReducer'
 import EmploymentsReducer from '../reducers/EmploymentsReducer'
+import GymsReducer from '../reducers/GymsReducer'
 
 const allReducers = combineReducers({
     posts: PostsReducer, 
     users: UsersReducer, 
-    employments: EmploymentsReducer
+    employments: EmploymentsReducer, 
+    gyms: GymsReducer
 })
 
 export default createStore(
