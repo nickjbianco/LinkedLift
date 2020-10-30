@@ -13,14 +13,21 @@ export default () => {
     return (
         <div>
             <ul>
-                {users.map((user) => (
-                    <ul key={user.id}>
-                        <li>{user.name}</li>
-                        <p>{user.title}</p>
-                    </ul>
-                ))}
+                {users.map((user) => {
+                    if (user.id === 2) {
+                        return (
+                            <ul key={user.id}>
+                                <li>{user.name}</li>
+                                <p>{user.title} in {user.location}</p>
+                            </ul>
+                        )
+                    }
+                })}
             </ul>
         </div>
     )
 }
 
+
+
+    

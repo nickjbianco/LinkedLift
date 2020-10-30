@@ -1,4 +1,6 @@
-json.userInfo @users do |user|
+
+json.array! @users do |user|
+    json.id user.id
     json.name user.name 
     json.title user.title
     json.location user.location
