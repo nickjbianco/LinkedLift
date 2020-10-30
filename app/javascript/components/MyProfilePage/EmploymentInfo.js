@@ -6,6 +6,7 @@ import styled from 'styled-components'
 
 export default () => {
     const employments = useSelector(state => state.employments)
+    const gyms = useSelector(state => state.gyms)
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -18,21 +19,28 @@ export default () => {
     `
 
     return (
-        <div>
-            <Wrapper>
-                <h1>Employment Info</h1>
-                <ul>
-                    {employments.map((employment) => {
-                        if (employment.user_id === 2) {
-                            return (
-                                <ul key={employment.id}>
-                                    <h2>{employment.title}</h2>
-                                </ul>
-                            )
-                        }
-                    })}
-                </ul>
-            </Wrapper>
-        </div>
+        <Wrapper>
+            {employments.map((employment) => {
+                if (employment.user_id === 2) {
+                    return (
+                        <ul key={employment.id}>
+                            <h4>{employment.title}</h4>
+                            {gyms.map((gym) => {
+                                if (employment.gym_id === gym.id) {
+                                    return (
+                                        <ul key={gym.id}>
+                                            <p>{gym.name}</p>
+                                            <p>{employment.start_date} - end date</p>
+                                            <p>{gym.location}</p>
+                                            <p>{employment.description}</p>
+                                        </ul>
+                                        )
+                                    }
+                                })}
+                        </ul>
+                    )
+                }
+            })}
+        </Wrapper>
     )
 }

@@ -29,11 +29,11 @@ export default () => {
                         if (user.id === 2) {
                             return (
                                 <ul key={user.id}>
-                                    <h3>{user.name}</h3>
-                                    {user.title} at {gyms.map((gym) => {
+                                    <h2>{user.name}</h2>
+                                    {gyms.map((gym) => {
                                         if (user.id === gym.id) {
                                             return (
-                                                <p key={gym.id}>{gym.name}</p>
+                                                <p key={gym.id}>{user.title} at {gym.name}</p>
                                             )
                                         }
                                     })}
