@@ -24,6 +24,7 @@ export default () => {
                 if (employment.user_id === 2) {
                     return (
                         <ul key={employment.id}>
+                            <h3>Experience</h3>
                             <h4>{employment.title}</h4>
                             {gyms.map((gym) => {
                                 if (employment.gym_id === gym.id) {
