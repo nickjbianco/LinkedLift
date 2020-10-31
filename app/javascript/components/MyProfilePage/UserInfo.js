@@ -4,15 +4,14 @@ import { usersThunk } from '../../reducers/UsersReducer'
 import EmploymentInfo from './EmploymentInfo'
 import styled from 'styled-components'
 
+const Wrapper = styled.div`
+        display: flex;
+        background-color: blue;
+    `
 
 export default () => {
     const users = useSelector(state => state.users)
     const dispatch = useDispatch()
-    
-    const Wrapper = styled.div`
-        display: flex;
-        background-color: blue;
-    `
 
     useEffect(() => {
         dispatch(usersThunk())

@@ -4,6 +4,10 @@ import { employmentsThunk } from '../../reducers/EmploymentsReducer'
 import { gymsThunk } from '../../reducers/GymsReducer'
 import styled from 'styled-components'
 
+const Wrapper = styled.div`
+        display: flex;
+        background-color: green;
+    `
 
 export default () => {
     const employments = useSelector(state => state.employments)
@@ -14,11 +18,6 @@ export default () => {
         dispatch(gymsThunk())
         dispatch(employmentsThunk())
     }, [])
-
-    const Wrapper = styled.div`
-        display: flex;
-        background-color: green;
-    `
 
     return (
         <Wrapper>
