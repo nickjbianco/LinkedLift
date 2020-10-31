@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { employmentsThunk } from '../../reducers/EmploymentsReducer'
+import { gymsThunk } from '../../reducers/GymsReducer'
 import styled from 'styled-components'
 
 
@@ -10,6 +11,7 @@ export default () => {
     const dispatch = useDispatch()
 
     useEffect(() => {
+        dispatch(gymsThunk())
         dispatch(employmentsThunk())
     }, [])
 

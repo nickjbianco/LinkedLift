@@ -23,10 +23,7 @@ const defaultState = []
 export default (state = defaultState, action) => {
     switch (action.type) {
         case RECEIVED_GYMS:
-            return [
-                ...state,
-                ...action.payload
-            ]
+            return action.payload
         default:
             return state
     }

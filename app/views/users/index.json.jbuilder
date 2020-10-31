@@ -5,4 +5,5 @@ json.array! @users do |user|
     json.title user.title
     json.location user.location
     json.email user.email
+    json.gyms user.gyms
 end 
