@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { userThunk } from '../../reducers/CurrentUserReducer'
+import { employmentsThunk } from '../../reducers/EmploymentsReducer'
 import styled from 'styled-components'
 
 const Wrapper = styled.div`
@@ -9,23 +9,29 @@ const Wrapper = styled.div`
     `
 
 export default ({ currentUserId }) => {
-    const user = useSelector(state => state.currentUser)
+    const employments = useSelector(state => state.employments)
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(userThunk(currentUserId))
+        dispatch(employmentsThunk())
     }, [])
 
     return (
         <Wrapper>
             <ul>
                 <h1>Experience</h1>
-                <p>name</p>
-                <p>title</p>
-                <p>duration worked</p>
-                <p>description</p>
+                {employments.map((employment) => (
+                    <ul key={employment.id}>
+                        <p>{employment.title}</p>
+                        <p>{employment.description}</p>
+                    </ul>
+                ))}
             </ul>
         </Wrapper>
     )
 }
+
+
+
+
 
