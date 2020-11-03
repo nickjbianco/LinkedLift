@@ -14,7 +14,7 @@ export default () => {
             <div>   
                 <HeaderPage />
                 <Switch>
-                    <Route path="/" component={LinkedLiftApp} exact={true}/>
+                    <Route path="/" component={LinkedLiftApp} exact={true} />
                     <Route path="/mynetwork" component={MyNetworkPage} />
                     <Route path="/jobs" component={JobsPage} />
                     <Route path="/notifications" component={NotificationsPage} />

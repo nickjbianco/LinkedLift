@@ -1,33 +1,21 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { usersThunk } from '../../reducers/UsersReducer'
+import { userThunk } from '../../reducers/CurrentUserReducer'
 
-export default () => {
-    const users = useSelector(state => state.users)
+export default ({ userId }) => {
+    const currentUser = useSelector(state => state.currentUser)
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(usersThunk())
+        dispatch(userThunk(userId))
     }, [])
 
     return (
         <div>
-            <ul>
-                {users.map((user) => {
-                    if (user.id === 2) {
-                        return (
-                            <ul key={user.id}>
-                                <li>{user.name}</li>
-                                <p>{user.title} in {user.location}</p>
-                            </ul>
-                        )
-                    }
-                })}
-            </ul>
+            <h1>{currentUser.name}</h1>
+            <p>{currentUser.title} in {currentUser.location}</p>
         </div>
     )
 }
-
-
 
     

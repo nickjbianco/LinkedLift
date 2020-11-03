@@ -2,6 +2,7 @@ import React from 'react'
 import UserInfo from './UserInfo'
 import PeopleYouMayKnow from './PeopleYouMayKnow'
 import styled from 'styled-components'
+import Cookies from 'js-cookie'
 
 const Wrapper = styled.div`
     display: flex; 
@@ -10,9 +11,11 @@ const Wrapper = styled.div`
 `
 
 export default () => {
+    const currentUserId = Cookies.get('user_id')
+
     return (
         <Wrapper>
-            <UserInfo />
+            <UserInfo currentUserId={currentUserId} />
             <PeopleYouMayKnow />
         </Wrapper>
     )

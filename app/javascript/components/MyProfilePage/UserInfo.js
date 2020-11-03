@@ -1,37 +1,31 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { usersThunk } from '../../reducers/UsersReducer'
-import EmploymentInfo from './EmploymentInfo'
+import { userThunk } from '../../reducers/CurrentUserReducer'
 import styled from 'styled-components'
+import EmploymentInfo from './EmploymentInfo'
 
 const Wrapper = styled.div`
         display: flex;
         background-color: blue;
     `
 
-export default () => {
-    const users = useSelector(state => state.users)
+export default ({ currentUserId }) => {
+    const user = useSelector(state => state.currentUser)
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(usersThunk())
+        dispatch(userThunk(currentUserId))
     }, [])
 
     return (
         <div>
             <Wrapper>
-                <div>
-                   {users.map((user) => (
-                       <ul key={user.id}>
-                            <h3>{user.name}</h3>
-                            <p>{user.title} in {user.location}</p>
-                       </ul>
-                   ))}
-                </div>
+                <ul>
+                    <h3>{user.name}</h3>
+                    <p>{user.title} in {user.location}</p>
+                </ul>
             </Wrapper>
-            <EmploymentInfo />
+            <EmploymentInfo currentUserId={currentUserId} />
         </div>
     )
 }
-
-

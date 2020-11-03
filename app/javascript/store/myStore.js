@@ -4,12 +4,14 @@ import PostsReducer from '../reducers/PostsReducer'
 import UsersReducer from '../reducers/UsersReducer'
 import EmploymentsReducer from '../reducers/EmploymentsReducer'
 import GymsReducer from '../reducers/GymsReducer'
+import CurrentUserReducer from '../reducers/CurrentUserReducer'
 
 const allReducers = combineReducers({
     posts: PostsReducer, 
     users: UsersReducer, 
     employments: EmploymentsReducer, 
-    gyms: GymsReducer
+    gyms: GymsReducer, 
+    currentUser: CurrentUserReducer
 })
 
 export default createStore(

@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { employmentsThunk } from '../../reducers/EmploymentsReducer'
-import { gymsThunk } from '../../reducers/GymsReducer'
+import { userThunk } from '../../reducers/CurrentUserReducer'
 import styled from 'styled-components'
 
 const Wrapper = styled.div`
@@ -9,40 +8,24 @@ const Wrapper = styled.div`
         background-color: green;
     `
 
-export default () => {
-    const employments = useSelector(state => state.employments)
-    const gyms = useSelector(state => state.gyms)
+export default ({ currentUserId }) => {
+    const user = useSelector(state => state.currentUser)
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(gymsThunk())
-        dispatch(employmentsThunk())
+        dispatch(userThunk(currentUserId))
     }, [])
 
     return (
         <Wrapper>
-            {employments.map((employment) => {
-                if (employment.user_id === 2) {
-                    return (
-                        <ul key={employment.id}>
-                            <h3>Experience</h3>
-                            <h4>{employment.title}</h4>
-                            {gyms.map((gym) => {
-                                if (employment.gym_id === gym.id) {
-                                    return (
-                                        <ul key={gym.id}>
-                                            <p>{gym.name}</p>
-                                            <p>{employment.start_date} - end date</p>
-                                            <p>{gym.location}</p>
-                                            <p>{employment.description}</p>
-                                        </ul>
-                                        )
-                                    }
-                                })}
-                        </ul>
-                    )
-                }
-            })}
+            <ul>
+                <h1>Experience</h1>
+                <p>name</p>
+                <p>title</p>
+                <p>duration worked</p>
+                <p>description</p>
+            </ul>
         </Wrapper>
     )
 }
+

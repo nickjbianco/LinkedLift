@@ -1,5 +1,6 @@
 import axios from 'axios'
 
+// Multiple Users 
 const fetchUsers = () => {
     return axios.get('http://localhost:3000/users/index.json').then(response => response.data)
 }
@@ -24,6 +25,7 @@ export default (state = defaultState, action) => {
     switch (action.type) {
         case RECEIVED_USERS:
             return action.payload
+        
         default:
             return state
     }

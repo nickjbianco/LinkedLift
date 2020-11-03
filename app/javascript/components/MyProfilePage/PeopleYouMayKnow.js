@@ -20,8 +20,12 @@ export default () => {
         <Wrapper>
             <ul>
                 <h1>People You May Know</h1>
-                <p>User Name</p>
-                <p>User Title</p>
+                {users.map((user) => (
+                    <ul key={user.id}>
+                        <p>{user.name}</p>
+                        <p>{user.title}</p>
+                    </ul>
+                ))}
             </ul>
         </Wrapper>
     )

@@ -3,6 +3,7 @@ import MyPost from './MyPost'
 import MyAccountInfo from './MyAccountInfo'
 import SuggestedConnections from './SuggestedConnections'
 import styled from 'styled-components'
+import Cookies from 'js-cookie'
 
 const Wrapper = styled.div`
     display: flex;
@@ -33,11 +34,13 @@ const RightColumn = styled.div`
 `
 
 export default () => {
+    const currentUserId = Cookies.get('user_id')
+
     return (
         <Wrapper>
             <ColumnContainer>
                 <LeftColumn>
-                    <MyAccountInfo />
+                    <MyAccountInfo userId={currentUserId} />
                 </LeftColumn>
                 <MiddleColumn>
                     <MyPost />
