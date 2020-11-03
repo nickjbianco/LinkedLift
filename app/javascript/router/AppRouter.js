@@ -7,8 +7,11 @@ import HeaderPage from '../components/Header/HeaderPage'
 import NotificationsPage from '../components/NotificationsPage'
 import MyProfilePage from '../components/MyProfilePage/MyProfilePage'
 import NotFoundPage from '../components/NotFoundPage/NotFoundPage'
+import Cookies from 'js-cookie'
 
 export default () => {
+    const currentUserId = Cookies.get('user_id')
+
     return (
         <BrowserRouter>
             <div>   
@@ -18,7 +21,7 @@ export default () => {
                     <Route path="/mynetwork" component={MyNetworkPage} />
                     <Route path="/jobs" component={JobsPage} />
                     <Route path="/notifications" component={NotificationsPage} />
-                    <Route path="/myprofile" component={MyProfilePage} /> 
+                    <Route path={`/${currentUserId}`} component={MyProfilePage} /> 
                     <Route component={NotFoundPage} /> 
                 </Switch>
             </div>

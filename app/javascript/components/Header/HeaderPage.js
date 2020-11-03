@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
+import Cookies from 'js-cookie'
 import styled from 'styled-components'
 import './HeaderPage.scss'
 
@@ -50,6 +51,7 @@ const Wrapper = styled.div`
 `
 
 export default () => {
+    const currentUserId = Cookies.get('user_id')
     const [searchText, setSearchText] = useState('')
 
     const handleSearch = (e) => {
@@ -75,7 +77,7 @@ export default () => {
                         <NavLink to="/mynetwork" className='navlink'>My Network</NavLink>
                         <NavLink to="/jobs" className='navlink'>Jobs</NavLink>
                         <NavLink to="/notifications" className='navlink'>Notifications</NavLink>
-                        <NavLink to="/myprofile" className='navlink'>My Profile</NavLink>
+                        <NavLink to={`/${currentUserId}`} className='navlink'>My Profile</NavLink>
                     </Navbar>
                 </Wrapper>
             </Header>

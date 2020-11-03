@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { usersThunk } from '../../reducers/UsersReducer'
 import styled from 'styled-components'
@@ -22,7 +23,7 @@ export default () => {
                 <h1>People You May Know</h1>
                 {users.map((user) => (
                     <ul key={user.id}>
-                        <p>{user.name}</p>
+                        <Link to={`/${user.id}`} >{user.name}</Link>
                         <p>{user.title}</p>
                     </ul>
                 ))}
