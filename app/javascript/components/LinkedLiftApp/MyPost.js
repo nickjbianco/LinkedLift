@@ -40,7 +40,6 @@ export default () => {
 
     return (
         <div>
-            
             <Form onSubmit={addPost}>
                 <textarea
                     value={description}

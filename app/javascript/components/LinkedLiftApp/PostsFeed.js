@@ -1,19 +1,26 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
+import React, { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { usersThunk } from '../../reducers/UsersReducer'
 
 export default () => {
-    const myPosts = useSelector(state => state.posts)
+    const users = useSelector(state => state.users)
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(usersThunk())
+    }, [])
 
     return (
         <div>
-            {myPosts.allIds.map((id) => {
-                return (
-                    <div key={id}>
-                        <p>{myPosts.byId[id].description}</p>
-                    </div>
-                    )
-            })}
+            {users.map((user) => (
+                <ul key={user.id}>
+                    {user.posts.map((post) => 
+                    <div key={post.id}>
+                        <p><b>{user.name}</b></p>
+                        <p>{post.body}</p>
+                    </div>)}
+                </ul>
+            ))}
         </div>
     )
 }
-

@@ -6,12 +6,8 @@ export const addMyPost = (payload) => ({
 })
 
 const defaultState = {
-    byId: {
-        3: { description: 'description-3' },
-        2: { description: 'description-2' }, 
-        1: { description: 'description-1' }
-    }, 
-    allIds: [3, 2, 1]
+    byId: {}, 
+    allIds: []
 }
 
 export default (state = defaultState, action) => {

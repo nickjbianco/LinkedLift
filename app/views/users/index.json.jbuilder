@@ -6,4 +6,5 @@ json.array! @users do |user|
     json.location user.location
     json.email user.email
     json.gyms user.gyms
+    json.posts user.posts
 end 

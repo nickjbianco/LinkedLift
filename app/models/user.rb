@@ -7,4 +7,7 @@ class User < ApplicationRecord
   # validates :name, presence: true, length: { maximum: 50 }
   has_many :employments
   has_many :gyms, through: :employments
+
+  has_many :user_posts
+  has_many :posts, through: :user_posts
 end
