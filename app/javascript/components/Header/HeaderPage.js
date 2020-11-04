@@ -75,7 +75,7 @@ export default () => {
                     <Navbar>
                         <NavLink to="/" exact={true} className='navlink'>Home</NavLink>
                         <NavLink to="/mynetwork" className='navlink'>My Network</NavLink>
-                        <NavLink to="/jobs" className='navlink'>Jobs</NavLink>
+                        <NavLink to="/gyms" className='navlink'>Gyms</NavLink>
                         <NavLink to="/notifications" className='navlink'>Notifications</NavLink>
                         <NavLink to={`/${currentUserId}`} className='navlink'>My Profile</NavLink>
                     </Navbar>

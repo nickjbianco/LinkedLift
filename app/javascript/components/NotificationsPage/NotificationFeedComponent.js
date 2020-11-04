@@ -3,7 +3,7 @@ import React from 'react'
 export default () => {
     return (
         <div>
-            <p>This will be the 'my network' page.</p>
+            <h1>List of notifications here</h1>
         </div>
     )
 }
