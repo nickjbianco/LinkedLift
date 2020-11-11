@@ -1,10 +1,14 @@
 Rails.application.routes.draw do
-  devise_for :users
   root 'pages#index'
+  resources :sessions, only: [:create]
+  resources :registrations, only: [:create], defaults: { format: :json }
+  delete :logout, to: "sessions#logout"
+  get :logged_in, to: "sessions#logged_in"
   get 'gyms/index' # JSON for gyms  
   get 'users/index' # JSON for users
   get '/users/:id', to: 'users#show' # JSON for one user 
   get 'employments/index' # JSON for employments 
-  get 'user_posts/index' # JSON for user posts 
+  # get 'posts/index' # JSON for posts 
+  resources :posts, only: [:index, :create]
   match '*path', to: 'pages#index', via: :all
 end

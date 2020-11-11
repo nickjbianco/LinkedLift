@@ -3,7 +3,6 @@ import MyPost from './MyPost'
 import MyAccountInfo from './MyAccountInfo'
 import SuggestedConnections from './SuggestedConnections'
 import styled from 'styled-components'
-import Cookies from 'js-cookie'
 
 const Wrapper = styled.div`
     display: flex;
@@ -33,14 +32,14 @@ const RightColumn = styled.div`
     background-color: yellow;
 `
 
-export default () => {
-    const currentUserId = Cookies.get('user_id')
+export default (props) => {
 
     return (
         <Wrapper>
+            <h1>{props.loggedInStatus}</h1>
             <ColumnContainer>
                 <LeftColumn>
-                    <MyAccountInfo userId={currentUserId} />
+                    <MyAccountInfo />
                 </LeftColumn>
                 <MiddleColumn>
                     <MyPost />

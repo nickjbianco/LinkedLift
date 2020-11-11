@@ -4,14 +4,14 @@
 
 import React from 'react'
 import ReactDOM from 'react-dom'
-import AppRouter from '../router/AppRouter'
+import App from '../components/App'
 import { Provider } from 'react-redux'
 import MyStore from '../store/myStore'
 
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
     <Provider store={MyStore}>
-      <AppRouter />
+      <App />
     </Provider>,
     document.body.appendChild(document.createElement('div')),
   )

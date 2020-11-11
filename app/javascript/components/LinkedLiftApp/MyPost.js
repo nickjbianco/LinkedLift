@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import PostsFeed from './PostsFeed'
-import { addMyPost } from '../../reducers/PostsReducer'
+import { addMyNewPost } from '../../reducers/PostsReducer'
 import styled from 'styled-components'
 
 const Form = styled.form`
@@ -34,7 +34,7 @@ export default () => {
 
     const addPost = (e) => {
         e.preventDefault()
-        dispatch(addMyPost({ description }))
+        dispatch(addMyNewPost({ description }))
         setDescription('')
     }
 

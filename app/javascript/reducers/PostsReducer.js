@@ -1,42 +1,49 @@
+import axios from 'axios'
 
-const ADD_POST = 'ADD_POST'
-export const addMyPost = (payload) => ({
-    type: ADD_POST, 
+const fetchPosts = () => {
+    return axios.get('http://localhost:3000/posts/index.json').then(response => response.data)
+}
+
+const RECEIVED_POSTS = 'RECEIVED_POSTS'
+const receivedPosts = (payload) => ({
+    type: RECEIVED_POSTS,
     payload
 })
 
-const defaultState = {
-    byId: {}, 
-    allIds: []
+export const postsThunk = () => {
+    return (dispatch) => {
+        fetchPosts().then((posts) => {
+            dispatch(receivedPosts(posts))
+        })
+    }
 }
+
+const createPost = (data) => {
+    return axios.post('http://localhost:3000/posts', data).then(response => response.data)
+}
+
+createPost({ body: 'Jesse The Body Ventura' }).then((post) => console.log(post))
+
+const ADD_MY_NEW_POST = 'ADD_MY_NEW_POST'
+export const addMyNewPost = (payload) => ({
+    type: ADD_MY_NEW_POST,
+    payload
+})
+
+const defaultState = []
 
 export default (state = defaultState, action) => {
     switch (action.type) {
-        case ADD_POST:
-            const newId = state.allIds.length + 1
-
-            return {
-                byId: {
-                    ...state.byId, 
-                    [newId]: action.payload
-                },
-                allIds: [
-                    newId,
-                    ...state.allIds   
-                ]
-            }
-        default: 
+        case RECEIVED_POSTS:
+            return action.payload
+        case ADD_MY_NEW_POST:
+            return [
+                action.payload,
+                ...state
+            ]
+        default:
             return state
     }
 }
 
-// DEFAULT STATE EXAMPLE FOR POSTS BELOW
 
-// defaultState = {
-//     byId: {
-//         1: { title: 'title-1', description: 'description-1', foreign_key: 'corresponding user id-1' }, 
-//         2: { title: 'title-2', description: 'description-2', foreign_key: 'corresponding user id-2' }, 
-//         3: { title: 'title-3', description: 'description-3', foreign_key: 'corresponding user id-3' }
-//     }, 
-//     allIds: [1, 2, 3]
-// }

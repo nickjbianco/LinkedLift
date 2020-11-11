@@ -7,22 +7,20 @@ import HeaderPage from '../components/Header/HeaderPage'
 import NotificationsPage from '../components/NotificationsPage/NotificationsPage'
 import MyProfilePage from '../components/MyProfilePage/MyProfilePage'
 import NotFoundPage from '../components/NotFoundPage/NotFoundPage'
-import Cookies from 'js-cookie'
 
 export default () => {
-    const currentUserId = Cookies.get('user_id')
 
     return (
         <BrowserRouter>
-            <div>   
+            <div>
                 <HeaderPage />
                 <Switch>
-                    <Route path="/" component={LinkedLiftApp} exact={true} />
+                    <Route path="/dashboard" component={LinkedLiftApp} exact />
                     <Route path="/mynetwork" component={MyNetworkPage} />
                     <Route path="/gyms" component={GymsPage} />
                     <Route path="/notifications" component={NotificationsPage} />
-                    <Route path={`/${currentUserId}`} component={MyProfilePage} /> 
-                    <Route component={NotFoundPage} /> 
+                    <Route path="/myprofile" component={MyProfilePage} />
+                    <Route component={NotFoundPage} />
                 </Switch>
             </div>
         </BrowserRouter>
