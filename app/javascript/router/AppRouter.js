@@ -8,12 +8,12 @@ import NotificationsPage from '../components/NotificationsPage/NotificationsPage
 import MyProfilePage from '../components/MyProfilePage/MyProfilePage'
 import NotFoundPage from '../components/NotFoundPage/NotFoundPage'
 
-export default () => {
+export default (props) => {
 
     return (
         <BrowserRouter>
             <div>
-                <HeaderPage />
+                <HeaderPage {...props} />
                 <Switch>
                     <Route path="/dashboard" component={LinkedLiftApp} exact />
                     <Route path="/mynetwork" component={MyNetworkPage} />

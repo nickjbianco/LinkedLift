@@ -1,5 +1,8 @@
 import React, { useState } from 'react'
 import axios from 'axios'
+import styled from 'styled-components'
+
+
 
 export default (props) => {
     const [firstName, setFirstName] = useState('')
@@ -38,47 +41,61 @@ export default (props) => {
     return (
         <div>
             <form onSubmit={handleSubmit}>
-                <input
-                    type="text"
-                    name="first_name"
-                    placeholder="First Name"
-                    value={firstName}
-                    onChange={(e) => setFirstName(e.target.value)}
-                />
+                <ul>
+                    <p>
+                        <input
+                            type="text"
+                            name="first_name"
+                            placeholder="First Name"
+                            value={firstName}
+                            onChange={(e) => setFirstName(e.target.value)}
+                        />                    
+                    </p>
 
-                <input
-                    type="text"
-                    name="last_name"
-                    placeholder="Last Name"
-                    value={lastName}
-                    onChange={(e) => setLastName(e.target.value)}
-                />
+                    <p>
+                        <input
+                            type="text"
+                            name="last_name"
+                            placeholder="Last Name"
+                            value={lastName}
+                            onChange={(e) => setLastName(e.target.value)}
+                        />                    
+                    </p>
 
-                <input
-                    type="email"
-                    name="email"
-                    placeholder="Email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                />
+                    <p>
+                        <input
+                            type="email"
+                            name="email"
+                            placeholder="Email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                        />                    
+                    </p>
 
-                <input
-                    type="password"
-                    name="password"
-                    placeholder="Password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                />
+                    <p>
+                        <input
+                            type="password"
+                            name="password"
+                            placeholder="Password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                        />                    
+                    </p>
 
-                <input
-                    type="password"
-                    name="password_confirmation"
-                    placeholder="Password Confirmation"
-                    value={passwordConfirmation}
-                    onChange={(e) => setpasswordConfirmation(e.target.value)}
-                />
+                    <p>
+                        <input
+                            type="password"
+                            name="password_confirmation"
+                            placeholder="Password Confirmation"
+                            value={passwordConfirmation}
+                            onChange={(e) => setpasswordConfirmation(e.target.value)}
+                        />                    
+                    </p>
 
-                <button type="submit" >Register</button>
+                    <p>
+                        <button type="submit" >Register</button>
+                    </p>
+                </ul>
             </form>
         </div>
     )

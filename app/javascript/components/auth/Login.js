@@ -29,24 +29,31 @@ export default (props) => {
     return (
         <div>
             <form onSubmit={handleSubmit}>
+                <ul>
+                    <p>
+                        <input
+                            type="email"
+                            name="email"
+                            placeholder="Email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                        />                    
+                    </p>
 
-                <input
-                    type="email"
-                    name="email"
-                    placeholder="Email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                />
+                    <p>
+                        <input
+                            type="password"
+                            name="password"
+                            placeholder="Password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                        />                    
+                    </p>
 
-                <input
-                    type="password"
-                    name="password"
-                    placeholder="Password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                />
-
-                <button type="submit" >Login</button>
+                    <p>
+                        <button type="submit" >Login</button>
+                    </p>
+                </ul>
             </form>
         </div>
     )

@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
+import axios from 'axios'
 import styled from 'styled-components'
 import './HeaderPage.scss'
 
@@ -49,13 +50,22 @@ const Wrapper = styled.div`
     padding-top: 15px;
 `
 
-export default () => {
+export default (props) => {
     const [searchText, setSearchText] = useState('')
 
     const handleSearch = (e) => {
         e.preventDefault()
         setSearchText(e.target.value)
         setSearchText('')
+    }
+
+    const handleLogoutClick = () => {
+        axios.delete("http://localhost:3000/logout", { withCredentials: true }).then(response => {
+            props.handleLogOut()
+        }).catch(error => {
+            console.log("logout error", error)
+        })
+        props.history.push('/')
     }
 
     return (
@@ -71,11 +81,12 @@ export default () => {
                     </form>
                     
                     <Navbar>
-                        <NavLink to="/" exact={true} className='navlink'>Home</NavLink>
+                        <NavLink exact to="/dashboard" className='navlink'>Home</NavLink>
                         <NavLink to="/mynetwork" className='navlink'>My Network</NavLink>
                         <NavLink to="/gyms" className='navlink'>Gyms</NavLink>
                         <NavLink to="/notifications" className='navlink'>Notifications</NavLink>
                         <NavLink to='/myprofile'className='navlink'>My Profile</NavLink>
+                        <Button onClick={() => handleLogoutClick()}>Logout</Button>
                     </Navbar>
                 </Wrapper>
             </Header>

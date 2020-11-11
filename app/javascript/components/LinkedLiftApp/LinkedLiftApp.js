@@ -36,7 +36,6 @@ export default (props) => {
 
     return (
         <Wrapper>
-            <h1>{props.loggedInStatus}</h1>
             <ColumnContainer>
                 <LeftColumn>
                     <MyAccountInfo />

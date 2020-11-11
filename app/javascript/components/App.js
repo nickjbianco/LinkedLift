@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import Home from './auth/HomePage'
-import Dashboard from './auth/Dashboard'
+import AppRouter from '../router/AppRouter'
 
 export default (props) => {
     const [loggedInStatus, setLoggedIn] = useState('NOT_LOGGED_IN')
@@ -56,7 +56,11 @@ export default (props) => {
                         exact 
                         path="/dashboard" 
                         render={props => (
-                            <Dashboard {...props} loggedInStatus={loggedInStatus} />
+                            <AppRouter 
+                                {...props} 
+                                loggedInStatus={loggedInStatus} 
+                                handleLogOut={handleLogOut}
+                            />
                         )}
                     />
                 </Switch>
