@@ -3,6 +3,7 @@ class User < ApplicationRecord
 
   validates :first_name, presence: true, length: { maximum: 25 }
   validates :last_name, presence: true, length: { maximum: 25 }
+  validates :title, presence: true
   validates :email, presence: true, uniqueness: true 
 
   has_many :employments

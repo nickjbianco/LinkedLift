@@ -1,15 +1,13 @@
 import React, { useState } from 'react'
 import axios from 'axios'
-import styled from 'styled-components'
-
-
 
 export default (props) => {
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
+    const [title, setTitle] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const [passwordConfirmation, setpasswordConfirmation] = useState('')
+    const [passwordConfirmation, setPasswordConfirmation] = useState('')
     const [registrationErrors, setregistrationErrors] = useState('')
 
     const handleSubmit = (e) => {
@@ -18,6 +16,7 @@ export default (props) => {
             user: {
                 first_name: firstName, 
                 last_name: lastName, 
+                title, 
                 email,
                 password,
                 password_confirmation: passwordConfirmation
@@ -33,9 +32,10 @@ export default (props) => {
         })
         setFirstName('')
         setLastName('')
+        setTitle('')
         setEmail('')
         setPassword('')
-        setpasswordConfirmation('')
+        setPasswordConfirmation('')
     }
 
     return (
@@ -64,6 +64,16 @@ export default (props) => {
 
                     <p>
                         <input
+                            type="text"
+                            name="title"
+                            placeholder="Title"
+                            value={title}
+                            onChange={(e) => setTitle(e.target.value)}
+                        />
+                    </p>
+
+                    <p>
+                        <input
                             type="email"
                             name="email"
                             placeholder="Email"
@@ -88,7 +98,7 @@ export default (props) => {
                             name="password_confirmation"
                             placeholder="Password Confirmation"
                             value={passwordConfirmation}
-                            onChange={(e) => setpasswordConfirmation(e.target.value)}
+                            onChange={(e) => setPasswordConfirmation(e.target.value)}
                         />                    
                     </p>
 
