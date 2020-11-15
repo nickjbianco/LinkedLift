@@ -10,5 +10,6 @@ Rails.application.routes.draw do
   get 'employments/index' # JSON for employments 
   # get 'posts/index' # JSON for posts 
   resources :posts, only: [:index, :create]
+  resources :users, only: [:update]
   match '*path', to: 'pages#index', via: :all
 end

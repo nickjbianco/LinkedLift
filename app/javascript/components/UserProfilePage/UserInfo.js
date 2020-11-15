@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
+import axios from "axios";
 import ReactModal from "react-modal";
 import styled from "styled-components";
 import EmploymentInfo from "./EmploymentInfo";
@@ -33,15 +34,33 @@ export default () => {
   const [title, setTitle] = useState("");
   const [location, setLocation] = useState("");
 
-  useEffect(() => {
-    console.log(currentUser);
-  }, []);
-
   const handleOpenModal = () => {
     setShowModal(true);
   };
 
-  const handleCloseModal = () => {
+  const handleCloseModal = (e) => {
+    e.preventDefault();
+    axios
+      .patch(
+        `http://localhost:3000/user/${currentUser.id}`,
+        {
+          user: {
+            location,
+            title,
+          },
+        },
+        { withCredentials: true }
+      )
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log("login error", error);
+      });
+    setFirstName("");
+    setLastName("");
+    setTitle("");
+    setLocation("");
     setShowModal(false);
   };
 
@@ -56,7 +75,11 @@ export default () => {
           <p>{currentUser.title}</p>
           <p>{currentUser.location}</p>
           <button onClick={handleOpenModal}>Edit Profile</button>
-          <ReactModal isOpen={showModal} contentLabel="Edit Profile">
+          <ReactModal
+            isOpen={showModal}
+            contentLabel="Edit Profile"
+            ariaHideApp={false}
+          >
             <form onSubmit={handleCloseModal}>
               <ul>
                 <p>

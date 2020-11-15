@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { receivedCurrentUser } from "../../reducers/CurrentUserReducer";
 import axios from "axios";
 
 export default (props) => {
@@ -8,6 +10,7 @@ export default (props) => {
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
   const [registrationErrors, setregistrationErrors] = useState("");
+  const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -26,9 +29,9 @@ export default (props) => {
         { withCredentials: true }
       )
       .then((response) => {
-        if (response.data.status) {
+        if (response.data.status === "created") {
           props.handleSuccessfulAuth(response.data);
-          console.log(response.data);
+          dispatch(receivedCurrentUser(response.data.user));
         }
       })
       .catch((error) => {
