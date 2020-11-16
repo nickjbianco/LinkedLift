@@ -1,9 +1,10 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 import ReactModal from "react-modal";
 import styled from "styled-components";
 import EmploymentInfo from "./EmploymentInfo";
+import { receivedCurrentUser } from "../../reducers/CurrentUserReducer";
 
 const Wrapper = styled.div`
   display: flex;
@@ -27,24 +28,30 @@ const Button = styled.button`
 `;
 
 export default () => {
+  const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.currentUser);
-  const [showModal, setShowModal] = useState(false);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [title, setTitle] = useState("");
   const [location, setLocation] = useState("");
+  const [title, setTitle] = useState("");
+  const [showModal, setShowModal] = useState(false);
 
-  const handleOpenModal = () => {
-    setShowModal(true);
-  };
+  useEffect(() => {
+    setFirstName(currentUser.first_name);
+    setLastName(currentUser.last_name);
+    setLocation(currentUser.location);
+    setTitle(currentUser.title);
+  }, [currentUser]);
 
   const handleCloseModal = (e) => {
     e.preventDefault();
     axios
       .patch(
-        `http://localhost:3000/user/${currentUser.id}`,
+        `http://localhost:3000/users/${currentUser.id}`,
         {
           user: {
+            first_name: firstName,
+            last_name: lastName,
             location,
             title,
           },
@@ -52,76 +59,62 @@ export default () => {
         { withCredentials: true }
       )
       .then((response) => {
-        console.log(response);
+        dispatch(receivedCurrentUser(response.data));
+        setShowModal(false);
       })
       .catch((error) => {
         console.log("login error", error);
       });
-    setFirstName("");
-    setLastName("");
-    setTitle("");
-    setLocation("");
-    setShowModal(false);
   };
 
   return (
     <div>
       <Wrapper>
         <ul>
-          <h1>User info</h1>
-          <p>
+          <h2>
             {currentUser.first_name} {currentUser.last_name}
+          </h2>
+          <p>
+            {currentUser.title} in {currentUser.location}
           </p>
-          <p>{currentUser.title}</p>
-          <p>{currentUser.location}</p>
-          <button onClick={handleOpenModal}>Edit Profile</button>
+          <button onClick={() => setShowModal(true)}>Edit Profile</button>
           <ReactModal
             isOpen={showModal}
             contentLabel="Edit Profile"
             ariaHideApp={false}
+            onRequestClose={() => setShowModal(false)}
           >
             <form onSubmit={handleCloseModal}>
-              <ul>
-                <p>
-                  <input
-                    type="text"
-                    name="first_name"
-                    placeholder="First Name"
-                    value={firstName}
-                    onChange={(e) => setFirstName(e.target.value)}
-                  />
-                </p>
-                <p>
-                  <input
-                    type="text"
-                    name="last_name"
-                    placeholder="Last Name"
-                    value={lastName}
-                    onChange={(e) => setLastName(e.target.value)}
-                  />
-                </p>
-                <p>
-                  <input
-                    type="text"
-                    name="title"
-                    placeholder="Title"
-                    value={title}
-                    onChange={(e) => setTitle(e.target.value)}
-                  />
-                </p>
-                <p>
-                  <input
-                    type="text"
-                    name="location"
-                    placeholder="Location"
-                    value={location}
-                    onChange={(e) => setLocation(e.target.value)}
-                  />
-                </p>
-                <p>
-                  <Button>Save</Button>
-                </p>
-              </ul>
+              <h2>Edit Profile Info</h2>
+              <input
+                type="text"
+                name="firstName"
+                placeholder="First Name"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+              />
+              <input
+                type="text"
+                name="lastName"
+                placeholder="Last Name"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+              />
+              <input
+                type="text"
+                name="location"
+                placeholder="Location"
+                value={location}
+                onChange={(e) => setLocation(e.target.value)}
+              />
+              <input
+                type="text"
+                name="title"
+                placeholder="Title"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+              />
+              <Button type="submit">Save</Button>
             </form>
           </ReactModal>
         </ul>

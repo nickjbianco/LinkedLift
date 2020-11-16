@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   get '/users/:id', to: 'users#show' # JSON for one user 
   get 'employments/index' # JSON for employments 
   # get 'posts/index' # JSON for posts 
-  resources :posts, only: [:index, :create]
-  resources :users, only: [:update]
+  resources :posts, only: [:index, :create], defaults: { format: :json }
+  resources :users, only: [:update], defaults: { format: :json }
   match '*path', to: 'pages#index', via: :all
 end
