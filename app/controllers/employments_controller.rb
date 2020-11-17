@@ -4,9 +4,19 @@ class EmploymentsController < ApplicationController
   end
 
   def create
-    employment = Employment.create!(
-     title: params['employment']['title'],
-     
-    )
+    debugger
+    Employment.create!(employment_params)
   end
+
+  private 
+
+  def employment_params
+    params.require(:employment).permit(
+      :title,
+      :user,
+      :gym
+      )
+  end 
+
 end
+

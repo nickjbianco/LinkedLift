@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { employmentsThunk } from "../../reducers/EmploymentsReducer";
-import { userThunk } from "../../reducers/CurrentUserReducer";
-import { gymsThunk } from "../../reducers/GymsReducer";
+import { employmentsThunk } from "../../reducers/EmploymentsReducer"; // All employments
+import { gymsThunk } from "../../reducers/GymsReducer"; // All gyms
 import ReactModal from "react-modal";
 import axios from "axios";
 import styled from "styled-components";
@@ -33,17 +32,18 @@ export default () => {
   const currentUser = useSelector((state) => state.currentUser);
   const employments = useSelector((state) => state.employments);
   const gyms = useSelector((state) => state.gyms);
+  const [gymName, setGymName] = useState("");
+  const [title, setTitle] = useState("");
+  const [showModal, setShowModal] = useState(false);
   const myEmployments = employments.filter((employment) => {
     if (employment.userId === currentUser.id) {
       return employment;
     }
   });
-  const [title, setTitle] = useState("");
-  const [showModal, setShowModal] = useState(false);
+  const currentUserGym = gyms.find((gym) => gym.name === gymName);
 
   useEffect(() => {
     dispatch(employmentsThunk());
-    dispatch(userThunk());
     dispatch(gymsThunk());
   }, []);
 
@@ -55,16 +55,18 @@ export default () => {
         {
           employment: {
             title,
-            gym_name: gymName,
+            user: currentUser,
+            gym: currentUserGym,
           },
         },
         { withCredentials: true }
       )
       .then((response) => {
         console.log(response);
+        setShowModal(false);
       })
       .catch((error) => {
-        console.log("registrarion error", error);
+        console.log("login error", error);
       });
     setShowModal(false);
   };
@@ -82,18 +84,30 @@ export default () => {
         >
           <form onSubmit={handleAddEmployment}>
             <h2>Add Gym</h2>
-            <input
-              type="text"
-              name="title"
-              placeholder="Title"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-            />
-            <select>
-              {gyms.map((gym) => (
-                <option key={gym.id}>{gym.name}</option>
-              ))}
-            </select>
+            <p>
+              <input
+                type="text"
+                name="title"
+                placeholder="Title"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+              />
+            </p>
+            <p>
+              <select
+                value={gymName}
+                onChange={(e) => setGymName(e.target.value)}
+              >
+                <option value="">--Select Gym</option>
+                {gyms.map((gym) => (
+                  <option key={gym.id} value={gym.name}>
+                    {gym.name}
+                  </option>
+                ))}
+              </select>
+            </p>
+            <p>Location</p>
+            <p>Start date - end date</p>
             <Button type="submit">Save</Button>
           </form>
         </ReactModal>
