@@ -63,11 +63,12 @@ export default () => {
       )
       .then((response) => {
         console.log(response);
-        setShowModal(false);
       })
       .catch((error) => {
         console.log("login error", error);
       });
+    setTitle("");
+    setGymName("");
     setShowModal(false);
   };
 
