@@ -3,11 +3,13 @@ import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 import ReactModal from "react-modal";
 import styled from "styled-components";
-import EmploymentInfo from "./EmploymentInfo";
+import EmploymentInfo from "./EmploymentInfo/EmploymentInfo";
 import { receivedCurrentUser } from "../../reducers/CurrentUserReducer";
 
 const Wrapper = styled.div`
   display: flex;
+  flex-direction: column;
+  align-items: center;
   background-color: blue;
 `;
 
@@ -25,6 +27,20 @@ const Button = styled.button`
     Droid Sans, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol,
     Lucida Grande, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
+`;
+
+const EditProfileButton = styled.button`
+  width: 40%;
+  background-color: white;
+`;
+
+const EditProfileFormWrapper = styled.div`
+  background-color: yellow;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
 `;
 
 export default () => {
@@ -70,54 +86,66 @@ export default () => {
   return (
     <div>
       <Wrapper>
-        <ul>
-          <h2>
-            {currentUser.first_name} {currentUser.last_name}
-          </h2>
-          <p>
-            {currentUser.title} in {currentUser.location}
-          </p>
-          <button onClick={() => setShowModal(true)}>Edit Profile</button>
-          <ReactModal
-            isOpen={showModal}
-            contentLabel="Edit Profile"
-            ariaHideApp={false}
-            onRequestClose={() => setShowModal(false)}
-          >
+        <h2>
+          {currentUser.first_name} {currentUser.last_name}
+        </h2>
+        <p>
+          {currentUser.title} in {currentUser.location}
+        </p>
+        <EditProfileButton onClick={() => setShowModal(true)}>
+          Edit Profile
+        </EditProfileButton>
+        <ReactModal
+          isOpen={showModal}
+          contentLabel="Edit Profile"
+          ariaHideApp={false}
+          onRequestClose={() => setShowModal(false)}
+        >
+          <EditProfileFormWrapper>
             <form onSubmit={handleCloseModal}>
               <h2>Edit Profile Info</h2>
-              <input
-                type="text"
-                name="firstName"
-                placeholder="First Name"
-                value={firstName}
-                onChange={(e) => setFirstName(e.target.value)}
-              />
-              <input
-                type="text"
-                name="lastName"
-                placeholder="Last Name"
-                value={lastName}
-                onChange={(e) => setLastName(e.target.value)}
-              />
-              <input
-                type="text"
-                name="location"
-                placeholder="Location"
-                value={location}
-                onChange={(e) => setLocation(e.target.value)}
-              />
-              <input
-                type="text"
-                name="title"
-                placeholder="Title"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-              />
-              <Button type="submit">Save</Button>
+              <p>
+                <input
+                  type="text"
+                  name="firstName"
+                  placeholder="First Name"
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
+                />
+              </p>
+              <p>
+                <input
+                  type="text"
+                  name="lastName"
+                  placeholder="Last Name"
+                  value={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
+                />
+              </p>
+              <p>
+                <input
+                  type="text"
+                  name="location"
+                  placeholder="Location"
+                  value={location}
+                  onChange={(e) => setLocation(e.target.value)}
+                />
+              </p>
+              <p>
+                <input
+                  type="text"
+                  name="title"
+                  placeholder="Title"
+                  value={title}
+                  onChange={(e) => setTitle(e.target.value)}
+                />
+              </p>
+              <p>
+                <Button type="submit">Save</Button>
+              </p>
             </form>
-          </ReactModal>
-        </ul>
+          </EditProfileFormWrapper>
+        </ReactModal>
       </Wrapper>
       <EmploymentInfo />
     </div>

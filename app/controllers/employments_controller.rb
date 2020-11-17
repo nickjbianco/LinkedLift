@@ -1,10 +1,17 @@
 class EmploymentsController < ApplicationController
+  include CurrentUserConcern
+
   def index
     @employments = Employment.all 
   end
 
   def create
-    Employment.create(employment_params)
+    @employment = Employment.new(employment_params)
+    @employment.user_id = @current_user.id
+
+    if @employment.save 
+      render "create"
+    end 
   end
 
   private 
@@ -12,8 +19,9 @@ class EmploymentsController < ApplicationController
   def employment_params
     params.require(:employment).permit(
       :title,
-      :user,
-      :gym
+      :start_date, 
+      :end_date,
+      :gym_id
       )
   end 
 

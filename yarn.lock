@@ -6301,6 +6301,11 @@ react-dom@^17.0.1:
     object-assign "^4.1.1"
     scheduler "^0.20.1"
 
+react-dropdown-date@^2.2.3:
+  version "2.2.3"
+  resolved "https://registry.yarnpkg.com/react-dropdown-date/-/react-dropdown-date-2.2.3.tgz#1ec17468352c05fdb0231e966a3a8c811036b714"
+  integrity sha512-4NzovCxqD8U1OOi3ri6qegbH3eC6B6OB99q1hSgtKROtDU04ZjVw3RHvqbdRT0GJ9IXpkW6iXwGAivMNIiTbxA==
+
 react-is@^16.13.1, react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.1:
   version "16.13.1"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"

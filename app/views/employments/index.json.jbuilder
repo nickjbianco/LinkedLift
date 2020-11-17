@@ -5,8 +5,8 @@ json.array! @employments do |employment|
     json.gymId employment.gym_id
     json.title employment.title
     json.description employment.description
-    json.startDate employment.start_date
-    json.endDate employment.end_date
+    json.startDate employment.start_date_representation
+    json.endDate employment.end_date_representation
     json.gymName employment.gym.name
     json.gymLocation employment.gym.location
 end 
