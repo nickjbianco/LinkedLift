@@ -4,8 +4,7 @@ class EmploymentsController < ApplicationController
   end
 
   def create
-    debugger
-    Employment.create!(employment_params)
+    Employment.create(employment_params)
   end
 
   private 
