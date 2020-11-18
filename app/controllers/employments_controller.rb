@@ -14,6 +14,18 @@ class EmploymentsController < ApplicationController
     end 
   end
 
+  def show 
+    @employment = Employment.find(params[:id])
+  end 
+
+  def update 
+    @employment = Employment.find(params[:id])
+
+    if @employment
+      @employment.update_attributes(employment_params)
+    end 
+  end 
+
   private 
 
   def employment_params

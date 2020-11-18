@@ -1,52 +1,21 @@
 import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
 import ReactModal from "react-modal";
+import { useSelector, useDispatch } from "react-redux";
 import { YearPicker } from "react-dropdown-date";
-import { addEmployment } from "../../../reducers/EmploymentsReducer";
 import { gymsThunk } from "../../../reducers/GymsReducer";
 import axios from "axios";
-import styled from "styled-components";
 
-const Button = styled.button`
-  background-color: var(--blue-70, #0073b1);
-  color: white;
-  font-weight: 600;
-  padding: 0;
-  font-size: 100%;
-  cursor: pointer;
-  margin-left: 8px;
-  line-height: 1.2;
-  font-family: -apple-system, system-ui, BlinkMacSystemFont, Segoe UI, Roboto,
-    Helvetica Neue, Fira Sans, Ubuntu, Oxygen, Oxygen Sans, Cantarell,
-    Droid Sans, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol,
-    Lucida Grande, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-`;
-
-const AddGymFormWrapper = styled.div`
-  background-color: yellow;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  text-align: center;
-`;
-
-const AddEmploymentButton = styled.button`
-  width: 100%;
-  background-color: white;
-`;
-
-export default () => {
+export default (props) => {
   const dispatch = useDispatch();
   const gyms = useSelector((state) => state.gyms);
-  const [gymId, setGymId] = useState(undefined);
+  const currentEmployment = props.currentEmployment;
   const [title, setTitle] = useState("");
+  const [gymId, setGymId] = useState(undefined);
+  const [showModal, setShowModal] = useState(false);
   const [startMonth, setStartMonth] = useState(undefined);
   const [startYear, setStartYear] = useState(undefined);
   const [endMonth, setEndMonth] = useState(undefined);
   const [endYear, setEndYear] = useState(undefined);
-  const [showModal, setShowModal] = useState(false);
   const fullEndDate =
     endMonth && endYear ? `${endYear}-${endMonth}-01` : undefined;
   const months = [
@@ -66,13 +35,19 @@ export default () => {
 
   useEffect(() => {
     dispatch(gymsThunk());
+    setTitle(currentEmployment.title);
+    setGymId(currentEmployment.gymId);
+    setStartMonth(months.indexOf(currentEmployment.startMonth) + 1);
+    setStartYear(currentEmployment.startYear);
+    setEndMonth(months.indexOf(currentEmployment.endMonth) + 1);
+    setEndYear(currentEmployment.endYear);
   }, []);
 
-  const handleAddEmployment = (e) => {
+  const handleCloseModal = (e) => {
     e.preventDefault();
     axios
-      .post(
-        "http://localhost:3000/employments",
+      .patch(
+        `http://localhost:3000/employments/${currentEmployment.id}`,
         {
           employment: {
             title,
@@ -84,13 +59,7 @@ export default () => {
         { withCredentials: true }
       )
       .then((response) => {
-        dispatch(addEmployment(response.data));
-        setTitle("");
-        setGymId(undefined);
-        setStartMonth(undefined);
-        setStartYear(undefined);
-        setEndMonth(undefined);
-        setEndYear(undefined);
+        console.log(response);
         setShowModal(false);
       })
       .catch((error) => {
@@ -100,27 +69,21 @@ export default () => {
 
   return (
     <div>
-      <AddEmploymentButton onClick={() => setShowModal(true)}>
-        Add Gym
-      </AddEmploymentButton>
-      <ReactModal
-        isOpen={showModal}
-        contentLabel="Add Gym"
-        ariaHideApp={false}
-        onRequestClose={() => setShowModal(false)}
-      >
-        <AddGymFormWrapper>
-          <form onSubmit={handleAddEmployment}>
-            <h2>Add Gym</h2>
-            <p>
-              <em>* Required fields.</em>
-            </p>
+      <span>
+        <button onClick={() => setShowModal(true)}>Edit Gym</button>
+        <ReactModal
+          isOpen={showModal}
+          contentLabel="Add Gym"
+          ariaHideApp={false}
+          onRequestClose={() => setShowModal(false)}
+        >
+          <form onSubmit={handleCloseModal}>
+            <h2>Edit Previous Gym</h2>
             <div>
               <input
                 type="text"
-                name="title"
-                placeholder="Title"
                 value={title}
+                placeholder="Title"
                 onChange={(e) => setTitle(e.target.value)}
               />
             </div>
@@ -133,7 +96,6 @@ export default () => {
                   </option>
                 ))}
               </select>
-              <span>*</span>
             </div>
             <div>
               <select
@@ -154,7 +116,6 @@ export default () => {
                 start={1990}
                 end={2020}
               />
-              <span>*</span>
             </div>
             <div>
               <select
@@ -175,12 +136,11 @@ export default () => {
                 start={1990}
                 end={2020}
               />
-              <span> -- If still at current gym leave this area blank.</span>
             </div>
-            <Button type="submit">Save</Button>
+            <button type="submit">Save</button>
           </form>
-        </AddGymFormWrapper>
-      </ReactModal>
+        </ReactModal>
+      </span>
     </div>
   );
 };
