@@ -22,7 +22,7 @@ export default () => {
   useEffect(() => {
     dispatch(employmentsThunk());
     dispatch(gymsThunk());
-  }, [employments]);
+  }, []);
 
   return (
     <Wrapper>
