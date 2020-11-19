@@ -1,18 +1,22 @@
-import React from 'react'
-import GymSearchComponent from './GymSearchComponent'
-import styled from 'styled-components'
+import React from "react";
+import GymSearchComponent from "./GymSearchComponent";
+import GymsFeedComponent from "./GymsFeedComponent";
+import styled from "styled-components";
 
 const Wrapper = styled.div`
-    display: flex;
-    width: 100%;
-    background-color: red;
-    justify-content: center;
-`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  background-color: red;
+  justify-content: center;
+`;
 
 export default () => {
-    return (
-        <Wrapper>
-            <GymSearchComponent />
-        </Wrapper>
-    )
-}
+  return (
+    <Wrapper>
+      <GymSearchComponent />
+      <GymsFeedComponent />
+    </Wrapper>
+  );
+};
