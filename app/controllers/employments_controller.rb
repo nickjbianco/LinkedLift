@@ -2,7 +2,7 @@ class EmploymentsController < ApplicationController
   include CurrentUserConcern
 
   def index
-    @employments = Employment.all 
+    @employments = Employment.where(user_id: @current_user.id)
   end
 
   def create
@@ -21,7 +21,7 @@ class EmploymentsController < ApplicationController
   def update 
     @employment = Employment.find(params[:id])
 
-    if @employment
+    if @employment && @employment.user_id == @current_user.id
       @employment.update_attributes(employment_params)
     end 
   end 

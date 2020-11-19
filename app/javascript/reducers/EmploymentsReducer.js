@@ -12,12 +12,6 @@ export const receivedEmployments = (payload) => ({
   payload,
 });
 
-const ADD_EMPLOYMENT = "ADD_EMPLOYMENT";
-export const addEmployment = (payload) => ({
-  type: ADD_EMPLOYMENT,
-  payload,
-});
-
 export const employmentsThunk = () => {
   return (dispatch) => {
     fetchEmployments().then((employments) => {
@@ -26,14 +20,53 @@ export const employmentsThunk = () => {
   };
 };
 
-const defaultState = [];
+const ADD_EMPLOYMENT = "ADD_EMPLOYMENT";
+export const addEmployment = (payload) => ({
+  type: ADD_EMPLOYMENT,
+  payload,
+});
+
+const EDIT_EMPLOYMENT = "EDIT_EMPLOYMENT";
+export const editEmployment = (payload) => ({
+  type: EDIT_EMPLOYMENT,
+  payload,
+});
+
+const defaultState = {
+  byIds: {},
+  allIds: [],
+};
 
 export default (state = defaultState, action) => {
   switch (action.type) {
     case RECEIVED_EMPLOYMENTS:
-      return action.payload;
+      const allIds = action.payload.map((employment) => employment.id);
+
+      const byIds = {};
+      action.payload.forEach((employment) => {
+        byIds[employment.id] = employment;
+      });
+
+      return {
+        byIds,
+        allIds,
+      };
     case ADD_EMPLOYMENT:
-      return [...state, action.payload];
+      return {
+        byIds: {
+          ...state.byIds,
+          [action.payload.id]: action.payload,
+        },
+        allIds: [...state.allIds, action.payload.id],
+      };
+    case EDIT_EMPLOYMENT:
+      return {
+        byIds: {
+          ...state.byIds,
+          [action.payload.id]: action.payload,
+        },
+        allIds: state.allIds,
+      };
     default:
       return state;
   }

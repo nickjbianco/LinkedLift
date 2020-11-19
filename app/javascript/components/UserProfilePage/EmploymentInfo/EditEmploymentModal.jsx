@@ -3,6 +3,7 @@ import ReactModal from "react-modal";
 import { useSelector, useDispatch } from "react-redux";
 import { YearPicker } from "react-dropdown-date";
 import { gymsThunk } from "../../../reducers/GymsReducer";
+import { editEmployment } from "../../../reducers/EmploymentsReducer";
 import axios from "axios";
 
 export default (props) => {
@@ -59,7 +60,7 @@ export default (props) => {
         { withCredentials: true }
       )
       .then((response) => {
-        console.log(response);
+        dispatch(editEmployment(response.data));
         setShowModal(false);
       })
       .catch((error) => {

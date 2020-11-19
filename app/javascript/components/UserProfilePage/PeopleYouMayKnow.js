@@ -18,7 +18,7 @@ export default () => {
   const currentUser = useSelector((state) => state.currentUser);
   const suggestedUsers = allUsers
     .filter((user) => user.id !== currentUser.id)
-    .slice(0, 2);
+    .slice(0, 5);
 
   useEffect(() => {
     dispatch(usersThunk());
