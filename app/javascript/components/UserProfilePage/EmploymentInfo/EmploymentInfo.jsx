@@ -4,16 +4,18 @@ import AddEmploymentModal from "./AddEmploymentModal";
 import PreviousEmploymentsFed from "./PreviousEmploymentsFeed";
 
 const Wrapper = styled.div`
+  width: 165%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: green;
+  background-color: white;
+  border-radius: 25px;
+  border: 2px solid #d6cec2;
 `;
 
 export default () => {
   return (
     <Wrapper>
-      <h1>Previous Gyms</h1>
       <AddEmploymentModal />
       <PreviousEmploymentsFed />
     </Wrapper>

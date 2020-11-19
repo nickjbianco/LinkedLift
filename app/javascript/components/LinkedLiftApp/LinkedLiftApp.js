@@ -1,52 +1,55 @@
-import React from 'react'
-import MyPost from './MyPost'
-import MyAccountInfo from './MyAccountInfo'
-import SuggestedConnections from './SuggestedConnections'
-import styled from 'styled-components'
+import React from "react";
+import MyPost from "./MyPost";
+import MyAccountInfo from "./MyAccountInfo";
+import SuggestedConnections from "./SuggestedConnections";
+import styled from "styled-components";
 
 const Wrapper = styled.div`
-    display: flex;
-    width: 100%;
-    background-color: red;
-    justify-content: center;
-`
+  display: flex;
+  width: 100%;
+  background-color: red;
+  justify-content: center;
+`;
 
 const ColumnContainer = styled.div`
-    padding: 0 30px;
-    display: flex;
-    width: 90%;
-`
+  padding: 0 30px;
+  display: flex;
+  width: 90%;
+`;
 
 const LeftColumn = styled.div`
-    flex-grow: 1;
-    background-color: blue;
-`
+  flex-grow: 1;
+  background-color: blue;
+  display: flex;
+  justify-content: center;
+`;
 
 const MiddleColumn = styled.div`
-    flex-grow: 4;
-    background-color: green;
-`
+  flex-grow: 4;
+  background-color: green;
+`;
 
 const RightColumn = styled.div`
-    flex-grow: 2;
-    background-color: yellow;
-`
+  flex-grow: 2;
+  background-color: yellow;
+  display: flex;
+  justify-content: center;
+`;
 
 export default (props) => {
-
-    return (
-        <Wrapper>
-            <ColumnContainer>
-                <LeftColumn>
-                    <MyAccountInfo />
-                </LeftColumn>
-                <MiddleColumn>
-                    <MyPost />
-                </MiddleColumn>
-                <RightColumn>
-                    <SuggestedConnections />
-                </RightColumn>
-            </ColumnContainer>
-        </Wrapper>
-    )
-}
+  return (
+    <Wrapper>
+      <ColumnContainer>
+        <LeftColumn>
+          <MyAccountInfo />
+        </LeftColumn>
+        <MiddleColumn>
+          <MyPost />
+        </MiddleColumn>
+        <RightColumn>
+          <SuggestedConnections />
+        </RightColumn>
+      </ColumnContainer>
+    </Wrapper>
+  );
+};

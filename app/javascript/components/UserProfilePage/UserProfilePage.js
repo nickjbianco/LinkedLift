@@ -6,10 +6,10 @@ import styled from "styled-components";
 const Wrapper = styled.div`
   display: flex;
   justify-content: space-evenly;
-  background-color: red;
+  background-color: #e9e5df;
 `;
 
-export default (props) => {
+export default () => {
   return (
     <Wrapper>
       <UserInfo />

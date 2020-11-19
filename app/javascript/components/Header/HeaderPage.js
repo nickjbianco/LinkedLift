@@ -7,6 +7,8 @@ import styled from "styled-components";
 import "./HeaderPage.scss";
 
 const Button = styled.button`
+  border-radius: 2px;
+  border: 2px solid var(--blue-70, #0073b1);
   background-color: var(--blue-70, #0073b1);
   color: white;
   font-weight: 600;
@@ -21,9 +23,11 @@ const Button = styled.button`
     Lucida Grande, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
 `;
+
 const Header = styled.header`
   background-color: var(--cool-gray-80, #283e4a);
   display: flex;
+  flex-direction: center;
   padding: 0 30px;
   line-height: 24px;
   width: 100vw;
@@ -55,6 +59,31 @@ const Wrapper = styled.div`
   padding-top: 15px;
 `;
 
+const LinkedLift = styled.h1`
+  margin-right: 10px;
+  padding: 5px 5px;
+  background-color: #0a66c2;
+  color: white;
+  font-size: 20px;
+`;
+
+const LogoutButton = styled.div`
+  border-radius: 2px;
+  border: 2px solid var(--blue-70, #0073b1);
+  background-color: var(--blue-70, #0073b1);
+  margin-bottom: 20px;
+  color: white;
+  font-weight: 600;
+  font-size: 100%;
+  cursor: pointer;
+  margin-left: 8px;
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, Segoe UI, Roboto,
+    Helvetica Neue, Fira Sans, Ubuntu, Oxygen, Oxygen Sans, Cantarell,
+    Droid Sans, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol,
+    Lucida Grande, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+`;
+
 export default (props) => {
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.currentUser);
@@ -82,6 +111,7 @@ export default (props) => {
   return (
     <div>
       <Header>
+        <LinkedLift>LinkedLift</LinkedLift>
         <Wrapper>
           <form onSubmit={handleSearch}>
             <Input
@@ -107,8 +137,10 @@ export default (props) => {
             <NavLink to={`/profile/${currentUser.id}`} className="navlink">
               My Profile
             </NavLink>
-            <Button onClick={() => handleLogoutClick()}>Logout</Button>
           </Navbar>
+          <LogoutButton onClick={() => handleLogoutClick()}>
+            Logout
+          </LogoutButton>
         </Wrapper>
       </Header>
     </div>

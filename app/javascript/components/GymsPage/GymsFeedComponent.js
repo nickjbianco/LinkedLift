@@ -4,19 +4,28 @@ import { gymsThunk } from "../../reducers/GymsReducer";
 import styled from "styled-components";
 
 const GymList = styled.div`
-  background-color: blue;
+  background-color: white;
   display: flex-start;
+  border-radius: 25px;
+  border: 2px solid #d6cec2;
 `;
 
 const Title = styled.h1`
-  background-color: green;
+  padding-left: 10px;
+  background-color: white;
   display: flex;
-  justify-content: center;
+  align-self: flex-start;
 `;
 
 const Wrapper = styled.div`
-  background-color: orange;
+  background-color: white;
   display: flex;
+  justify-content: space-evenly;
+`;
+
+const Gym = styled.ul`
+  border-radius: 10px;
+  border: 2px solid #d6cec2;
 `;
 
 export default () => {
@@ -33,33 +42,39 @@ export default () => {
       <Wrapper>
         {allGyms
           .map((gym) => (
-            <ul key={gym.id}>
+            <Gym key={gym.id}>
               <h3>{gym.name}</h3>
-              <p>{gym.location}</p>
-              <p>{gym.description}</p>
-            </ul>
+              <div>
+                <p>{gym.location}</p>
+                <p>{gym.description}</p>
+              </div>
+            </Gym>
           ))
           .slice(0, 4)}
       </Wrapper>
       <Wrapper>
         {allGyms
           .map((gym) => (
-            <ul key={gym.id}>
+            <Gym key={gym.id}>
               <h3>{gym.name}</h3>
-              <p>{gym.location}</p>
-              <p>{gym.description}</p>
-            </ul>
+              <div>
+                <p>{gym.location}</p>
+                <p>{gym.description}</p>
+              </div>
+            </Gym>
           ))
           .slice(4, 8)}
       </Wrapper>
       <Wrapper>
         {allGyms
           .map((gym) => (
-            <ul key={gym.id}>
+            <Gym key={gym.id}>
               <h3>{gym.name}</h3>
-              <p>{gym.location}</p>
-              <p>{gym.description}</p>
-            </ul>
+              <div>
+                <p>{gym.location}</p>
+                <p>{gym.description}</p>
+              </div>
+            </Gym>
           ))
           .slice(8, 12)}
       </Wrapper>

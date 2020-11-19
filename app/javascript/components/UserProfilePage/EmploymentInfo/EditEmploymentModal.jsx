@@ -5,6 +5,30 @@ import { YearPicker } from "react-dropdown-date";
 import { gymsThunk } from "../../../reducers/GymsReducer";
 import { editEmployment } from "../../../reducers/EmploymentsReducer";
 import axios from "axios";
+import styled from "styled-components";
+
+const Button = styled.button`
+  border-radius: 2px;
+  border: 2px solid var(--blue-70, #0073b1);
+  background-color: var(--blue-70, #0073b1);
+  color: white;
+  font-weight: 600;
+  padding: 0;
+  font-size: 100%;
+  cursor: pointer;
+  margin-left: 8px;
+  line-height: 1.2;
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, Segoe UI, Roboto,
+    Helvetica Neue, Fira Sans, Ubuntu, Oxygen, Oxygen Sans, Cantarell,
+    Droid Sans, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol,
+    Lucida Grande, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+`;
+
+const EmploymentsFeed = styled.form`
+  display: flex;
+  flex-direction: reverse-row;
+`;
 
 export default (props) => {
   const dispatch = useDispatch();
@@ -71,14 +95,14 @@ export default (props) => {
   return (
     <div>
       <span>
-        <button onClick={() => setShowModal(true)}>Edit Gym</button>
+        <Button onClick={() => setShowModal(true)}>Edit Gym</Button>
         <ReactModal
           isOpen={showModal}
           contentLabel="Add Gym"
           ariaHideApp={false}
           onRequestClose={() => setShowModal(false)}
         >
-          <form onSubmit={handleCloseModal}>
+          <EmploymentsFeed onSubmit={handleCloseModal}>
             <h2>Edit Previous Gym</h2>
             <div>
               <input
@@ -139,7 +163,7 @@ export default (props) => {
               />
             </div>
             <button type="submit">Save</button>
-          </form>
+          </EmploymentsFeed>
         </ReactModal>
       </span>
     </div>

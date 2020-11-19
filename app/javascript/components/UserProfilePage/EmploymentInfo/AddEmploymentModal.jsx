@@ -8,12 +8,17 @@ import axios from "axios";
 import styled from "styled-components";
 
 const Button = styled.button`
+  border-radius: 2px;
+  border: 2px solid var(--blue-70, #0073b1);
   background-color: var(--blue-70, #0073b1);
   color: white;
   font-weight: 600;
+  width: 50%;
+  height: 50%;
   padding: 0;
   font-size: 100%;
   cursor: pointer;
+  margin-top: 30px;
   margin-left: 8px;
   line-height: 1.2;
   font-family: -apple-system, system-ui, BlinkMacSystemFont, Segoe UI, Roboto,
@@ -24,7 +29,6 @@ const Button = styled.button`
 `;
 
 const AddGymFormWrapper = styled.div`
-  background-color: yellow;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -32,9 +36,22 @@ const AddGymFormWrapper = styled.div`
   text-align: center;
 `;
 
-const AddEmploymentButton = styled.button`
+const Experience = styled.h2`
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, Segoe UI, Roboto,
+    Helvetica Neue, Fira Sans, Ubuntu, Oxygen, Oxygen Sans, Cantarell,
+    Droid Sans, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol,
+    Lucida Grande, Helvetica, Arial, sans-serif;
   width: 100%;
-  background-color: white;
+`;
+
+const EmploymentFeedTitle = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+const LineBreak = styled.hr`
+  width: 120%;
+  margin-top: 16px;
 `;
 
 export default () => {
@@ -100,9 +117,11 @@ export default () => {
 
   return (
     <div>
-      <AddEmploymentButton onClick={() => setShowModal(true)}>
-        Add Gym
-      </AddEmploymentButton>
+      <EmploymentFeedTitle>
+        <Experience>Previous Gyms</Experience>
+        <Button onClick={() => setShowModal(true)}>Add Gym</Button>
+      </EmploymentFeedTitle>
+      <LineBreak />
       <ReactModal
         isOpen={showModal}
         contentLabel="Add Gym"

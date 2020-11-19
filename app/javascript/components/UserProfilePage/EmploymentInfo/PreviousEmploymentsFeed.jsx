@@ -7,7 +7,19 @@ import styled from "styled-components";
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: orange;
+  background-color: var(--white, #fff);
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, Segoe UI, Roboto,
+    Helvetica Neue, Fira Sans, Ubuntu, Oxygen, Oxygen Sans, Cantarell,
+    Droid Sans, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol,
+    Lucida Grande, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  padding: 20px 72px 0 24px;
+  line-height: 1.5;
+`;
+
+const LineBreak = styled.hr`
+  width: 120%;
+  margin-top: 16px;
 `;
 
 export default () => {
@@ -31,7 +43,7 @@ export default () => {
             </p>
             <p>{employment.gymLocation}</p>
             <EditEmploymentModal currentEmployment={employment} />
-            <hr />
+            <LineBreak />
           </ul>
         );
       })}
