@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 import ReactModal from "react-modal";
 import styled from "styled-components";
 import EmploymentInfo from "./EmploymentInfo/EmploymentInfo";
 import { receivedCurrentUser } from "../../reducers/CurrentUserReducer";
+import { userThunk } from "../../reducers/ViewUserReducer";
 import "./UserInfo.scss";
 
 const Wrapper = styled.div`
@@ -95,17 +97,23 @@ const EditModalInput = styled.input`
 export default () => {
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.currentUser);
+  const viewUser = useSelector((state) => state.viewUser);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [location, setLocation] = useState("");
   const [title, setTitle] = useState("");
   const [showModal, setShowModal] = useState(false);
+  const params = useParams();
+  const editProfileButtonDisable = viewUser.id === currentUser.id && (
+    <Button onClick={() => setShowModal(true)}>Edit Profile</Button>
+  );
 
   useEffect(() => {
     setFirstName(currentUser.first_name);
     setLastName(currentUser.last_name);
     setLocation(currentUser.location);
     setTitle(currentUser.title);
+    dispatch(userThunk(params.id));
   }, [currentUser]);
 
   const handleCloseModal = (e) => {
@@ -137,12 +145,12 @@ export default () => {
       <Wrapper>
         <UseInfoWrapper>
           <h2>
-            {currentUser.first_name} {currentUser.last_name}
+            {viewUser.first_name} {viewUser.last_name}
           </h2>
           <p>
-            {currentUser.title} in {currentUser.location}
+            {viewUser.title} in {viewUser.location}
           </p>
-          <Button onClick={() => setShowModal(true)}>Edit Profile</Button>
+          {editProfileButtonDisable}
         </UseInfoWrapper>
         <ReactModal
           isOpen={showModal}
@@ -154,7 +162,7 @@ export default () => {
           <EditProfileFormWrapper>
             <EditModalTitle>Edit Profile Info</EditModalTitle>
             <EditModalForm onSubmit={handleCloseModal}>
-              <p>
+              <div>
                 <p>First Name</p>
                 <EditModalInput
                   type="text"
@@ -163,9 +171,9 @@ export default () => {
                   value={firstName}
                   onChange={(e) => setFirstName(e.target.value)}
                 />
-              </p>
+              </div>
 
-              <p>
+              <div>
                 <p>Last Name</p>
                 <EditModalInput
                   type="text"
@@ -174,8 +182,9 @@ export default () => {
                   value={lastName}
                   onChange={(e) => setLastName(e.target.value)}
                 />
-              </p>
-              <p>
+              </div>
+
+              <div>
                 <p>Location</p>
                 <EditModalInput
                   type="text"
@@ -184,8 +193,9 @@ export default () => {
                   value={location}
                   onChange={(e) => setLocation(e.target.value)}
                 />
-              </p>
-              <p>
+              </div>
+
+              <div>
                 <p>Title</p>
                 <EditModalInput
                   type="text"
@@ -194,11 +204,14 @@ export default () => {
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
                 />
-              </p>
-              <span>
-                <Button type="submit">Save</Button>
-                <Button onClick={() => setShowModal(false)}>Close</Button>
-              </span>
+              </div>
+
+              <div>
+                <span>
+                  <Button type="submit">Save</Button>
+                  <Button onClick={() => setShowModal(false)}>Close</Button>
+                </span>
+              </div>
             </EditModalForm>
           </EditProfileFormWrapper>
         </ReactModal>

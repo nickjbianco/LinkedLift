@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
 import ReactModal from "react-modal";
 import { YearPicker } from "react-dropdown-date";
 import { addEmployment } from "../../../reducers/EmploymentsReducer";
 import { gymsThunk } from "../../../reducers/GymsReducer";
+import { userThunk } from "../../../reducers/ViewUserReducer";
 import axios from "axios";
 import styled from "styled-components";
 
@@ -56,7 +58,10 @@ const LineBreak = styled.hr`
 
 export default () => {
   const dispatch = useDispatch();
+  const params = useParams();
   const gyms = useSelector((state) => state.gyms);
+  const currentUser = useSelector((state) => state.currentUser);
+  const viewUser = useSelector((state) => state.viewUser);
   const [gymId, setGymId] = useState(undefined);
   const [title, setTitle] = useState("");
   const [startMonth, setStartMonth] = useState(undefined);
@@ -80,9 +85,13 @@ export default () => {
     "November",
     "December",
   ];
+  const addGymButtonDisable = viewUser.id === currentUser.id && (
+    <Button onClick={() => setShowModal(true)}>Add Gym</Button>
+  );
 
   useEffect(() => {
     dispatch(gymsThunk());
+    dispatch(userThunk(params.id));
   }, []);
 
   const handleAddEmployment = (e) => {
@@ -119,7 +128,7 @@ export default () => {
     <div>
       <EmploymentFeedTitle>
         <Experience>Previous Gyms</Experience>
-        <Button onClick={() => setShowModal(true)}>Add Gym</Button>
+        {addGymButtonDisable}
       </EmploymentFeedTitle>
       <LineBreak />
       <ReactModal

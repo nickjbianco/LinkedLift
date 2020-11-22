@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import ReactModal from "react-modal";
 import { useSelector, useDispatch } from "react-redux";
 import { YearPicker } from "react-dropdown-date";
 import { gymsThunk } from "../../../reducers/GymsReducer";
 import { editEmployment } from "../../../reducers/EmploymentsReducer";
+import { userThunk } from "../../../reducers/ViewUserReducer";
 import axios from "axios";
 import styled from "styled-components";
 
@@ -31,8 +33,11 @@ const EmploymentsFeed = styled.form`
 `;
 
 export default (props) => {
+  const params = useParams();
   const dispatch = useDispatch();
   const gyms = useSelector((state) => state.gyms);
+  const currentUser = useSelector((state) => state.currentUser);
+  const viewUser = useSelector((state) => state.viewUser);
   const currentEmployment = props.currentEmployment;
   const [title, setTitle] = useState("");
   const [gymId, setGymId] = useState(undefined);
@@ -41,6 +46,9 @@ export default (props) => {
   const [startYear, setStartYear] = useState(undefined);
   const [endMonth, setEndMonth] = useState(undefined);
   const [endYear, setEndYear] = useState(undefined);
+  const editGymButtonDisable = viewUser.id === currentUser.id && (
+    <Button onClick={() => setShowModal(true)}>Edit Gym</Button>
+  );
   const fullEndDate =
     endMonth && endYear ? `${endYear}-${endMonth}-01` : undefined;
   const months = [
@@ -66,6 +74,7 @@ export default (props) => {
     setStartYear(currentEmployment.startYear);
     setEndMonth(months.indexOf(currentEmployment.endMonth) + 1);
     setEndYear(currentEmployment.endYear);
+    dispatch(userThunk(params.id));
   }, []);
 
   const handleCloseModal = (e) => {
@@ -95,7 +104,7 @@ export default (props) => {
   return (
     <div>
       <span>
-        <Button onClick={() => setShowModal(true)}>Edit Gym</Button>
+        {editGymButtonDisable}
         <ReactModal
           isOpen={showModal}
           contentLabel="Add Gym"

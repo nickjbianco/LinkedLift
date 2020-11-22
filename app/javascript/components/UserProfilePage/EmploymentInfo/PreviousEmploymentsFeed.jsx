@@ -25,6 +25,7 @@ const LineBreak = styled.hr`
 export default () => {
   const dispatch = useDispatch();
   const employments = useSelector((state) => state.employments);
+  console.log(employments);
 
   useEffect(() => {
     dispatch(employmentsThunk());

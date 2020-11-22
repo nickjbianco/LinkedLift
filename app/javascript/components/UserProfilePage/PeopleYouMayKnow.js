@@ -1,7 +1,9 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { usersThunk } from "../../reducers/UsersReducer";
+import { userThunk } from "../../reducers/ViewUserReducer";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
@@ -37,20 +39,23 @@ export default () => {
   const dispatch = useDispatch();
   const allUsers = useSelector((state) => state.users);
   const currentUser = useSelector((state) => state.currentUser);
+  const viewUser = useSelector((state) => state.viewUser);
+  const params = useParams();
   const suggestedUsers = allUsers
-    .filter((user) => user.id !== currentUser.id)
+    .filter((user) => user.id !== currentUser.id && user.id !== viewUser.id)
     .slice(0, 5);
 
   useEffect(() => {
     dispatch(usersThunk());
-  }, []);
+    dispatch(userThunk(params.id));
+  }, [params]);
 
   return (
     <Wrapper>
       <h1>People You May Know</h1>
       {suggestedUsers.map((suggestedUser) => (
         <SuggestedUserInfo key={suggestedUser.id}>
-          <Link to="/">
+          <Link to={`/profile/${suggestedUser.id}`}>
             <h4>
               {suggestedUser.first_name} {suggestedUser.last_name}
             </h4>

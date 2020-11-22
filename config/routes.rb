@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'current_user_employments/index'
   root 'pages#index'
   resources :sessions, only: [:create]
   resources :registrations, only: [:create], defaults: { format: :json }

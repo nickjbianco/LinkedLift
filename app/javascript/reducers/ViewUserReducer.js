@@ -1,0 +1,33 @@
+import axios from "axios";
+
+// One User NOT CURRENT USER
+const fetchUser = (id) => {
+  return axios
+    .get(`http://localhost:3000/users/${id}.json`)
+    .then((response) => response.data);
+};
+
+const RECEIVED_USER = "RECEIVED_USER";
+const receivedUser = (payload) => ({
+  type: RECEIVED_USER,
+  payload,
+});
+
+export const userThunk = (id) => {
+  return (dispatch) => {
+    fetchUser(id).then((user) => {
+      dispatch(receivedUser(user));
+    });
+  };
+};
+
+const defaultState = [];
+
+export default (state = defaultState, action) => {
+  switch (action.type) {
+    case RECEIVED_USER:
+      return action.payload;
+    default:
+      return state;
+  }
+};

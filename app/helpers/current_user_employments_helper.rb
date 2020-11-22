@@ -1,0 +1,2 @@
+module CurrentUserEmploymentsHelper
+end
