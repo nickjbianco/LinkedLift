@@ -1,4 +1,5 @@
 import axios from "axios";
+import { receivedEmployments } from "./EmploymentsReducer";
 
 // One User NOT CURRENT USER
 const fetchUser = (id) => {
@@ -16,12 +17,14 @@ const receivedUser = (payload) => ({
 export const userThunk = (id) => {
   return (dispatch) => {
     fetchUser(id).then((user) => {
-      dispatch(receivedUser(user));
+      const { employments, ...otherProperties } = user;
+      dispatch(receivedUser(otherProperties));
+      dispatch(receivedEmployments(employments));
     });
   };
 };
 
-const defaultState = [];
+const defaultState = {};
 
 export default (state = defaultState, action) => {
   switch (action.type) {

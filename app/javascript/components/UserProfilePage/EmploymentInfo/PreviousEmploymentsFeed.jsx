@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import EditEmploymentModal from "./EditEmploymentModal";
-import { employmentsThunk } from "../../../reducers/EmploymentsReducer";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
+import { userThunk } from "../../../reducers/ViewUserReducer";
 
 const Wrapper = styled.div`
   display: flex;
@@ -23,18 +24,19 @@ const LineBreak = styled.hr`
 `;
 
 export default () => {
+  const params = useParams();
   const dispatch = useDispatch();
   const employments = useSelector((state) => state.employments);
-  console.log(employments);
 
   useEffect(() => {
-    dispatch(employmentsThunk());
+    dispatch(userThunk(params.id));
   }, []);
 
   return (
     <Wrapper>
       {employments.allIds.map((id) => {
         const employment = employments.byIds[id];
+
         return (
           <ul key={employment.id}>
             <h3>{employment.title}</h3>
@@ -42,9 +44,7 @@ export default () => {
             <p>
               {employment.startDate} - {employment.endDate}
             </p>
-            <p>{employment.gymLocation}</p>
             <EditEmploymentModal currentEmployment={employment} />
-            <LineBreak />
           </ul>
         );
       })}
