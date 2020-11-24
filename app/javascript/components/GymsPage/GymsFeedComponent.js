@@ -5,22 +5,16 @@ import styled from "styled-components";
 
 const GymList = styled.div`
   background-color: white;
-  display: flex-start;
   border-radius: 25px;
   border: 2px solid #d6cec2;
-`;
-
-const Title = styled.h1`
-  padding-left: 10px;
-  background-color: white;
   display: flex;
-  align-self: flex-start;
 `;
 
 const Wrapper = styled.div`
   background-color: white;
   display: flex;
-  justify-content: space-evenly;
+  flex-direction: column;
+  flex-wrap: wrap;
 `;
 
 const Gym = styled.ul`
@@ -38,7 +32,6 @@ export default () => {
 
   return (
     <GymList>
-      <Title>Recommended for you</Title>
       <Wrapper>
         {allGyms
           .map((gym) => (

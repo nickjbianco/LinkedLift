@@ -49,13 +49,15 @@ const Button = styled.button`
 `;
 
 const EditProfileFormWrapper = styled.div`
-  background-color: white;
+  background-color: #d6cec2;
   width: 50%;
   margin-left: 25%;
-  padding-bottom: 25%;
+  margin-top: 100px;
+  padding: 10px;
+  text-align: center;
   display: flex;
   flex-direction: column;
-  text-align: center;
+  align-items: center;
   border-radius: 15px;
   border: 2px solid #d6cec2;
   font-family: -apple-system, system-ui, BlinkMacSystemFont, Segoe UI, Roboto,
@@ -63,7 +65,7 @@ const EditProfileFormWrapper = styled.div`
     Droid Sans, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol,
     Lucida Grande, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
-  font-size: 150%;
+  font-size: 175%;
 `;
 
 const UseInfoWrapper = styled.div`
@@ -77,21 +79,29 @@ const MainUserWrapper = styled.div`
 `;
 
 const EditModalTitle = styled.h2`
-  background-color: #788fa5;
-  font-size: 20px;
-  padding-bottom: 100px;
-  display: flex;
-  justify-content: center;
+  background-color: #d6cec2;
+  font-size: 40px;
 `;
 
 const EditModalForm = styled.form`
-  background-color: red;
+  background-color: white;
   display: flex;
   flex-direction: column;
+  padding-left: 5px;
+  border-radius: 15px;
+  border: 2px solid #d6cec2;
 `;
 
-const EditModalInput = styled.input`
-  background-color: green;
+const ButtonWrapper = styled.div`
+  padding-top: 50px;
+  display: flex;
+  align-self: center;
+`;
+
+const SingleInputWrapper = styled.div`
+  background-color: white;
+  margin-left: 400px;
+  margin-right: 400px;
 `;
 
 export default () => {
@@ -162,56 +172,56 @@ export default () => {
           <EditProfileFormWrapper>
             <EditModalTitle>Edit Profile Info</EditModalTitle>
             <EditModalForm onSubmit={handleCloseModal}>
-              <div>
-                <p>First Name</p>
-                <EditModalInput
+              <SingleInputWrapper>
+                <h4>First Name</h4>
+                <input
                   type="text"
                   name="firstName"
                   placeholder="First Name"
                   value={firstName}
                   onChange={(e) => setFirstName(e.target.value)}
                 />
-              </div>
+              </SingleInputWrapper>
 
-              <div>
-                <p>Last Name</p>
-                <EditModalInput
+              <SingleInputWrapper>
+                <h4>Last Name</h4>
+                <input
                   type="text"
                   name="lastName"
                   placeholder="Last Name"
                   value={lastName}
                   onChange={(e) => setLastName(e.target.value)}
                 />
-              </div>
+              </SingleInputWrapper>
 
-              <div>
-                <p>Location</p>
-                <EditModalInput
+              <SingleInputWrapper>
+                <h4>Location</h4>
+                <input
                   type="text"
                   name="location"
                   placeholder="Location"
                   value={location}
                   onChange={(e) => setLocation(e.target.value)}
                 />
-              </div>
+              </SingleInputWrapper>
 
-              <div>
-                <p>Title</p>
-                <EditModalInput
+              <SingleInputWrapper>
+                <h4>Title</h4>
+                <input
                   type="text"
                   name="title"
                   placeholder="Title"
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
                 />
-              </div>
+              </SingleInputWrapper>
 
-              <div>
+              <ButtonWrapper>
                 <span>
                   <Button type="submit">Save</Button>
-                  <Button onClick={() => setShowModal(false)}>Close</Button>
+                  <Button onClick={() => setShowModal(false)}>Exit</Button>
                 </span>
-              </div>
+              </ButtonWrapper>
             </EditModalForm>
           </EditProfileFormWrapper>
         </ReactModal>
