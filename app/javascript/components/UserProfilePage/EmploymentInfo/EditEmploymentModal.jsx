@@ -27,9 +27,45 @@ const Button = styled.button`
   -webkit-font-smoothing: antialiased;
 `;
 
-const EmploymentsFeed = styled.form`
+const EditEmploymentModalForm = styled.form`
+  background-color: white;
   display: flex;
-  flex-direction: reverse-row;
+  padding: 20px;
+  flex-direction: column;
+  border-radius: 15px;
+  border: 2px solid #d6cec2;
+`;
+
+const ButtonWrapper = styled.div`
+  background-color: white;
+  padding-top: 20px;
+  display: flex;
+  align-self: center;
+`;
+
+const EditModalTitle = styled.div`
+  background-color: #d6cec2;
+  font-size: 40px;
+`;
+
+const EditEmploymentWrapper = styled.div`
+  background-color: #d6cec2;
+  width: 50%;
+  margin-left: 25%;
+  margin-top: 100px;
+  padding: 10px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 15px;
+  border: 2px solid #d6cec2;
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, Segoe UI, Roboto,
+    Helvetica Neue, Fira Sans, Ubuntu, Oxygen, Oxygen Sans, Cantarell,
+    Droid Sans, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol,
+    Lucida Grande, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  font-size: 175%;
 `;
 
 export default (props) => {
@@ -103,17 +139,20 @@ export default (props) => {
 
   return (
     <div>
-      <span>
-        {editGymButtonDisable}
-        <ReactModal
-          isOpen={showModal}
-          contentLabel="Add Gym"
-          ariaHideApp={false}
-          onRequestClose={() => setShowModal(false)}
-        >
-          <EmploymentsFeed onSubmit={handleCloseModal}>
+      {editGymButtonDisable}
+      <ReactModal
+        isOpen={showModal}
+        contentLabel="Add Gym"
+        ariaHideApp={false}
+        onRequestClose={() => setShowModal(false)}
+      >
+        <EditEmploymentWrapper>
+          <EditModalTitle>
             <h2>Edit Previous Gym</h2>
+          </EditModalTitle>
+          <EditEmploymentModalForm onSubmit={handleCloseModal}>
             <div>
+              <h4>Title</h4>
               <input
                 type="text"
                 value={title}
@@ -122,6 +161,7 @@ export default (props) => {
               />
             </div>
             <div>
+              <h4>Gym Name</h4>
               <select value={gymId} onChange={(e) => setGymId(e.target.value)}>
                 <option value="">--Select Gym</option>
                 {gyms.map((gym) => (
@@ -132,6 +172,7 @@ export default (props) => {
               </select>
             </div>
             <div>
+              <h4>Start Date</h4>
               <select
                 value={startMonth}
                 onChange={(e) => setStartMonth(e.target.value)}
@@ -152,6 +193,7 @@ export default (props) => {
               />
             </div>
             <div>
+              <h4>End Date</h4>
               <select
                 value={endMonth}
                 onChange={(e) => setEndMonth(e.target.value)}
@@ -171,10 +213,13 @@ export default (props) => {
                 end={2020}
               />
             </div>
-            <button type="submit">Save</button>
-          </EmploymentsFeed>
-        </ReactModal>
-      </span>
+            <ButtonWrapper>
+              <Button type="submit">Save</Button>
+              <Button onClick={() => setShowModal(false)}>Exit</Button>
+            </ButtonWrapper>
+          </EditEmploymentModalForm>
+        </EditEmploymentWrapper>
+      </ReactModal>
     </div>
   );
 };

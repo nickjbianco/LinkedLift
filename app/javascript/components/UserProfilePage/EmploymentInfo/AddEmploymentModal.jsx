@@ -30,12 +30,17 @@ const Button = styled.button`
   -webkit-font-smoothing: antialiased;
 `;
 
-const AddGymFormWrapper = styled.div`
+const AddGymFormWrapper = styled.form`
+  background-color: white;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
   text-align: center;
+  border-radius: 15px;
+  border: 2px solid #d6cec2;
+  padding-left: 100px;
+  padding-right: 100px;
 `;
 
 const Experience = styled.h2`
@@ -54,6 +59,38 @@ const EmploymentFeedTitle = styled.div`
 const LineBreak = styled.hr`
   width: 120%;
   margin-top: 16px;
+`;
+
+const ButtonWrapper = styled.div`
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+  width: 50%;
+`;
+
+const AddGymModalWrapper = styled.div`
+  background-color: #d6cec2;
+  width: 50%;
+  margin-left: 25%;
+  padding: 10px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 15px;
+  border: 2px solid #d6cec2;
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, Segoe UI, Roboto,
+    Helvetica Neue, Fira Sans, Ubuntu, Oxygen, Oxygen Sans, Cantarell,
+    Droid Sans, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol,
+    Lucida Grande, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  font-size: 175%;
+`;
+
+const AddModalTitle = styled.div`
+  background-color: #d6cec2;
+  font-size: 40px;
 `;
 
 export default () => {
@@ -137,13 +174,16 @@ export default () => {
         ariaHideApp={false}
         onRequestClose={() => setShowModal(false)}
       >
-        <AddGymFormWrapper>
-          <form onSubmit={handleAddEmployment}>
+        <AddGymModalWrapper>
+          <AddModalTitle>
             <h2>Add Gym</h2>
             <p>
               <em>* Required fields.</em>
             </p>
+          </AddModalTitle>
+          <AddGymFormWrapper onSubmit={handleAddEmployment}>
             <div>
+              <h4>Title</h4>
               <input
                 type="text"
                 name="title"
@@ -153,6 +193,7 @@ export default () => {
               />
             </div>
             <div>
+              <h4>Gym Name</h4>
               <select value={gymId} onChange={(e) => setGymId(e.target.value)}>
                 <option value="">--Select Gym</option>
                 {gyms.map((gym) => (
@@ -164,6 +205,7 @@ export default () => {
               <span>*</span>
             </div>
             <div>
+              <h4>Start Date</h4>
               <select
                 value={startMonth}
                 onChange={(e) => setStartMonth(e.target.value)}
@@ -185,6 +227,10 @@ export default () => {
               <span>*</span>
             </div>
             <div>
+              <h4>End Date</h4>
+              <p>
+                <em>If still at current gym leave this area blank.</em>
+              </p>
               <select
                 value={endMonth}
                 onChange={(e) => setEndMonth(e.target.value)}
@@ -203,11 +249,13 @@ export default () => {
                 start={1990}
                 end={2020}
               />
-              <span> -- If still at current gym leave this area blank.</span>
             </div>
-            <Button type="submit">Save</Button>
-          </form>
-        </AddGymFormWrapper>
+            <ButtonWrapper>
+              <Button type="submit">Save</Button>
+              <Button onClick={() => setShowModal(false)}>Exit</Button>
+            </ButtonWrapper>
+          </AddGymFormWrapper>
+        </AddGymModalWrapper>
       </ReactModal>
     </div>
   );
