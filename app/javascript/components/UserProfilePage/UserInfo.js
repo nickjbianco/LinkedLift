@@ -84,9 +84,11 @@ const EditModalTitle = styled.h2`
 `;
 
 const EditModalForm = styled.form`
+  width: 50%;
   background-color: white;
   display: flex;
   flex-direction: column;
+  align-items: center;
   padding-left: 5px;
   border-radius: 15px;
   border: 2px solid #d6cec2;

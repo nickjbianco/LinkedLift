@@ -7,49 +7,54 @@ import styled from "styled-components";
 const Wrapper = styled.div`
   display: flex;
   width: 100%;
-  background-color: red;
-  justify-content: center;
-`;
-
-const ColumnContainer = styled.div`
-  padding: 0 30px;
-  display: flex;
-  width: 90%;
+  background-color: #d6cec2;
 `;
 
 const LeftColumn = styled.div`
   flex-grow: 1;
-  background-color: blue;
+  background-color: white;
   display: flex;
   justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  border: 2px solid #d6cec2;
+  height: 200px;
+  margin-right: 10px;
+  margin-top: 10px;
 `;
 
 const MiddleColumn = styled.div`
   flex-grow: 4;
-  background-color: green;
+  background-color: #d6cec2;
+  border-radius: 15px;
+  border: 2px solid #d6cec2;
+  margin-top: 10px;
 `;
 
 const RightColumn = styled.div`
   flex-grow: 2;
-  background-color: yellow;
+  background-color: white;
   display: flex;
   justify-content: center;
+  border-radius: 15px;
+  border: 2px solid #d6cec2;
+  margin-left: 10px;
+  margin-top: 10px;
+  height: 600px;
 `;
 
 export default (props) => {
   return (
     <Wrapper>
-      <ColumnContainer>
-        <LeftColumn>
-          <MyAccountInfo />
-        </LeftColumn>
-        <MiddleColumn>
-          <MyPost />
-        </MiddleColumn>
-        <RightColumn>
-          <SuggestedConnections />
-        </RightColumn>
-      </ColumnContainer>
+      <LeftColumn>
+        <MyAccountInfo />
+      </LeftColumn>
+      <MiddleColumn>
+        <MyPost />
+      </MiddleColumn>
+      <RightColumn>
+        <SuggestedConnections />
+      </RightColumn>
     </Wrapper>
   );
 };

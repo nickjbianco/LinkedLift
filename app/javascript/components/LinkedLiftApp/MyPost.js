@@ -1,54 +1,73 @@
-import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
-import PostsFeed from './PostsFeed'
-import { addMyNewPost } from '../../reducers/PostsReducer'
-import styled from 'styled-components'
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import PostsFeed from "./PostsFeed";
+import { addMyNewPost } from "../../reducers/PostsReducer";
+import axios from "axios";
+import styled from "styled-components";
+
+const Wrapper = styled.div`
+  background-color: #d6cec2;
+`;
 
 const Form = styled.form`
-    margin: 0 0 8px;
-    background: var(--white,#fff);
-    border-radius: 2px;
-    color: var(--warm-gray-60,#84878a);
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    max-height: 100%;
-    box-shadow: 0 0 0 1px rgba(0,0,0,.15), 0 2px 3px rgba(0,0,0,.2);
-`
+  background-color: #d6cec2
+  display: flex;
+`;
 const Button = styled.button`
-    background-color: var(--blue-70,#0073b1);
-    color: white;
-    font-weight: 600;
-    width: 100%;
-    padding: 0;
-    font-size: 100%;
-    cursor: pointer;
-    line-height: 1.2;
-    font-family: -apple-system,system-ui,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Fira Sans,Ubuntu,Oxygen,Oxygen Sans,Cantarell,Droid Sans,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Lucida Grande,Helvetica,Arial,sans-serif;
-    -webkit-font-smoothing: antialiased;
-`
+  background-color: var(--blue-70, #0073b1);
+  color: white;
+  font-weight: 600;
+  width: 90%;
+  padding: 0;
+  font-size: 100%;
+  cursor: pointer;
+  line-height: 1.2;
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, Segoe UI, Roboto,
+    Helvetica Neue, Fira Sans, Ubuntu, Oxygen, Oxygen Sans, Cantarell,
+    Droid Sans, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol,
+    Lucida Grande, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+`;
+
+const TextArea = styled.textarea`
+  border-radius: 25px;
+  border: 2px solid #d6cec2;
+  width: 90%;
+  padding-left: 10px;
+  display: flex;
+`;
 
 export default () => {
-    const [description, setDescription] = useState('')
-    const dispatch = useDispatch() 
+  const [body, setBody] = useState("Start a post...");
+  const dispatch = useDispatch();
 
-    const addPost = (e) => {
-        e.preventDefault()
-        dispatch(addMyNewPost({ description }))
-        setDescription('')
-    }
+  const addPost = (e) => {
+    e.preventDefault();
+    axios
+      .post(
+        "http://localhost:3000/posts",
+        {
+          post: { body },
+        },
+        { withCredentials: true }
+      )
+      .then((response) => {
+        dispatch(addMyNewPost(response.data));
+        setBody("Start a post");
+      })
+      .catch((error) => {
+        console.log("login error", error);
+      });
+  };
 
-    return (
-        <div>
-            <Form onSubmit={addPost}>
-                <textarea
-                    value={description}
-                    onChange={(e) => setDescription(e.target.value)}
-                />
-                <Button>Write a post</Button>
-            </Form>
-            
-            <PostsFeed />
-        </div>
-    )
-}
+  return (
+    <Wrapper>
+      <Form onSubmit={addPost}>
+        <TextArea value={body} onChange={(e) => setBody(e.target.value)} />
+        <Button type="submit">Post</Button>
+      </Form>
+
+      <PostsFeed />
+    </Wrapper>
+  );
+};
