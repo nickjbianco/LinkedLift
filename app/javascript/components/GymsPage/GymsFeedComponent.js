@@ -15,6 +15,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
+  margin: 20px;
 `;
 
 const Gym = styled.ul`

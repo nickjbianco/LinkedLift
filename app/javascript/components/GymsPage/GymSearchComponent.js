@@ -44,16 +44,15 @@ const SearchInputs = styled.textarea`
 `;
 
 export default () => {
-  const [descriptionOne, setDescriptionOne] = useState(
-    "Search by title or company"
+  const [descriptionOne, setDescriptionOne] = useState("Search by gym name");
+  const [descriptionTwo, setDescriptionTwo] = useState(
+    "Search by gym location"
   );
-  const [descriptionTwo, setDescriptionTwo] = useState("Search by location");
 
   const handleGymSearch = (e) => {
     e.preventDefault();
-    console.log("working");
-    setDescriptionOne("Search by title or company");
-    setDescriptionTwo("Search by location");
+    setDescriptionOne("Search by gym name");
+    setDescriptionTwo("Search by gym location");
   };
 
   return (

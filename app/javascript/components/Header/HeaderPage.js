@@ -131,9 +131,6 @@ export default (props) => {
             <NavLink to="/gyms" className="navlink">
               Gyms
             </NavLink>
-            <NavLink to="/notifications" className="navlink">
-              Notifications
-            </NavLink>
             <NavLink to={`/profile/${currentUser.id}`} className="navlink">
               My Profile
             </NavLink>

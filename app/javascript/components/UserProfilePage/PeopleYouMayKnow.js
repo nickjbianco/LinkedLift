@@ -1,10 +1,9 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { usersThunk } from "../../reducers/UsersReducer";
-import { userThunk } from "../../reducers/ViewUserReducer";
+import { usersThunk, suggestedConnections } from "../../reducers/UsersReducer";
 import styled from "styled-components";
+import axios from "axios";
 
 const Wrapper = styled.div`
   display: flex;
@@ -35,20 +34,48 @@ const SuggestedUserInfo = styled.ul`
   font-weight: 600;
 `;
 
+const Button = styled.button`
+  border-radius: 2px;
+  border: 2px solid var(--blue-70, #0073b1);
+  background-color: var(--blue-70, #0073b1);
+  color: white;
+  font-weight: 600;
+  padding: 0;
+  font-size: 100%;
+  cursor: pointer;
+  margin-left: 8px;
+  line-height: 1.2;
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, Segoe UI, Roboto,
+    Helvetica Neue, Fira Sans, Ubuntu, Oxygen, Oxygen Sans, Cantarell,
+    Droid Sans, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol,
+    Lucida Grande, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+`;
+
 export default () => {
   const dispatch = useDispatch();
-  const allUsers = useSelector((state) => state.users);
-  const currentUser = useSelector((state) => state.currentUser);
-  const viewUser = useSelector((state) => state.viewUser);
-  const params = useParams();
-  const suggestedUsers = allUsers
-    .filter((user) => user.id !== currentUser.id && user.id !== viewUser.id)
-    .slice(0, 5);
+  const suggestedUsers = useSelector(suggestedConnections);
 
   useEffect(() => {
     dispatch(usersThunk());
-    dispatch(userThunk(params.id));
-  }, [params]);
+  }, []);
+
+  const handleConnectUsers = (connectedUserId) => {
+    axios
+      .post(
+        "http://localhost:3000/user_connections",
+        {
+          user_connection: { connected_user_id: connectedUserId },
+        },
+        { withCredentials: true }
+      )
+      .then((response) => {
+        console.log("connection response", response);
+      })
+      .catch((error) => {
+        console.log("connection error", error);
+      });
+  };
 
   return (
     <Wrapper>
@@ -61,6 +88,9 @@ export default () => {
             </h4>
           </Link>
           <p>{suggestedUser.title}</p>
+          <Button onClick={() => handleConnectUsers(suggestedUser.id)}>
+            Connect
+          </Button>
           <BottomLine />
         </SuggestedUserInfo>
       ))}

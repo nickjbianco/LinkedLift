@@ -2,15 +2,9 @@ import axios from "axios";
 
 const fetchPosts = () => {
   return axios
-    .get("http://localhost:3000/posts/index.json")
+    .get("http://localhost:3000/posts")
     .then((response) => response.data);
 };
-
-const RECEIVED_POSTS = "RECEIVED_POSTS";
-const receivedPosts = (payload) => ({
-  type: RECEIVED_POSTS,
-  payload,
-});
 
 export const postsThunk = () => {
   return (dispatch) => {
@@ -19,6 +13,12 @@ export const postsThunk = () => {
     });
   };
 };
+
+const RECEIVED_POSTS = "RECEIVED_POSTS";
+const receivedPosts = (payload) => ({
+  type: RECEIVED_POSTS,
+  payload,
+});
 
 const ADD_POST = "ADD_POST";
 export const addMyNewPost = (payload) => ({
@@ -32,35 +32,16 @@ export const deletePost = (id) => ({
   id,
 });
 
-const defaultState = {
-  byIds: {},
-  allIds: [],
-};
+const defaultState = [];
 
 export default (state = defaultState, action) => {
   switch (action.type) {
     case RECEIVED_POSTS:
-      const allIds = action.payload.map((post) => post.id);
-
-      const byIds = {};
-      action.payload.forEach((post) => {
-        byIds[post.id] = post;
-      });
-
-      return {
-        byIds,
-        allIds,
-      };
+      return action.payload;
     case ADD_POST:
-      return {
-        byIds: {
-          ...state.byIds,
-          [action.payload.id]: action.payload,
-        },
-        allIds: [action.payload.id, ...state.allIds],
-      };
+      return [action.payload, ...state];
     case DELETE_POST:
-      return state;
+      return [...state].filter((post) => post.id !== action.id);
     default:
       return state;
   }

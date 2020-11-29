@@ -3,7 +3,7 @@ import axios from "axios";
 // Multiple Users
 const fetchUsers = () => {
   return axios
-    .get("http://localhost:3000/users/index.json")
+    .get("http://localhost:3000/users")
     .then((response) => response.data);
 };
 
@@ -19,6 +19,23 @@ export const usersThunk = () => {
       dispatch(receivedUsers(users));
     });
   };
+};
+
+// Selectors
+
+// Users you are not yet connected with
+export const suggestedConnections = (store) => {
+  return store.users
+    .filter((user) => {
+      return user.connected !== true;
+    })
+    .slice(0, 5);
+};
+
+export const alreadyConnected = (store) => {
+  return store.users.filter((user) => {
+    return user.connected === true;
+  });
 };
 
 const defaultState = [];

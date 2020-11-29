@@ -9,4 +9,18 @@ class User < ApplicationRecord
   has_many :gyms, through: :employments
 
   has_many :posts
+
+  has_and_belongs_to_many(:connections, 
+  class_name: "User",
+  join_table: 'user_connections',
+  foreign_key: 'user_a_id', 
+  association_foreign_key: 'user_b_id'
+  )
+
+  has_and_belongs_to_many(:reversed_connections,
+  class_name: "User",
+  join_table: 'user_connections',
+  foreign_key: 'user_b_id',
+  association_foreign_key: 'user_a_id'
+  )
 end

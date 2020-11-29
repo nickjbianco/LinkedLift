@@ -56,7 +56,7 @@ export default () => {
         setBody("Start a post");
       })
       .catch((error) => {
-        console.log("login error", error);
+        console.log("post error", error);
       });
   };
 

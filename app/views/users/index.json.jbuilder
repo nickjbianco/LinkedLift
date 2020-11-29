@@ -8,4 +8,7 @@ json.array! @users do |user|
     json.email user.email
     json.gyms user.gyms
     json.posts user.posts
+    json.connected user.connections.include?(@current_user) || user.reversed_connections.include?(@current_user)
+    json.connections user.connections
+    json.reversed_connections user.reversed_connections
 end 

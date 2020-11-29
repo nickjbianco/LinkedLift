@@ -2,7 +2,7 @@ import axios from "axios";
 
 const fetchEmployments = () => {
   return axios
-    .get("http://localhost:3000/employments/index.json")
+    .get("http://localhost:3000/employments")
     .then((response) => response.data);
 };
 

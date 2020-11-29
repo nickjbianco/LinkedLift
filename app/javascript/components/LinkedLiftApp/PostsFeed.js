@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { postsThunk } from "../../reducers/PostsReducer";
 import styled from "styled-components";
 import axios from "axios";
+import { deletePost } from "../../reducers/PostsReducer";
 
 const SinglePost = styled.ul`
   background-color: white;
@@ -32,9 +33,10 @@ const Button = styled.button`
 `;
 
 export default () => {
-  const posts = useSelector((state) => state.posts);
-  const [postBody, setPostBody] = useState("");
   const dispatch = useDispatch();
+  const posts = useSelector((state) => state.posts);
+  const currentUser = useSelector((state) => state.currentUser);
+  const [postBody, setPostBody] = useState("");
 
   useEffect(() => {
     dispatch(postsThunk());
@@ -47,12 +49,12 @@ export default () => {
       .delete(
         `http://localhost:3000/posts/${postId}`,
         {
-          post: { body: postBody },
+          post: { body: postBody, user: currentUser },
         },
         { withCredentials: true }
       )
       .then((response) => {
-        console.log(response.data);
+        dispatch(deletePost(response.data.id));
       })
       .catch((error) => {
         console.log("login error", error);
@@ -61,8 +63,7 @@ export default () => {
 
   return (
     <div>
-      {posts.allIds.map((id) => {
-        const post = posts.byIds[id];
+      {posts.map((post) => {
         const fullName = `${post.user.first_name} ${post.user.last_name}`;
         const postTitle = post.user.title;
         const postBody = post.body;

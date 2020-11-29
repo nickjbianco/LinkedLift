@@ -7,6 +7,7 @@ import styled from "styled-components";
 const Wrapper = styled.div`
   display: flex;
   width: 100%;
+  padding-left: 20px;
   background-color: #d6cec2;
 `;
 
@@ -38,8 +39,7 @@ const RightColumn = styled.div`
   justify-content: center;
   border-radius: 15px;
   border: 2px solid #d6cec2;
-  margin-left: 10px;
-  margin-top: 10px;
+  margin: 10px 40px 40px 10px;
   height: 600px;
 `;
 
