@@ -1,6 +1,10 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { usersThunk, alreadyConnected } from "../../reducers/UsersReducer";
+import {
+  usersThunk,
+  alreadyConnected,
+  deleteConnection,
+} from "../../reducers/UsersReducer";
 import axios from "axios";
 import styled from "styled-components";
 
@@ -66,17 +70,17 @@ export default () => {
     e.preventDefault();
     axios
       .delete(
-        "http://localhost:3000/user_connections",
+        `http://localhost:3000/user_connections/${connectedUserId}`,
         {
           user_connection: { connected_user_id: connectedUserId },
         },
         { withCredentials: true }
       )
       .then((response) => {
-        console.log("delete connection", response);
+        dispatch(deleteConnection(connectedUserId));
       })
       .catch((error) => {
-        console.log("login error", error);
+        console.log("delete connection error", error);
       });
   };
 

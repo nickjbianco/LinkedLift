@@ -17,12 +17,12 @@ class UserConnectionsController < ApplicationController
   end
 
   def destroy
-    # debugger
-    connected_user = User.find(user_connection_params[:connected_user_id])
+    @user_connection = UserConnection.find_by(user_b_id: params[:id])
+    @connected_user = User.find(params[:id])
 
-    if connected_user
-      connected_user.reversed_connections = connected_user.reversed_connections.select { |user| user.id != @current_user.id } 
-      connected_user.save 
+    if @user_connection && @connected_user
+      UserConnection.delete_by(user_b_id: params[:id])
+      @connected_user.save
     end 
   end
 

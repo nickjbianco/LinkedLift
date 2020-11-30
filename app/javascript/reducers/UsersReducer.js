@@ -27,6 +27,12 @@ export const receivedConnection = (payload) => ({
   payload,
 });
 
+const DELETE_CONNECTION = "DELETE_CONNECTION";
+export const deleteConnection = (id) => ({
+  type: DELETE_CONNECTION,
+  id,
+});
+
 // Selectors
 // Users you are not yet connected with
 const mapUserIdToObject = (store) => {
@@ -69,6 +75,13 @@ export default (state = defaultState, action) => {
           ...state.byIds,
           [newUser.id]: newUser,
         },
+      };
+    case DELETE_CONNECTION:
+      const previousConnection = state.byIds[action.id];
+      const deletedConnection = { ...previousConnection, connected: false };
+      return {
+        allIds: state.allIds.filter((id) => id !== action.id),
+        byIds: { ...state.byIds, deletedConnection },
       };
     default:
       return state;
