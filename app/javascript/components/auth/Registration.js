@@ -26,9 +26,12 @@ const Button = styled.button`
     Droid Sans, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol,
     Lucida Grande, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
+  padding: 2px;
 `;
 
-const FormInputs = styled.div``;
+const FormInput = styled.div`
+  margin: 7px;
+`;
 
 export default (props) => {
   const [firstName, setFirstName] = useState("");
@@ -75,7 +78,7 @@ export default (props) => {
     <FormWrapper>
       <form onSubmit={handleSubmit}>
         <FormWrapper>
-          <div>
+          <FormInput>
             <input
               type="text"
               name="first_name"
@@ -83,9 +86,9 @@ export default (props) => {
               value={firstName}
               onChange={(e) => setFirstName(e.target.value)}
             />
-          </div>
+          </FormInput>
 
-          <div>
+          <FormInput>
             <input
               type="text"
               name="last_name"
@@ -93,9 +96,9 @@ export default (props) => {
               value={lastName}
               onChange={(e) => setLastName(e.target.value)}
             />
-          </div>
+          </FormInput>
 
-          <div>
+          <FormInput>
             <input
               type="email"
               name="email"
@@ -103,9 +106,9 @@ export default (props) => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
-          </div>
+          </FormInput>
 
-          <div>
+          <FormInput>
             <input
               type="password"
               name="password"
@@ -113,9 +116,9 @@ export default (props) => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-          </div>
+          </FormInput>
 
-          <div>
+          <FormInput>
             <input
               type="password"
               name="password_confirmation"
@@ -123,9 +126,9 @@ export default (props) => {
               value={passwordConfirmation}
               onChange={(e) => setPasswordConfirmation(e.target.value)}
             />
-          </div>
+          </FormInput>
 
-          <div>
+          <FormInput>
             <p>
               <em>By clicking Agree & Join, you agree to the LinkedLift</em>
             </p>
@@ -133,7 +136,7 @@ export default (props) => {
               <em>User Agreement, Privacy Policy, and Cookie Policy.</em>
             </p>
             <Button type="submit">Agree & Join</Button>
-          </div>
+          </FormInput>
         </FormWrapper>
       </form>
     </FormWrapper>

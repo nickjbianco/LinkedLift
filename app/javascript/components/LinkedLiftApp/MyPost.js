@@ -6,11 +6,14 @@ import axios from "axios";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-  background-color: #d6cec2;
+  background-color: #f3f2ef;
+  display: flex;
+  flex-direction: column;
+  align-items: space-evenely;
 `;
 
 const Form = styled.form`
-  background-color: #d6cec2
+  background-color: transparent;
   display: flex;
 `;
 const Button = styled.button`
@@ -19,7 +22,7 @@ const Button = styled.button`
   font-weight: 600;
   width: 90%;
   padding: 0;
-  font-size: 100%;
+  font-size: 150%;
   cursor: pointer;
   line-height: 1.2;
   font-family: -apple-system, system-ui, BlinkMacSystemFont, Segoe UI, Roboto,
@@ -27,6 +30,11 @@ const Button = styled.button`
     Droid Sans, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol,
     Lucida Grande, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
+  width: 10%;
+  display: flex;
+  justify-content: center;
+  padding: 5px;
+  margin: 10px;
 `;
 
 const TextArea = styled.textarea`

@@ -8,7 +8,12 @@ const Wrapper = styled.div`
   display: flex;
   width: 100%;
   padding-left: 20px;
-  background-color: #d6cec2;
+  background-color: #f3f2ef;
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", "Fira Sans", Ubuntu, Oxygen, "Oxygen Sans", Cantarell,
+    "Droid Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol", "Lucida Grande", Helvetica, Arial, sans-serif;
+  height: 100%;
 `;
 
 const LeftColumn = styled.div`
@@ -26,9 +31,7 @@ const LeftColumn = styled.div`
 
 const MiddleColumn = styled.div`
   flex-grow: 4;
-  background-color: #d6cec2;
-  border-radius: 15px;
-  border: 2px solid #d6cec2;
+  background-color: white;
   margin-top: 10px;
 `;
 

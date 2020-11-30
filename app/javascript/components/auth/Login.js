@@ -21,12 +21,17 @@ const Button = styled.button`
     Lucida Grande, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   margin-top: 10px;
+  padding: 2px;
 `;
 
 const FormWrapper = styled.div`
   background-color: white;
   display: flex;
   flex-direction: column;
+`;
+
+const FormInput = styled.div`
+  margin: 7px;
 `;
 
 export default (props) => {
@@ -64,34 +69,32 @@ export default (props) => {
   return (
     <FormWrapper>
       <form onSubmit={handleSubmit}>
-        <ul>
-          <div>
-            <input
-              type="email"
-              name="email"
-              placeholder="Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </div>
+        <FormInput>
+          <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </FormInput>
 
-          <div>
-            <input
-              type="password"
-              name="password"
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </div>
+        <FormInput>
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </FormInput>
 
-          <div>
-            <Button type="submit">Login</Button>
-            <Button onClick={() => console.log("create demo user")}>
-              Demo User
-            </Button>
-          </div>
-        </ul>
+        <FormInput>
+          <Button type="submit">Login</Button>
+          <Button onClick={() => console.log("create demo user")}>
+            Demo User
+          </Button>
+        </FormInput>
       </form>
     </FormWrapper>
   );
