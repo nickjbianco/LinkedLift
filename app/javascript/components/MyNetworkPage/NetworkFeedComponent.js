@@ -14,14 +14,21 @@ const Wrapper = styled.div`
   border-radius: 15px;
   border: 2px solid #d6cec2;
   margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, Segoe UI, Roboto,
+    Helvetica Neue, Fira Sans, Ubuntu, Oxygen, Oxygen Sans, Cantarell,
+    Droid Sans, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol,
+    Lucida Grande, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
 `;
 
 const SingleSuggestedConnection = styled.ul`
-  background-color: #d6cec2;
+  background-color: white;
   border-radius: 15px;
   border: 2px solid #d6cec2;
   width: 50%;
-  margin-left: 225px;
   text-align: center;
   padding-bottom: 20px;
   padding-left: 20px;
@@ -40,7 +47,7 @@ const Button = styled.button`
   background-color: var(--blue-70, #0073b1);
   color: white;
   font-weight: 600;
-  padding: 0;
+  padding: 2px;
   font-size: 100%;
   cursor: pointer;
   margin-left: 8px;
@@ -49,7 +56,6 @@ const Button = styled.button`
     Helvetica Neue, Fira Sans, Ubuntu, Oxygen, Oxygen Sans, Cantarell,
     Droid Sans, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol,
     Lucida Grande, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
 `;
 
 const BottomLine = styled.hr`

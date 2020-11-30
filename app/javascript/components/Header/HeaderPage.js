@@ -11,7 +11,7 @@ const Button = styled.button`
   border: 2px solid var(--blue-70, #0073b1);
   background-color: var(--blue-70, #0073b1);
   color: white;
-  font-weight: 600;
+  font-weight: 800;
   padding: 2px;
   font-size: 100%;
   cursor: pointer;
@@ -86,6 +86,7 @@ const LogoutButton = styled.div`
   cursor: pointer;
   margin-left: 8px;
   padding: 2px;
+  font-weight: 800;
 `;
 
 export default (props) => {
