@@ -104,6 +104,7 @@ const SingleInputWrapper = styled.div`
   background-color: white;
   margin-left: 400px;
   margin-right: 400px;
+  line-height: 10px;
 `;
 
 export default () => {

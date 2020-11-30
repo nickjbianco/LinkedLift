@@ -91,6 +91,11 @@ const AddGymModalWrapper = styled.div`
 const AddModalTitle = styled.div`
   background-color: #d6cec2;
   font-size: 40px;
+  line-height: 5px;
+`;
+
+const SingleInputWrapper = styled.div`
+  line-height: 5px;
 `;
 
 export default () => {
@@ -182,7 +187,7 @@ export default () => {
             </p>
           </AddModalTitle>
           <AddGymFormWrapper onSubmit={handleAddEmployment}>
-            <div>
+            <SingleInputWrapper>
               <h4>Title</h4>
               <input
                 type="text"
@@ -191,8 +196,8 @@ export default () => {
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
               />
-            </div>
-            <div>
+            </SingleInputWrapper>
+            <SingleInputWrapper>
               <h4>Gym Name</h4>
               <select value={gymId} onChange={(e) => setGymId(e.target.value)}>
                 <option value="">--Select Gym</option>
@@ -203,8 +208,8 @@ export default () => {
                 ))}
               </select>
               <span>*</span>
-            </div>
-            <div>
+            </SingleInputWrapper>
+            <SingleInputWrapper>
               <h4>Start Date</h4>
               <select
                 value={startMonth}
@@ -225,8 +230,8 @@ export default () => {
                 end={2020}
               />
               <span>*</span>
-            </div>
-            <div>
+            </SingleInputWrapper>
+            <SingleInputWrapper>
               <h4>End Date</h4>
               <p>
                 <em>If still at current gym leave this area blank.</em>
@@ -249,7 +254,7 @@ export default () => {
                 start={1990}
                 end={2020}
               />
-            </div>
+            </SingleInputWrapper>
             <ButtonWrapper>
               <Button type="submit">Save</Button>
               <Button onClick={() => setShowModal(false)}>Exit</Button>

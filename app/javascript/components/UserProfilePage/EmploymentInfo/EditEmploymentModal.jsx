@@ -24,7 +24,7 @@ const Button = styled.button`
     Helvetica Neue, Fira Sans, Ubuntu, Oxygen, Oxygen Sans, Cantarell,
     Droid Sans, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol,
     Lucida Grande, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
+  padding: 2px;
 `;
 
 const EditEmploymentModalForm = styled.form`
@@ -66,6 +66,10 @@ const EditEmploymentWrapper = styled.div`
     Lucida Grande, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   font-size: 175%;
+`;
+
+const SingleEditInput = styled.div`
+  line-height: 5px;
 `;
 
 export default (props) => {
@@ -151,7 +155,7 @@ export default (props) => {
             <h2>Edit Previous Gym</h2>
           </EditModalTitle>
           <EditEmploymentModalForm onSubmit={handleCloseModal}>
-            <div>
+            <SingleEditInput>
               <h4>Title</h4>
               <input
                 type="text"
@@ -159,8 +163,8 @@ export default (props) => {
                 placeholder="Title"
                 onChange={(e) => setTitle(e.target.value)}
               />
-            </div>
-            <div>
+            </SingleEditInput>
+            <SingleEditInput>
               <h4>Gym Name</h4>
               <select value={gymId} onChange={(e) => setGymId(e.target.value)}>
                 <option value="">--Select Gym</option>
@@ -170,8 +174,8 @@ export default (props) => {
                   </option>
                 ))}
               </select>
-            </div>
-            <div>
+            </SingleEditInput>
+            <SingleEditInput>
               <h4>Start Date</h4>
               <select
                 value={startMonth}
@@ -191,8 +195,8 @@ export default (props) => {
                 start={1990}
                 end={2020}
               />
-            </div>
-            <div>
+            </SingleEditInput>
+            <SingleEditInput>
               <h4>End Date</h4>
               <select
                 value={endMonth}
@@ -212,7 +216,7 @@ export default (props) => {
                 start={1990}
                 end={2020}
               />
-            </div>
+            </SingleEditInput>
             <ButtonWrapper>
               <Button type="submit">Save</Button>
               <Button onClick={() => setShowModal(false)}>Exit</Button>
