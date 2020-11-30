@@ -4,7 +4,31 @@ import { receivedCurrentUser } from "../../reducers/CurrentUserReducer";
 import axios from "axios";
 import styled from "styled-components";
 
-const FormWrapper = styled.ul``;
+const FormWrapper = styled.div`
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+`;
+
+const Button = styled.button`
+  border-radius: 2px;
+  border: 2px solid var(--blue-70, #0073b1);
+  background-color: var(--blue-70, #0073b1);
+  color: white;
+  font-weight: 600;
+  padding: 0;
+  font-size: 100%;
+  cursor: pointer;
+  margin-left: 8px;
+  line-height: 1.2;
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, Segoe UI, Roboto,
+    Helvetica Neue, Fira Sans, Ubuntu, Oxygen, Oxygen Sans, Cantarell,
+    Droid Sans, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol,
+    Lucida Grande, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+`;
+
+const FormInputs = styled.div``;
 
 export default (props) => {
   const [firstName, setFirstName] = useState("");
@@ -48,7 +72,7 @@ export default (props) => {
   };
 
   return (
-    <div>
+    <FormWrapper>
       <form onSubmit={handleSubmit}>
         <FormWrapper>
           <div>
@@ -108,10 +132,10 @@ export default (props) => {
             <p>
               <em>User Agreement, Privacy Policy, and Cookie Policy.</em>
             </p>
-            <button type="submit">Agree & Join</button>
+            <Button type="submit">Agree & Join</Button>
           </div>
         </FormWrapper>
       </form>
-    </div>
+    </FormWrapper>
   );
 };

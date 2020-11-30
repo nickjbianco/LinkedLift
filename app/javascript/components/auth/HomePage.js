@@ -11,14 +11,44 @@ const Wrapper = styled.div`
     "Helvetica Neue", "Fira Sans", Ubuntu, Oxygen, "Oxygen Sans", Cantarell,
     "Droid Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Emoji",
     "Segoe UI Symbol", "Lucida Grande", Helvetica, Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  height: 1000px;
 `;
 
 const Register = styled.div`
-  background-color: #f3f2ef;
+  background-color: white;
+  border-radius: 15px;
+  border: 2px solid #d6cec2;
+  width: 40%;
+  display: flex;
+  align-self: center;
+  flex-direction: column;
+  padding-bottom: 20px;
 `;
 
 const LoginInput = styled.div`
-  background-color: #f3f2ef;
+  background-color: white;
+  border-radius: 15px;
+  border: 2px solid #d6cec2;
+  width: 40%;
+  display: flex;
+  align-self: center;
+  flex-direction: column;
+  padding-bottom: 20px;
+  margin-top: 2.5%;
+`;
+
+const LinkedLift = styled.h1`
+  padding: 5px 5px;
+  width: 410px;
+  background-color: #0a66c2;
+  color: white;
+  font-size: 5.6rem;
+  display: flex;
+  align-self: center;
+  border-radius: 15px;
+  border: 2px solid #0a66c2;
 `;
 
 export default (props) => {
@@ -40,13 +70,13 @@ export default (props) => {
 
   return (
     <Wrapper>
-      <h1>Linkedlift</h1>
+      <LinkedLift>LinkedLift</LinkedLift>
       <Register>
-        <h3>Don't have an account? Sign up below.</h3>
+        <h2>Don't have an account? Sign up below.</h2>
         <Registration handleSuccessfulAuth={handleSuccessfulAuth} />
       </Register>
       <LoginInput>
-        <h3>Already have an account? Login below.</h3>
+        <h2>Already have an account? Login below.</h2>
         <Login handleSuccessfulAuth={handleSuccessfulAuth} />
       </LoginInput>
     </Wrapper>
