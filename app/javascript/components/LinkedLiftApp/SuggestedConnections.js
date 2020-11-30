@@ -1,7 +1,12 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { usersThunk, suggestedConnections } from "../../reducers/UsersReducer";
+import {
+  usersThunk,
+  suggestedConnections,
+  receivedConnection,
+} from "../../reducers/UsersReducer";
 import { Link } from "react-router-dom";
+import axios from "axios";
 import styled from "styled-components";
 
 const Button = styled.button`
@@ -30,9 +35,27 @@ export default () => {
     dispatch(usersThunk());
   }, []);
 
+  const handleConnectUsers = (e, connectedUserId) => {
+    e.preventDefault();
+    axios
+      .post(
+        "http://localhost:3000/user_connections",
+        {
+          user_connection: { connected_user_id: connectedUserId },
+        },
+        { withCredentials: true }
+      )
+      .then((response) => {
+        dispatch(receivedConnection(response.data));
+      })
+      .catch((error) => {
+        console.log("connection error", error);
+      });
+  };
+
   return (
     <div>
-      <h1>Suggested Conncetions</h1>
+      <h1>Suggested Connections</h1>
       {allUsers.map((user) => {
         const suggestedUserFullName = `${user.first_name} ${user.last_name}`;
         return (
@@ -41,7 +64,9 @@ export default () => {
               <h3>{suggestedUserFullName}</h3>
             </Link>
             <p>{user.title}</p>
-            <Button onClick={() => console.log("connected")}>Connect</Button>
+            <Button onClick={(e) => handleConnectUsers(e, user.id)}>
+              Connect
+            </Button>
           </ul>
         );
       })}

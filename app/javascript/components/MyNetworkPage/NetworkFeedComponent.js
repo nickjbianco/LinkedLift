@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { usersThunk, alreadyConnected } from "../../reducers/UsersReducer";
+import axios from "axios";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-  background-color: blue;
+  background-color: white;
   width: 50%;
   border-radius: 15px;
   border: 2px solid #d6cec2;
@@ -12,7 +13,7 @@ const Wrapper = styled.div`
 `;
 
 const SingleSuggestedConnection = styled.ul`
-  background-color: orange;
+  background-color: #d6cec2;
   border-radius: 15px;
   border: 2px solid #d6cec2;
   width: 50%;
@@ -25,7 +26,7 @@ const SingleSuggestedConnection = styled.ul`
 `;
 
 const ComponentTitle = styled.h1`
-  background-color: green;
+  background-color: white;
   text-align: center;
 `;
 
@@ -47,6 +48,12 @@ const Button = styled.button`
   -webkit-font-smoothing: antialiased;
 `;
 
+const BottomLine = styled.hr`
+  border-bottom: 1px solid var(--warm-gray-40, #cfcfcf);
+  width: calc(100% - 48px);
+  margin: 8px -8px 8px 64px;
+`;
+
 export default () => {
   const dispatch = useDispatch();
   const allConnections = useSelector(alreadyConnected);
@@ -54,6 +61,24 @@ export default () => {
   useEffect(() => {
     dispatch(usersThunk());
   }, []);
+
+  const handleDeleteConnection = (e, connectedUserId) => {
+    e.preventDefault();
+    axios
+      .delete(
+        "http://localhost:3000/user_connections",
+        {
+          user_connection: { connected_user_id: connectedUserId },
+        },
+        { withCredentials: true }
+      )
+      .then((response) => {
+        console.log("delete connection", response);
+      })
+      .catch((error) => {
+        console.log("login error", error);
+      });
+  };
 
   return (
     <Wrapper>
@@ -66,6 +91,9 @@ export default () => {
             <h4>{fullName}</h4>
             <p>{user.title}</p>
             <p>{user.location}</p>
+            <Button onClick={(e) => handleDeleteConnection(e, user.id)}>
+              Remove Connection
+            </Button>
           </SingleSuggestedConnection>
         );
       })}

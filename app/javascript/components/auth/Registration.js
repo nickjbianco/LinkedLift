@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { receivedCurrentUser } from "../../reducers/CurrentUserReducer";
 import axios from "axios";
+import styled from "styled-components";
+
+const FormWrapper = styled.ul``;
 
 export default (props) => {
   const [firstName, setFirstName] = useState("");
@@ -47,8 +50,8 @@ export default (props) => {
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <ul>
-          <p>
+        <FormWrapper>
+          <div>
             <input
               type="text"
               name="first_name"
@@ -56,9 +59,9 @@ export default (props) => {
               value={firstName}
               onChange={(e) => setFirstName(e.target.value)}
             />
-          </p>
+          </div>
 
-          <p>
+          <div>
             <input
               type="text"
               name="last_name"
@@ -66,9 +69,9 @@ export default (props) => {
               value={lastName}
               onChange={(e) => setLastName(e.target.value)}
             />
-          </p>
+          </div>
 
-          <p>
+          <div>
             <input
               type="email"
               name="email"
@@ -76,9 +79,9 @@ export default (props) => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
-          </p>
+          </div>
 
-          <p>
+          <div>
             <input
               type="password"
               name="password"
@@ -86,9 +89,9 @@ export default (props) => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-          </p>
+          </div>
 
-          <p>
+          <div>
             <input
               type="password"
               name="password_confirmation"
@@ -96,12 +99,18 @@ export default (props) => {
               value={passwordConfirmation}
               onChange={(e) => setPasswordConfirmation(e.target.value)}
             />
-          </p>
+          </div>
 
-          <p>
-            <button type="submit">Register</button>
-          </p>
-        </ul>
+          <div>
+            <p>
+              <em>By clicking Agree & Join, you agree to the LinkedLift</em>
+            </p>
+            <p>
+              <em>User Agreement, Privacy Policy, and Cookie Policy.</em>
+            </p>
+            <button type="submit">Agree & Join</button>
+          </div>
+        </FormWrapper>
       </form>
     </div>
   );

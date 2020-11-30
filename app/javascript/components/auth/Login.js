@@ -39,7 +39,7 @@ export default (props) => {
     <div>
       <form onSubmit={handleSubmit}>
         <ul>
-          <p>
+          <div>
             <input
               type="email"
               name="email"
@@ -47,9 +47,9 @@ export default (props) => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
-          </p>
+          </div>
 
-          <p>
+          <div>
             <input
               type="password"
               name="password"
@@ -57,11 +57,11 @@ export default (props) => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-          </p>
+          </div>
 
-          <p>
+          <div>
             <button type="submit">Login</button>
-          </p>
+          </div>
         </ul>
       </form>
     </div>

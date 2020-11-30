@@ -21,29 +21,55 @@ export const usersThunk = () => {
   };
 };
 
-// Selectors
+const RECEIVED_CONNECTION = "RECEIVED_CONNECTION";
+export const receivedConnection = (payload) => ({
+  type: RECEIVED_CONNECTION,
+  payload,
+});
 
+// Selectors
 // Users you are not yet connected with
+const mapUserIdToObject = (store) => {
+  return store.users.allIds.map((id) => store.users.byIds[id]);
+};
+
 export const suggestedConnections = (store) => {
-  return store.users
-    .filter((user) => {
-      return user.connected !== true;
-    })
+  return mapUserIdToObject(store)
+    .filter((user) => user.connected !== true)
     .slice(0, 5);
 };
 
 export const alreadyConnected = (store) => {
-  return store.users.filter((user) => {
-    return user.connected === true;
-  });
+  return mapUserIdToObject(store).filter((user) => user.connected);
 };
 
-const defaultState = [];
+const defaultState = {
+  byIds: {},
+  allIds: [],
+};
 
 export default (state = defaultState, action) => {
   switch (action.type) {
     case RECEIVED_USERS:
-      return action.payload;
+      const allIds = action.payload.map((user) => user.id);
+      const byIds = {};
+      action.payload.forEach((user) => (byIds[user.id] = user));
+
+      return {
+        allIds,
+        byIds,
+      };
+    case RECEIVED_CONNECTION:
+      const user = state.byIds[action.payload.user_b_id];
+      const newUser = { ...user, connected: true };
+
+      return {
+        allIds: state.allIds,
+        byIds: {
+          ...state.byIds,
+          [newUser.id]: newUser,
+        },
+      };
     default:
       return state;
   }

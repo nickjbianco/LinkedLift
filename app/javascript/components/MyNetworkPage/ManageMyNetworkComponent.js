@@ -4,7 +4,7 @@ import { usersThunk, alreadyConnected } from "../../reducers/UsersReducer";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-  background-color: yellow;
+  background-color: white;
   width: 20%;
   border-radius: 15px;
   border: 2px solid #d6cec2;

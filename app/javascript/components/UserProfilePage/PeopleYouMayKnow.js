@@ -1,7 +1,11 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { usersThunk, suggestedConnections } from "../../reducers/UsersReducer";
+import {
+  usersThunk,
+  suggestedConnections,
+  receivedConnection,
+} from "../../reducers/UsersReducer";
 import styled from "styled-components";
 import axios from "axios";
 
@@ -60,7 +64,8 @@ export default () => {
     dispatch(usersThunk());
   }, []);
 
-  const handleConnectUsers = (connectedUserId) => {
+  const handleConnectUsers = (e, connectedUserId) => {
+    e.preventDefault();
     axios
       .post(
         "http://localhost:3000/user_connections",
@@ -70,7 +75,7 @@ export default () => {
         { withCredentials: true }
       )
       .then((response) => {
-        console.log("connection response", response);
+        dispatch(receivedConnection(response.data));
       })
       .catch((error) => {
         console.log("connection error", error);
@@ -88,7 +93,7 @@ export default () => {
             </h4>
           </Link>
           <p>{suggestedUser.title}</p>
-          <Button onClick={() => handleConnectUsers(suggestedUser.id)}>
+          <Button onClick={(e) => handleConnectUsers(e, suggestedUser.id)}>
             Connect
           </Button>
           <BottomLine />

@@ -1,6 +1,6 @@
 import React from "react";
 import ManageMyNetworkComponent from "./ManageMyNetworkComponent";
-import NetworkInvitationComponent from "./NetworkInvitationComponent";
+import NetworkFeedComponent from "./NetworkFeedComponent";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
@@ -13,7 +13,7 @@ export default () => {
   return (
     <Wrapper>
       <ManageMyNetworkComponent />
-      <NetworkInvitationComponent />
+      <NetworkFeedComponent />
     </Wrapper>
   );
 };

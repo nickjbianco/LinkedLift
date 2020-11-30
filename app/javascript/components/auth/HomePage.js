@@ -5,16 +5,20 @@ import Login from "./Login";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-  background-color: blue;
+  background-color: #f3f2ef;
   text-align: center;
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", "Fira Sans", Ubuntu, Oxygen, "Oxygen Sans", Cantarell,
+    "Droid Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol", "Lucida Grande", Helvetica, Arial, sans-serif;
 `;
 
 const Register = styled.div`
-  background-color: yellow;
+  background-color: #f3f2ef;
 `;
 
 const LoginInput = styled.div`
-  background-color: green;
+  background-color: #f3f2ef;
 `;
 
 export default (props) => {
@@ -37,7 +41,6 @@ export default (props) => {
   return (
     <Wrapper>
       <h1>Linkedlift</h1>
-      <h2>Status: {props.loggedInStatus}</h2>
       <Register>
         <h3>Don't have an account? Sign up below.</h3>
         <Registration handleSuccessfulAuth={handleSuccessfulAuth} />

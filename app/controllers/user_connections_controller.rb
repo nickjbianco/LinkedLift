@@ -6,7 +6,6 @@ class UserConnectionsController < ApplicationController
   end
 
   def create
-    debugger
     @user_connection = UserConnection.new(
       user_a_id: @current_user.id,
       user_b_id: user_connection_params[:connected_user_id]
@@ -18,6 +17,13 @@ class UserConnectionsController < ApplicationController
   end
 
   def destroy
+    # debugger
+    connected_user = User.find(user_connection_params[:connected_user_id])
+
+    if connected_user
+      connected_user.reversed_connections = connected_user.reversed_connections.select { |user| user.id != @current_user.id } 
+      connected_user.save 
+    end 
   end
 
   private 
