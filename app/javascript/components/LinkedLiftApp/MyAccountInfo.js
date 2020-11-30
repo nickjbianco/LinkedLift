@@ -5,7 +5,18 @@ import styled from "styled-components";
 const MyAccountInfo = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
+
   text-align: center;
+  background-color: white;
+
+  border-radius: 15px;
+  border: 2px solid #d6cec2;
+
+  height: 150px;
+  width: 300px;
+
+  margin-top: 10px;
 `;
 
 export default () => {

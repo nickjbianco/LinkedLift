@@ -9,28 +9,30 @@ const Wrapper = styled.div`
   background-color: #f3f2ef;
   display: flex;
   flex-direction: column;
-  align-items: space-evenely;
 `;
 
 const Form = styled.form`
   background-color: transparent;
   display: flex;
+  align-self: center;
+  width: 500px;
 `;
+
 const Button = styled.button`
+  border-radius: 2px;
+  border: 2px solid var(--blue-70, #0073b1);
   background-color: var(--blue-70, #0073b1);
   color: white;
   font-weight: 600;
-  width: 90%;
-  padding: 0;
   font-size: 150%;
   cursor: pointer;
-  line-height: 1.2;
   font-family: -apple-system, system-ui, BlinkMacSystemFont, Segoe UI, Roboto,
     Helvetica Neue, Fira Sans, Ubuntu, Oxygen, Oxygen Sans, Cantarell,
     Droid Sans, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol,
     Lucida Grande, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
-  width: 10%;
+  width: 60px;
+  height: 40px;
   display: flex;
   justify-content: center;
   padding: 5px;
@@ -43,6 +45,7 @@ const TextArea = styled.textarea`
   width: 90%;
   padding-left: 10px;
   display: flex;
+  align-self: center;
 `;
 
 export default () => {

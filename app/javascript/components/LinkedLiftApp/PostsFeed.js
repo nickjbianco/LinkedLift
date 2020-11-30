@@ -12,6 +12,11 @@ const SinglePost = styled.ul`
   margin-left: 10px;
   margin-right: 80px;
   padding-bottom: 20px;
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 20px;
 `;
 
 const Button = styled.button`
@@ -30,6 +35,23 @@ const Button = styled.button`
     Droid Sans, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol,
     Lucida Grande, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
+  padding: 2px;
+`;
+
+const MainWrapper = styled.div`
+  background-color: #f3f2ef;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const PostTitle = styled.div`
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+  align-self: flex-start;
+  line-height: 1%;
 `;
 
 export default () => {
@@ -62,7 +84,7 @@ export default () => {
   };
 
   return (
-    <div>
+    <MainWrapper>
       {posts.map((post) => {
         const fullName = `${post.user.first_name} ${post.user.last_name}`;
         const postTitle = post.user.title;
@@ -70,10 +92,12 @@ export default () => {
 
         return (
           <SinglePost key={post.id}>
-            <h4>{fullName}</h4>
-            <p>
-              <em>{postTitle}</em>
-            </p>
+            <PostTitle>
+              <h4>{fullName}</h4>
+              <p>
+                <em>{postTitle}</em>
+              </p>
+            </PostTitle>
             <p>{postBody}</p>
             <Button onClick={(e) => handleDeletePost(e, post.id, postBody)}>
               Delete Post
@@ -81,6 +105,6 @@ export default () => {
           </SinglePost>
         );
       })}
-    </div>
+    </MainWrapper>
   );
 };

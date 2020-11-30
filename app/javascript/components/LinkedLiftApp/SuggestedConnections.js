@@ -25,6 +25,28 @@ const Button = styled.button`
     Droid Sans, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol,
     Lucida Grande, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
+  padding: 2px;
+`;
+
+const SuggestedConnections = styled.div`
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-self: flex-start;
+  margin: 0;
+  padding: 24px 40px 12px 16px;
+  margin-top: 24px;
+  width: 20%;
+  border: solid;
+  background-color: white;
+  border-radius: 25px;
+  border: 2px solid #d6cec2;
+`;
+
+const BottomLine = styled.hr`
+  border-bottom: 1px solid var(--warm-gray-40, #cfcfcf);
+  width: calc(100% - 48px);
+  margin: 8px -8px 8px 64px;
 `;
 
 export default () => {
@@ -54,7 +76,7 @@ export default () => {
   };
 
   return (
-    <div>
+    <SuggestedConnections>
       <h1>Suggested Connections</h1>
       {allUsers.map((user) => {
         const suggestedUserFullName = `${user.first_name} ${user.last_name}`;
@@ -67,9 +89,10 @@ export default () => {
             <Button onClick={(e) => handleConnectUsers(e, user.id)}>
               Connect
             </Button>
+            <BottomLine />
           </ul>
         );
       })}
-    </div>
+    </SuggestedConnections>
   );
 };
