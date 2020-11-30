@@ -8,6 +8,7 @@ const GymList = styled.div`
   border-radius: 25px;
   border: 2px solid #d6cec2;
   display: flex;
+  margin-bottom: 10px;
 `;
 
 const Wrapper = styled.div`

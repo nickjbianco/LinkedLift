@@ -8,10 +8,6 @@ const Wrapper = styled.div`
   border-radius: 25px;
   border: 2px solid #d6cec2;
   text-align: center;
-  font-family: -apple-system, system-ui, BlinkMacSystemFont, Segoe UI, Roboto,
-    Helvetica Neue, Fira Sans, Ubuntu, Oxygen, Oxygen Sans, Cantarell,
-    Droid Sans, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol,
-    Lucida Grande, Helvetica, Arial, sans-serif;
 `;
 
 const Button = styled.button`
@@ -24,12 +20,8 @@ const Button = styled.button`
   font-size: 100%;
   cursor: pointer;
   margin-left: 8px;
-  line-height: 1.2;
-  font-family: -apple-system, system-ui, BlinkMacSystemFont, Segoe UI, Roboto,
-    Helvetica Neue, Fira Sans, Ubuntu, Oxygen, Oxygen Sans, Cantarell,
-    Droid Sans, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol,
-    Lucida Grande, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
+  height: 30px;
+  margin-top: 13px;
 `;
 
 const SearchWrapper = styled.div`
@@ -41,6 +33,17 @@ const SearchWrapper = styled.div`
 const SearchInputs = styled.textarea`
   border-radius: 10px;
   border: 2px solid #d6cec2;
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, Segoe UI, Roboto,
+    Helvetica Neue, Fira Sans, Ubuntu, Oxygen, Oxygen Sans, Cantarell,
+    Droid Sans, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol,
+    Lucida Grande, Helvetica, Arial, sans-serif;
+  margin: 5px;
+`;
+
+const GymSearchForm = styled.form`
+  background-color: white;
+  display: flex;
+  flex-direction: row;
 `;
 
 export default () => {
@@ -60,7 +63,7 @@ export default () => {
       <Wrapper>
         <h1>Search for your next gym</h1>
         <SearchWrapper>
-          <form onSubmit={handleGymSearch}>
+          <GymSearchForm onSubmit={handleGymSearch}>
             <SearchInputs
               placeholder={descriptionOne}
               onChange={(e) => setDescriptionOne(e.target.value)}
@@ -70,7 +73,7 @@ export default () => {
               onChange={(e) => setDescriptionTwo(e.target.value)}
             />
             <Button>Search</Button>
-          </form>
+          </GymSearchForm>
         </SearchWrapper>
       </Wrapper>
     </div>
