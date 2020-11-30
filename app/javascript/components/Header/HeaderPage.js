@@ -12,7 +12,7 @@ const Button = styled.button`
   background-color: var(--blue-70, #0073b1);
   color: white;
   font-weight: 600;
-  padding: 0;
+  padding: 2px;
   font-size: 100%;
   cursor: pointer;
   margin-left: 8px;
@@ -21,7 +21,6 @@ const Button = styled.button`
     Helvetica Neue, Fira Sans, Ubuntu, Oxygen, Oxygen Sans, Cantarell,
     Droid Sans, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol,
     Lucida Grande, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
 `;
 
 const Header = styled.header`
@@ -33,6 +32,11 @@ const Header = styled.header`
   width: 100vw;
   min-height: 52px;
   justify-content: center;
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, Segoe UI, Roboto,
+    Helvetica Neue, Fira Sans, Ubuntu, Oxygen, Oxygen Sans, Cantarell,
+    Droid Sans, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol,
+    Lucida Grande, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
 `;
 
 const Input = styled.input`
@@ -49,12 +53,14 @@ const Navbar = styled.nav`
   cursor: pointer;
   display: flex;
   min-width: 400px;
-  justify-content: space-between;
+  justify-content: space-evenly;
   overflow: hidden;
+  font-size: 1.2rem;
+  font-weight: 400;
 `;
 const Wrapper = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   min-width: 800px;
   padding-top: 15px;
 `;
@@ -65,6 +71,8 @@ const LinkedLift = styled.h1`
   background-color: #0a66c2;
   color: white;
   font-size: 20px;
+  display: flex;
+  align-items: center;
 `;
 
 const LogoutButton = styled.div`
@@ -77,11 +85,7 @@ const LogoutButton = styled.div`
   font-size: 100%;
   cursor: pointer;
   margin-left: 8px;
-  font-family: -apple-system, system-ui, BlinkMacSystemFont, Segoe UI, Roboto,
-    Helvetica Neue, Fira Sans, Ubuntu, Oxygen, Oxygen Sans, Cantarell,
-    Droid Sans, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol,
-    Lucida Grande, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
+  padding: 2px;
 `;
 
 export default (props) => {
@@ -123,16 +127,16 @@ export default (props) => {
 
           <Navbar>
             <NavLink exact to="/" className="navlink">
-              Home
+              <b>Home</b>
             </NavLink>
             <NavLink to="/mynetwork" className="navlink">
-              My Network
+              <b>My Network</b>
             </NavLink>
             <NavLink to="/gyms" className="navlink">
-              Gyms
+              <b>Gyms</b>
             </NavLink>
             <NavLink to={`/profile/${currentUser.id}`} className="navlink">
-              My Profile
+              <b>My Profile</b>
             </NavLink>
           </Navbar>
           <LogoutButton onClick={() => handleLogoutClick()}>
