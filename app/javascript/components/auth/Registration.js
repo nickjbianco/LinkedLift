@@ -27,10 +27,19 @@ const Button = styled.button`
     Lucida Grande, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   padding: 2px;
+  width: 163px;
 `;
 
 const FormInput = styled.div`
   margin: 7px;
+`;
+
+const Input = styled.input`
+  padding: 5px;
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, Segoe UI, Roboto,
+    Helvetica Neue, Fira Sans, Ubuntu, Oxygen, Oxygen Sans, Cantarell,
+    Droid Sans, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol,
+    Lucida Grande, Helvetica, Arial, sans-serif;
 `;
 
 export default (props) => {
@@ -79,7 +88,7 @@ export default (props) => {
       <form onSubmit={handleSubmit}>
         <FormWrapper>
           <FormInput>
-            <input
+            <Input
               type="text"
               name="first_name"
               placeholder="First Name"
@@ -89,7 +98,7 @@ export default (props) => {
           </FormInput>
 
           <FormInput>
-            <input
+            <Input
               type="text"
               name="last_name"
               placeholder="Last Name"
@@ -99,7 +108,7 @@ export default (props) => {
           </FormInput>
 
           <FormInput>
-            <input
+            <Input
               type="email"
               name="email"
               placeholder="Email"
@@ -109,7 +118,7 @@ export default (props) => {
           </FormInput>
 
           <FormInput>
-            <input
+            <Input
               type="password"
               name="password"
               placeholder="Password"
@@ -119,7 +128,7 @@ export default (props) => {
           </FormInput>
 
           <FormInput>
-            <input
+            <Input
               type="password"
               name="password_confirmation"
               placeholder="Password Confirmation"

@@ -19,7 +19,6 @@ const Button = styled.button`
     Helvetica Neue, Fira Sans, Ubuntu, Oxygen, Oxygen Sans, Cantarell,
     Droid Sans, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol,
     Lucida Grande, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
   margin-top: 10px;
   padding: 2px;
 `;
@@ -32,6 +31,23 @@ const FormWrapper = styled.div`
 
 const FormInput = styled.div`
   margin: 7px;
+`;
+
+const Input = styled.input`
+  padding: 5px;
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, Segoe UI, Roboto,
+    Helvetica Neue, Fira Sans, Ubuntu, Oxygen, Oxygen Sans, Cantarell,
+    Droid Sans, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol,
+    Lucida Grande, Helvetica, Arial, sans-serif;
+`;
+
+const ButtomForm = styled.div`
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 175px;
+  margin-left: 170px;
 `;
 
 export default (props) => {
@@ -70,7 +86,7 @@ export default (props) => {
     <FormWrapper>
       <form onSubmit={handleSubmit}>
         <FormInput>
-          <input
+          <Input
             type="email"
             name="email"
             placeholder="Email"
@@ -80,7 +96,7 @@ export default (props) => {
         </FormInput>
 
         <FormInput>
-          <input
+          <Input
             type="password"
             name="password"
             placeholder="Password"
@@ -89,12 +105,12 @@ export default (props) => {
           />
         </FormInput>
 
-        <FormInput>
+        <ButtomForm>
           <Button type="submit">Login</Button>
           <Button onClick={() => console.log("create demo user")}>
             Demo User
           </Button>
-        </FormInput>
+        </ButtomForm>
       </form>
     </FormWrapper>
   );
