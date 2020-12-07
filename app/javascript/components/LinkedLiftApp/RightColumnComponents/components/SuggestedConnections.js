@@ -5,28 +5,30 @@ import {
   usersThunk,
   suggestedConnections,
   receivedConnection,
-} from "../../reducers/UsersReducer";
+} from "../../../../reducers/UsersReducer";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import styled from "styled-components";
 
 const Button = styled.button`
-  border-radius: 2px;
-  border: 2px solid var(--blue-70, #0073b1);
   background-color: var(--blue-70, #0073b1);
+  border-radius: 25px;
+  border: 2px solid var(--blue-70, #0073b1);
   color: white;
   font-weight: 600;
   padding: 0;
   font-size: 100%;
   cursor: pointer;
   margin-left: 8px;
-  line-height: 1.2;
+  line-height: 8px;
   font-family: -apple-system, system-ui, BlinkMacSystemFont, Segoe UI, Roboto,
     Helvetica Neue, Fira Sans, Ubuntu, Oxygen, Oxygen Sans, Cantarell,
     Droid Sans, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol,
     Lucida Grande, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   padding: 2px;
+  font-szie: 12;
+  height: 30%;
 `;
 
 const SuggestedConnections = styled.div`
@@ -34,20 +36,44 @@ const SuggestedConnections = styled.div`
   display: flex;
   flex-direction: column;
   align-self: flex-start;
-  margin: 0;
-  padding: 5px 40px 12px 16px;
+  padding: 5px 0px 12px 0px;
   margin-top: 24px;
-  width: 60%;
+  width: 216px;
   border: solid;
-  background-color: white;
   border-radius: 25px;
   border: 2px solid #d6cec2;
+  font-szie: 12;
 `;
 
-const BottomLine = styled.hr`
-  border-bottom: 1px solid var(--warm-gray-40, #cfcfcf);
-  width: calc(100% - 48px);
-  margin: 8px -8px 8px 64px;
+const SuggestedConnectionsTitle = styled.p`
+  font-size: 16px;
+  display: flex;
+  align-self: flex-start;
+  padding-left: 10px;
+`;
+
+const ConnectionInfo = styled.ul`
+  background-color: white;
+  font-size: 12px;
+  display: flex;
+  justify-content: space-between;
+  padding-left: 10px;
+  line-height: 1000px;
+`;
+
+const ButtonWrapper = styled.div`
+  background-color: white;
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 10px;
+  align-items: center;
+`;
+
+const ConnectionUserInfo = styled.div`
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  line-height: 5px;
 `;
 
 export default () => {
@@ -77,26 +103,30 @@ export default () => {
   };
 
   return (
-    <div>
-      <NewsFeed />
-      <SuggestedConnections>
-        <h1>Suggested Connections</h1>
-        {allUsers.map((user) => {
-          const suggestedUserFullName = `${user.first_name} ${user.last_name}`;
-          return (
-            <ul key={user.id}>
+    <SuggestedConnections>
+      <SuggestedConnectionsTitle>
+        <b>Suggested Connections</b>
+      </SuggestedConnectionsTitle>
+      {allUsers.map((user) => {
+        const suggestedUserFullName = `${user.first_name} ${user.last_name}`;
+        return (
+          <ConnectionInfo key={user.id}>
+            <ConnectionUserInfo>
               <Link to={`/profile/${user.id}`}>
-                <h3>{suggestedUserFullName}</h3>
+                <p>
+                  <b>{suggestedUserFullName}</b>
+                </p>
               </Link>
               <p>{user.title}</p>
+            </ConnectionUserInfo>
+            <ButtonWrapper>
               <Button onClick={(e) => handleConnectUsers(e, user.id)}>
                 Connect
               </Button>
-              <BottomLine />
-            </ul>
-          );
-        })}
-      </SuggestedConnections>
-    </div>
+            </ButtonWrapper>
+          </ConnectionInfo>
+        );
+      })}
+    </SuggestedConnections>
   );
 };

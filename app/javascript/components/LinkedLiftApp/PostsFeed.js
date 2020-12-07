@@ -9,13 +9,11 @@ const SinglePost = styled.ul`
   background-color: white;
   border-radius: 25px;
   border: 2px solid #d6cec2;
-  margin-left: 10px;
-  margin-right: 80px;
   padding-bottom: 20px;
   width: 400px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-self: center;
   line-height: 20px;
 `;
 
@@ -36,12 +34,18 @@ const Button = styled.button`
     Lucida Grande, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   padding: 2px;
+  width: 100px;
+  display: flex;
+  align-self: center;
 `;
 
 const MainWrapper = styled.div`
+  background-color: transparent;
   display: flex;
   flex-direction: column;
-  margin-left: 20px;
+  align-self: center;
+  margin-left: 10px;
+  width: 100%;
 `;
 
 const PostTitle = styled.div`
@@ -52,11 +56,18 @@ const PostTitle = styled.div`
   line-height: 1%;
 `;
 
+const PostOptions = styled.div`
+  background-color: transparent;
+  display: flex;
+  justify-content: space-around;
+`;
+
 export default () => {
   const dispatch = useDispatch();
   const posts = useSelector((state) => state.posts);
   const currentUser = useSelector((state) => state.currentUser);
   const [postBody, setPostBody] = useState("");
+  const [deletePostButton, setDeletePostButton] = useState(true);
 
   useEffect(() => {
     dispatch(postsThunk());
@@ -91,15 +102,24 @@ export default () => {
         return (
           <SinglePost key={post.id}>
             <PostTitle>
-              <h4>{fullName}</h4>
+              <p>
+                <b>{fullName}</b>
+              </p>
               <p>
                 <em>{postTitle}</em>
               </p>
             </PostTitle>
             <p>{postBody}</p>
-            <Button onClick={(e) => handleDeletePost(e, post.id, postBody)}>
-              Delete Post
-            </Button>
+            <PostOptions>
+              <p>Like</p>
+              <p>Comment</p>
+              <p>Share</p>
+              {currentUser.id === post.user.id && (
+                <Button onClick={(e) => handleDeletePost(e, post.id, postBody)}>
+                  Delete Post
+                </Button>
+              )}
+            </PostOptions>
           </SinglePost>
         );
       })}

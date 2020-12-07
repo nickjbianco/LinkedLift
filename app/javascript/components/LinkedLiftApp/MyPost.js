@@ -94,9 +94,9 @@ export default () => {
         <Form onSubmit={addPost}>
           <TextArea value={body} onChange={(e) => setBody(e.target.value)} />
           <ButtonWrapper>
-            <button>Photo</button>
-            <button>Video</button>
-            <button>Write Article</button>
+            <div>Photo</div>
+            <div>Video</div>
+            <div>Event</div>
             <Button type="submit">Post</Button>
           </ButtonWrapper>
         </Form>

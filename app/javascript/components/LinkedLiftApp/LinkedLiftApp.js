@@ -1,8 +1,8 @@
 import React from "react";
 import MyPost from "./MyPost";
 import MyAccountInfo from "./MyAccountInfo";
-import SuggestedConnections from "./SuggestedConnections";
 import styled from "styled-components";
+import RightColumn from "./RightColumnComponents/RightColumn";
 
 const Wrapper = styled.div`
   display: flex;
@@ -17,12 +17,12 @@ const Wrapper = styled.div`
   height: 100%;
 `;
 
-export default (props) => {
+export default () => {
   return (
     <Wrapper>
       <MyAccountInfo />
       <MyPost />
-      <SuggestedConnections />
+      <RightColumn />
     </Wrapper>
   );
 };
