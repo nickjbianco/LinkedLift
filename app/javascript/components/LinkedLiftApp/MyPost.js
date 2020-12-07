@@ -9,17 +9,18 @@ const Wrapper = styled.div`
   background-color: #f3f2ef;
   display: flex;
   flex-direction: column;
+  margin: 0 25px;
+  margin-top: 10px;
 `;
 
 const Form = styled.form`
-  background-color: transparent;
   display: flex;
-  align-self: center;
-  width: 500px;
+  flex-direction: column;
+  padding-bottom: 10px;
 `;
 
 const Button = styled.button`
-  border-radius: 2px;
+  border-radius: 25px;
   border: 2px solid var(--blue-70, #0073b1);
   background-color: var(--blue-70, #0073b1);
   color: white;
@@ -30,21 +31,12 @@ const Button = styled.button`
     Helvetica Neue, Fira Sans, Ubuntu, Oxygen, Oxygen Sans, Cantarell,
     Droid Sans, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol,
     Lucida Grande, Helvetica, Arial, sans-serif;
-  width: 60px;
-  height: 40px;
-  display: flex;
-  justify-content: center;
-  padding: 5px;
-  margin: 10px;
+  width: 15%;
 `;
 
 const TextArea = styled.textarea`
-  border-radius: 25px;
+  border-radius: 15px;
   border: 2px solid #d6cec2;
-  width: 90%;
-  padding-left: 10px;
-  display: flex;
-  align-self: center;
   font-family: -apple-system, system-ui, BlinkMacSystemFont, Segoe UI, Roboto,
     Helvetica Neue, Fira Sans, Ubuntu, Oxygen, Oxygen Sans, Cantarell,
     Droid Sans, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol,
@@ -52,6 +44,25 @@ const TextArea = styled.textarea`
   font-weight: 600;
   font-size: 100%;
   color: gray;
+  width: 85%;
+  align-self: center;
+  margin: 15px 0px;
+`;
+
+const FormWrapper = styled.div`
+  background-color: white;
+  border-radius: 25px;
+  border: 2px solid #d6cec2;
+`;
+
+const ButtonWrapper = styled.div`
+  display: flex;
+  justify-content: space-around;
+`;
+
+const BottomLine = styled.hr`
+  border-bottom: 1px solid var(--warm-gray-40, #cfcfcf);
+  width: 97%;
 `;
 
 export default () => {
@@ -79,11 +90,18 @@ export default () => {
 
   return (
     <Wrapper>
-      <Form onSubmit={addPost}>
-        <TextArea value={body} onChange={(e) => setBody(e.target.value)} />
-        <Button type="submit">Post</Button>
-      </Form>
-
+      <FormWrapper>
+        <Form onSubmit={addPost}>
+          <TextArea value={body} onChange={(e) => setBody(e.target.value)} />
+          <ButtonWrapper>
+            <button>Photo</button>
+            <button>Video</button>
+            <button>Write Article</button>
+            <Button type="submit">Post</Button>
+          </ButtonWrapper>
+        </Form>
+      </FormWrapper>
+      <BottomLine />
       <PostsFeed />
     </Wrapper>
   );
