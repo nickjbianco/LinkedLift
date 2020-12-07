@@ -6,7 +6,7 @@ import styled from "styled-components";
 
 const Wrapper = styled.div`
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   width: 100%;
   padding-left: 20px;
   background-color: #f3f2ef;

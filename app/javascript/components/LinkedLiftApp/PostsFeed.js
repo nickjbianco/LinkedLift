@@ -39,17 +39,15 @@ const Button = styled.button`
 `;
 
 const MainWrapper = styled.div`
-  background-color: #f3f2ef;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  margin-left: 20px;
 `;
 
 const PostTitle = styled.div`
   background-color: white;
   display: flex;
   flex-direction: column;
-  align-items: baseline;
   align-self: flex-start;
   line-height: 1%;
 `;

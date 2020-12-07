@@ -10,7 +10,6 @@ const Button = styled.button`
   background-color: var(--blue-70, #0073b1);
   color: white;
   font-weight: 600;
-  padding: 0;
   font-size: 100%;
   cursor: pointer;
   margin-left: 8px;
@@ -21,6 +20,8 @@ const Button = styled.button`
     Lucida Grande, Helvetica, Arial, sans-serif;
   margin-top: 10px;
   padding: 2px;
+  width: 160px;
+  margin-right: 1%;
 `;
 
 const FormWrapper = styled.div`
@@ -39,15 +40,6 @@ const Input = styled.input`
     Helvetica Neue, Fira Sans, Ubuntu, Oxygen, Oxygen Sans, Cantarell,
     Droid Sans, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol,
     Lucida Grande, Helvetica, Arial, sans-serif;
-`;
-
-const ButtomForm = styled.div`
-  background-color: white;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  width: 175px;
-  margin-left: 170px;
 `;
 
 export default (props) => {
@@ -105,12 +97,9 @@ export default (props) => {
           />
         </FormInput>
 
-        <ButtomForm>
+        <FormInput>
           <Button type="submit">Login</Button>
-          <Button onClick={() => console.log("create demo user")}>
-            Demo User
-          </Button>
-        </ButtomForm>
+        </FormInput>
       </form>
     </FormWrapper>
   );

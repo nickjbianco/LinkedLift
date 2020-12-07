@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import NewsFeed from "./NewsFeed";
 import { useSelector, useDispatch } from "react-redux";
 import {
   usersThunk,
@@ -34,9 +35,9 @@ const SuggestedConnections = styled.div`
   flex-direction: column;
   align-self: flex-start;
   margin: 0;
-  padding: 24px 40px 12px 16px;
+  padding: 5px 40px 12px 16px;
   margin-top: 24px;
-  width: 20%;
+  width: 60%;
   border: solid;
   background-color: white;
   border-radius: 25px;
@@ -76,23 +77,26 @@ export default () => {
   };
 
   return (
-    <SuggestedConnections>
-      <h1>Suggested Connections</h1>
-      {allUsers.map((user) => {
-        const suggestedUserFullName = `${user.first_name} ${user.last_name}`;
-        return (
-          <ul key={user.id}>
-            <Link to={`/profile/${user.id}`}>
-              <h3>{suggestedUserFullName}</h3>
-            </Link>
-            <p>{user.title}</p>
-            <Button onClick={(e) => handleConnectUsers(e, user.id)}>
-              Connect
-            </Button>
-            <BottomLine />
-          </ul>
-        );
-      })}
-    </SuggestedConnections>
+    <div>
+      <NewsFeed />
+      <SuggestedConnections>
+        <h1>Suggested Connections</h1>
+        {allUsers.map((user) => {
+          const suggestedUserFullName = `${user.first_name} ${user.last_name}`;
+          return (
+            <ul key={user.id}>
+              <Link to={`/profile/${user.id}`}>
+                <h3>{suggestedUserFullName}</h3>
+              </Link>
+              <p>{user.title}</p>
+              <Button onClick={(e) => handleConnectUsers(e, user.id)}>
+                Connect
+              </Button>
+              <BottomLine />
+            </ul>
+          );
+        })}
+      </SuggestedConnections>
+    </div>
   );
 };
