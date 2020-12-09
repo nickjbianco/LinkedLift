@@ -5,61 +5,66 @@ import styled from "styled-components";
 import axios from "axios";
 import { deletePost } from "../../reducers/PostsReducer";
 
-const SinglePost = styled.ul`
-  background-color: white;
-  border-radius: 25px;
-  border: 2px solid #d6cec2;
-  padding-bottom: 20px;
-  width: 400px;
-  display: flex;
-  flex-direction: column;
-  align-self: center;
-  line-height: 20px;
-`;
-
-const Button = styled.button`
-  border-radius: 2px;
-  border: 2px solid var(--blue-70, #0073b1);
-  background-color: var(--blue-70, #0073b1);
-  color: white;
-  font-weight: 600;
-  padding: 0;
-  font-size: 100%;
-  cursor: pointer;
-  margin-left: 8px;
-  line-height: 1.2;
-  font-family: -apple-system, system-ui, BlinkMacSystemFont, Segoe UI, Roboto,
-    Helvetica Neue, Fira Sans, Ubuntu, Oxygen, Oxygen Sans, Cantarell,
-    Droid Sans, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol,
-    Lucida Grande, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  padding: 2px;
-  width: 100px;
-  display: flex;
-  align-self: center;
-`;
-
 const MainWrapper = styled.div`
   background-color: transparent;
   display: flex;
   flex-direction: column;
   align-self: center;
-  margin-left: 10px;
   width: 100%;
 `;
 
-const PostTitle = styled.div`
+const Button = styled.button`
+  border-radius: 25px;
+  border: 2px solid var(--blue-70, #0073b1);
+  background-color: var(--blue-70, #0073b1);
+  color: white;
+  font-weight: 600;
+  font-size: 90%;
+  cursor: pointer;
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, Segoe UI, Roboto,
+    Helvetica Neue, Fira Sans, Ubuntu, Oxygen, Oxygen Sans, Cantarell,
+    Droid Sans, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol,
+    Lucida Grande, Helvetica, Arial, sans-serif;
+  width: 25%;
+  height: 70%;
+  display: flex;
+  align-self: center;
+  align-items: center;
+`;
+
+const SinglePost = styled.ul`
   background-color: white;
+  border-radius: 25px;
+  border: 2px solid #d6cec2;
+  padding: 10px;
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: space-between;
+  line-height: 20px;
+`;
+
+const PostTitle = styled.div`
+  background-color: transparent;
   display: flex;
   flex-direction: column;
   align-self: flex-start;
-  line-height: 1%;
+  font-size 14px;
+`;
+
+const PostBody = styled.p`
+  background-color: transparent;
 `;
 
 const PostOptions = styled.div`
   background-color: transparent;
   display: flex;
   justify-content: space-around;
+`;
+
+const BottomLine = styled.hr`
+  border-bottom: 1px solid var(--warm-gray-40, #cfcfcf);
+  width: 100%;
 `;
 
 export default () => {
@@ -104,12 +109,12 @@ export default () => {
             <PostTitle>
               <p>
                 <b>{fullName}</b>
-              </p>
-              <p>
-                <em>{postTitle}</em>
+                <br />
+                <em>{postTitle}</em> - 22 hr ago
               </p>
             </PostTitle>
-            <p>{postBody}</p>
+            <PostBody>{postBody}</PostBody>
+            <BottomLine />
             <PostOptions>
               <p>Like</p>
               <p>Comment</p>

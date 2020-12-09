@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { alreadyConnected } from "../../reducers/UsersReducer";
+import DiscoverMore from "./DiscoverMore";
 import styled from "styled-components";
 
 const MyAccountInfo = styled.div`
@@ -15,10 +16,10 @@ const MyAccountInfo = styled.div`
   border-radius: 15px;
   border: 2px solid #d6cec2;
 
-  height: 100%;
+  height: 20%;
   width: 216px;
 
-  margin-top: 10px;
+  margin-top: 30px;
 `;
 
 const BottomLine = styled.hr`
@@ -32,10 +33,12 @@ const ConnectionInfo = styled.ul`
   align-items: flex-start;
   padding-left: 6%;
   font-size: 12px;
+  line-height: 1px;
 `;
 
 const CurrentUserTitle = styled.p`
   font-size: 16px;
+  line-height: 1px;
 `;
 
 const CurrentUserSubTitle = styled.p`
@@ -48,29 +51,32 @@ export default () => {
   const fullName = `${currentUser.first_name} ${currentUser.last_name}`;
 
   return (
-    <MyAccountInfo>
-      <CurrentUserTitle>
-        <b>
-          <Link to={`/profile/${currentUser.id}`}>{fullName}</Link>
-        </b>
-      </CurrentUserTitle>
+    <div>
+      <MyAccountInfo>
+        <CurrentUserTitle>
+          <b>
+            <Link to={`/profile/${currentUser.id}`}>{fullName}</Link>
+          </b>
+        </CurrentUserTitle>
 
-      <CurrentUserSubTitle>
-        {currentUser.title} in {currentUser.location}
-      </CurrentUserSubTitle>
+        <CurrentUserSubTitle>
+          {currentUser.title} in {currentUser.location}
+        </CurrentUserSubTitle>
 
-      <BottomLine />
+        <BottomLine />
 
-      <ConnectionInfo>
-        <p>Connections {connections.length}</p>
-        <p>Who viewed your profile 9</p>
-      </ConnectionInfo>
+        <ConnectionInfo>
+          <p>Connections {connections.length}</p>
+          <p>Who viewed your profile 9</p>
+        </ConnectionInfo>
 
-      <CurrentUserSubTitle>
-        Access exclusive tools & insights
-        <br />
-        <b>Try Premium Free for 1 Month</b>
-      </CurrentUserSubTitle>
-    </MyAccountInfo>
+        <CurrentUserSubTitle>
+          Access exclusive tools & insights
+          <br />
+          <b>Try Premium Free for 1 Month</b>
+        </CurrentUserSubTitle>
+      </MyAccountInfo>
+      <DiscoverMore />
+    </div>
   );
 };

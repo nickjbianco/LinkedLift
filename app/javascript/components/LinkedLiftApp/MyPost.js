@@ -10,7 +10,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   margin: 0 25px;
-  margin-top: 10px;
+  margin-top: 30px;
 `;
 
 const Form = styled.form`
@@ -25,13 +25,16 @@ const Button = styled.button`
   background-color: var(--blue-70, #0073b1);
   color: white;
   font-weight: 600;
-  font-size: 150%;
+  font-size: 100%;
   cursor: pointer;
   font-family: -apple-system, system-ui, BlinkMacSystemFont, Segoe UI, Roboto,
     Helvetica Neue, Fira Sans, Ubuntu, Oxygen, Oxygen Sans, Cantarell,
     Droid Sans, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol,
     Lucida Grande, Helvetica, Arial, sans-serif;
-  width: 15%;
+  width: 12%;
+  display: flex;
+  align-self: center;
+  align-items: center;
 `;
 
 const TextArea = styled.textarea`
