@@ -98,6 +98,10 @@ const SingleInputWrapper = styled.div`
   line-height: 5px;
 `;
 
+const MainWrapper = styled.div`
+  background-color: gray;
+`;
+
 export default () => {
   const dispatch = useDispatch();
   const params = useParams();
@@ -167,7 +171,7 @@ export default () => {
   };
 
   return (
-    <div>
+    <MainWrapper>
       <EmploymentFeedTitle>
         <Experience>Previous Gyms</Experience>
         {addGymButtonDisable}
@@ -262,6 +266,6 @@ export default () => {
           </AddGymFormWrapper>
         </AddGymModalWrapper>
       </ReactModal>
-    </div>
+    </MainWrapper>
   );
 };

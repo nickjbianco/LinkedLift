@@ -17,14 +17,13 @@ const Wrapper = styled.div`
     Helvetica Neue, Fira Sans, Ubuntu, Oxygen, Oxygen Sans, Cantarell,
     Droid Sans, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol,
     Lucida Grande, Helvetica, Arial, sans-serif;
-  margin: 0;
-  padding: 24px 40px 12px 16px;
-  margin-top: 24px;
-  width: 20%;
+  margin-top: 30px;
   border: solid;
-  background-color: white;
+  background-color: blue;
   border-radius: 25px;
   border: 2px solid #d6cec2;
+  margin-left: 20px;
+  width: 350px;
 `;
 
 const BottomLine = styled.hr`
@@ -53,7 +52,6 @@ const Button = styled.button`
     Helvetica Neue, Fira Sans, Ubuntu, Oxygen, Oxygen Sans, Cantarell,
     Droid Sans, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol,
     Lucida Grande, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
 `;
 
 export default () => {

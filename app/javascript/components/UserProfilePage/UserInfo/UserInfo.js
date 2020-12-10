@@ -2,51 +2,66 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import ReactModal from "react-modal";
 import styled from "styled-components";
-import EmploymentInfo from "./EmploymentInfo/EmploymentInfo";
-import { receivedCurrentUser } from "../../reducers/CurrentUserReducer";
-import { userThunk } from "../../reducers/ViewUserReducer";
-import "./UserInfo.scss";
+import EmploymentInfo from "../EmploymentInfo/EmploymentInfo";
+import { receivedCurrentUser } from "../../../reducers/CurrentUserReducer";
+import { userThunk } from "../../../reducers/ViewUserReducer";
+import { alreadyConnected } from "../../../reducers/UsersReducer";
+import ReactModal from "react-modal";
+import ProfileStrength from "./ProfileStrength";
 
-const Wrapper = styled.div`
-  margin-top: 50px;
+const MainUserWrapper = styled.div`
+  background-color: green;
+  width: 31%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 30px;
-  padding-bottom: 24px !important;
-  padding-left: 24px !important;
-  padding-right: 24px !important;
-  font-family: -apple-system, system-ui, BlinkMacSystemFont, Segoe UI, Roboto,
-    Helvetica Neue, Fira Sans, Ubuntu, Oxygen, Oxygen Sans, Cantarell,
-    Droid Sans, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol,
-    Lucida Grande, Helvetica, Arial, sans-serif;
+  margin-left: 20px;
+`;
+
+const Wrapper = styled.div`
+  margin-top: 30px;
+  display: flex;
+  align-items: flex-end;
+  align-self: flex-end;
   background-color: white;
   border-radius: 25px;
   border: 2px solid #d6cec2;
-  padding: 20px;
-  width: 150%;
-  height: 150px;
+
+  height: 200px;
+  width: 550px;
+`;
+
+const UseInfoWrapper = styled.div`
+  background-color: transparent;
+  margin-left: 10px;
+  margin-bottom: 10px;
+  line-height: 10px;
 `;
 
 const Button = styled.button`
-  border-radius: 2px;
+  border-radius: 25px;
   border: 2px solid var(--blue-70, #0073b1);
   background-color: var(--blue-70, #0073b1);
   color: white;
   font-weight: 600;
-  padding: 0;
-  font-size: 100%;
+  font-size: 90%;
   cursor: pointer;
-  margin-left: 8px;
-  line-height: 1.2;
   font-family: -apple-system, system-ui, BlinkMacSystemFont, Segoe UI, Roboto,
     Helvetica Neue, Fira Sans, Ubuntu, Oxygen, Oxygen Sans, Cantarell,
     Droid Sans, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol,
     Lucida Grande, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
+  width: 26%;
+  height: 20%;
+  display: flex;
+  align-items: center;
 `;
+
+const ContactInfo = styled.p`
+  color: #0a66c2;
+`;
+
+// MODAL
 
 const EditProfileFormWrapper = styled.div`
   background-color: #d6cec2;
@@ -64,18 +79,8 @@ const EditProfileFormWrapper = styled.div`
     Helvetica Neue, Fira Sans, Ubuntu, Oxygen, Oxygen Sans, Cantarell,
     Droid Sans, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol,
     Lucida Grande, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
   font-size: 175%;
-`;
-
-const UseInfoWrapper = styled.div`
-  margin: 0;
-  padding: 0;
-  border: 0;
-`;
-
-const MainUserWrapper = styled.div`
-  width: 20%;
+  line-height: 5px;
 `;
 
 const EditModalTitle = styled.h2`
@@ -94,6 +99,23 @@ const EditModalForm = styled.form`
   border: 2px solid #d6cec2;
 `;
 
+const ModalButtons = styled.button`
+  border-radius: 2px;
+  border: 2px solid var(--blue-70, #0073b1);
+  background-color: var(--blue-70, #0073b1);
+  color: white;
+  font-weight: 600;
+  padding: 0;
+  font-size: 100%;
+  cursor: pointer;
+  margin-left: 8px;
+  line-height: 1.2;
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, Segoe UI, Roboto,
+    Helvetica Neue, Fira Sans, Ubuntu, Oxygen, Oxygen Sans, Cantarell,
+    Droid Sans, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol,
+    Lucida Grande, Helvetica, Arial, sans-serif;
+`;
+
 const ButtonWrapper = styled.div`
   padding-top: 50px;
   display: flex;
@@ -104,13 +126,13 @@ const SingleInputWrapper = styled.div`
   background-color: white;
   margin-left: 400px;
   margin-right: 400px;
-  line-height: 10px;
 `;
 
 export default () => {
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.currentUser);
   const viewUser = useSelector((state) => state.viewUser);
+  const connections = useSelector((state) => alreadyConnected(state));
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [location, setLocation] = useState("");
@@ -161,8 +183,10 @@ export default () => {
             {viewUser.first_name} {viewUser.last_name}
           </h2>
           <p>
-            {viewUser.title} in {viewUser.location}
+            {viewUser.title} in {viewUser.location} * {connections.length}{" "}
+            connections
           </p>
+          <ContactInfo>Contact Info</ContactInfo>
           {editProfileButtonDisable}
         </UseInfoWrapper>
         <ReactModal
@@ -221,14 +245,17 @@ export default () => {
 
               <ButtonWrapper>
                 <span>
-                  <Button type="submit">Save</Button>
-                  <Button onClick={() => setShowModal(false)}>Exit</Button>
+                  <ModalButtons type="submit">Save</ModalButtons>
+                  <ModalButtons onClick={() => setShowModal(false)}>
+                    Exit
+                  </ModalButtons>
                 </span>
               </ButtonWrapper>
             </EditModalForm>
           </EditProfileFormWrapper>
         </ReactModal>
       </Wrapper>
+      <ProfileStrength />
       <EmploymentInfo />
     </MainUserWrapper>
   );

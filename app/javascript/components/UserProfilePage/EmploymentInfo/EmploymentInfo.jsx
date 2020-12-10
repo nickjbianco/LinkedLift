@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 import AddEmploymentModal from "./AddEmploymentModal";
-import PreviousEmploymentsFed from "./PreviousEmploymentsFeed";
+import PreviousEmploymentsFeed from "./PreviousEmploymentsFeed";
 
 const Wrapper = styled.div`
-  width: 165%;
+  width: 216px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -17,7 +17,7 @@ export default () => {
   return (
     <Wrapper>
       <AddEmploymentModal />
-      <PreviousEmploymentsFed />
+      <PreviousEmploymentsFeed />
     </Wrapper>
   );
 };
