@@ -9,11 +9,11 @@ const Wrapper = styled.div`
   flex-direction: column;
   align-items: flex-start;
   align-self: flex-end;
-  background-color: red;
+  background-color: white;
   border-radius: 25px;
   border: 2px solid #d6cec2;
-
   width: 550px;
+  margin-bottom: 30px;
 `;
 
 export default () => {

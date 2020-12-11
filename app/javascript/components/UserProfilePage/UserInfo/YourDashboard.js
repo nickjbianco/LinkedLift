@@ -53,6 +53,7 @@ const JobStatTracker = styled.div`
   background-color: white;
   margin: 0 10px 10px 10px;
   padding: 5px;
+  line-height: 8px;
 `;
 
 const VerticalPipes = styled.hr`

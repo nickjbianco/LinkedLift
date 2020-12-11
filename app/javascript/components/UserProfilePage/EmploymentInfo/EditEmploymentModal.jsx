@@ -72,6 +72,21 @@ const SingleEditInput = styled.div`
   line-height: 5px;
 `;
 
+const EditGymButton = styled.button`
+  border-radius: 25px;
+  border: 2px solid var(--blue-70, #0073b1);
+  background-color: var(--blue-70, #0073b1);
+  color: white;
+  font-weight: 600;
+  font-size: 90%;
+  cursor: pointer;
+  width: 17%;
+  height: 40%;
+  display: flex;
+  align-items: center;
+  align-self: center;
+`;
+
 export default (props) => {
   const params = useParams();
   const dispatch = useDispatch();
@@ -87,7 +102,7 @@ export default (props) => {
   const [endMonth, setEndMonth] = useState(undefined);
   const [endYear, setEndYear] = useState(undefined);
   const editGymButtonDisable = viewUser.id === currentUser.id && (
-    <Button onClick={() => setShowModal(true)}>Edit Gym</Button>
+    <EditGymButton onClick={() => setShowModal(true)}>Edit Gym</EditGymButton>
   );
   const fullEndDate =
     endMonth && endYear ? `${endYear}-${endMonth}-01` : undefined;

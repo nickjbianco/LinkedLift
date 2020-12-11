@@ -6,6 +6,8 @@ import styled from "styled-components";
 import { userThunk } from "../../../reducers/ViewUserReducer";
 
 const Wrapper = styled.div`
+  background-color: transparent;
+  width: 80%;
   display: flex;
   flex-direction: column;
   font-family: -apple-system, system-ui, BlinkMacSystemFont, Segoe UI, Roboto,
@@ -17,8 +19,22 @@ const Wrapper = styled.div`
 `;
 
 const LineBreak = styled.hr`
-  width: 120%;
+  width: 119%;
   margin-top: 16px;
+`;
+
+const GymTitle = styled.div`
+  font-size: 16px;
+`;
+
+const GymBody = styled.div`
+  font-size: 14px;
+`;
+
+const SingleGymInfo = styled.ul`
+  background-color: transparent;
+  line-height: 5px;
+  padding-left: 0px;
 `;
 
 export default () => {
@@ -36,14 +52,23 @@ export default () => {
         const employment = employments.byIds[id];
 
         return (
-          <ul key={employment.id}>
-            <h3>{employment.title}</h3>
-            <p>{employment.gymName}</p>
-            <p>
-              {employment.startDate} - {employment.endDate}
-            </p>
-            <EditEmploymentModal currentEmployment={employment} />
-          </ul>
+          <SingleGymInfo key={employment.id}>
+            <GymTitle>
+              <p>
+                <b>{employment.title}</b>
+              </p>
+            </GymTitle>
+
+            <GymBody>
+              <p>{employment.gymName}</p>
+              <p>
+                {employment.startDate} - {employment.endDate}
+              </p>
+              <EditEmploymentModal currentEmployment={employment} />
+            </GymBody>
+
+            <LineBreak />
+          </SingleGymInfo>
         );
       })}
     </Wrapper>

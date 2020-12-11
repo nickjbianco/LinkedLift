@@ -9,65 +9,51 @@ import { userThunk } from "../../../reducers/ViewUserReducer";
 import axios from "axios";
 import styled from "styled-components";
 
+const MainWrapper = styled.div`
+  background-color: transparent;
+  width: 100%;
+`;
+
+const EmploymentFeedTitle = styled.div`
+  display: flex;
+  justify-content: space-around;
+`;
+
+const Experience = styled.div`
+  font-size: 20px;
+  margin-right: 250px;
+`;
+
 const Button = styled.button`
   border-radius: 2px;
   border: 2px solid var(--blue-70, #0073b1);
   background-color: var(--blue-70, #0073b1);
   color: white;
   font-weight: 600;
-  width: 50%;
-  height: 50%;
-  padding: 0;
   font-size: 100%;
   cursor: pointer;
-  margin-top: 30px;
-  margin-left: 8px;
-  line-height: 1.2;
-  font-family: -apple-system, system-ui, BlinkMacSystemFont, Segoe UI, Roboto,
-    Helvetica Neue, Fira Sans, Ubuntu, Oxygen, Oxygen Sans, Cantarell,
-    Droid Sans, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol,
-    Lucida Grande, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
 `;
 
-const AddGymFormWrapper = styled.form`
-  background-color: white;
+const AddGymButtonWrapper = styled.div`
   display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  text-align: center;
-  border-radius: 15px;
-  border: 2px solid #d6cec2;
-  padding-left: 100px;
-  padding-right: 100px;
 `;
 
-const Experience = styled.h2`
-  font-family: -apple-system, system-ui, BlinkMacSystemFont, Segoe UI, Roboto,
-    Helvetica Neue, Fira Sans, Ubuntu, Oxygen, Oxygen Sans, Cantarell,
-    Droid Sans, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol,
-    Lucida Grande, Helvetica, Arial, sans-serif;
+const AddGymButton = styled.button`
+  border-radius: 25px;
+  border: 2px solid var(--blue-70, #0073b1);
+  background-color: var(--blue-70, #0073b1);
+  color: white;
+  font-weight: 600;
+  font-size: 90%;
+  cursor: pointer;
   width: 100%;
-`;
-
-const EmploymentFeedTitle = styled.div`
+  height: 40%;
   display: flex;
-  justify-content: space-between;
+  align-items: center;
+  align-self: center;
 `;
 
-const LineBreak = styled.hr`
-  width: 120%;
-  margin-top: 16px;
-`;
-
-const ButtonWrapper = styled.div`
-  background-color: white;
-  display: flex;
-  flex-direction: row;
-  padding: 10px;
-  width: 50%;
-`;
+// Modal
 
 const AddGymModalWrapper = styled.div`
   background-color: #d6cec2;
@@ -88,6 +74,19 @@ const AddGymModalWrapper = styled.div`
   font-size: 175%;
 `;
 
+const AddGymFormWrapper = styled.form`
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+  border-radius: 15px;
+  border: 2px solid #d6cec2;
+  padding-left: 100px;
+  padding-right: 100px;
+`;
+
 const AddModalTitle = styled.div`
   background-color: #d6cec2;
   font-size: 40px;
@@ -98,7 +97,19 @@ const SingleInputWrapper = styled.div`
   line-height: 5px;
 `;
 
-const MainWrapper = styled.div``;
+const ButtonWrapper = styled.div`
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+  width: 50%;
+`;
+
+// Tests
+
+const WithoutModal = styled.div``;
+
+const WithModal = styled.div``;
 
 export default () => {
   const dispatch = useDispatch();
@@ -130,7 +141,7 @@ export default () => {
     "December",
   ];
   const addGymButtonDisable = viewUser.id === currentUser.id && (
-    <Button onClick={() => setShowModal(true)}>Add Gym</Button>
+    <AddGymButton onClick={() => setShowModal(true)}>Add Gym</AddGymButton>
   );
 
   useEffect(() => {
@@ -170,100 +181,112 @@ export default () => {
 
   return (
     <MainWrapper>
-      <EmploymentFeedTitle>
-        <Experience>Previous Gyms</Experience>
-        {addGymButtonDisable}
-      </EmploymentFeedTitle>
-      <LineBreak />
-      <ReactModal
-        isOpen={showModal}
-        contentLabel="Add Gym"
-        ariaHideApp={false}
-        onRequestClose={() => setShowModal(false)}
-      >
-        <AddGymModalWrapper>
-          <AddModalTitle>
-            <h2>Add Gym</h2>
+      <WithoutModal>
+        <EmploymentFeedTitle>
+          <Experience>
             <p>
-              <em>* Required fields.</em>
+              <b>Previous Gyms</b>
             </p>
-          </AddModalTitle>
-          <AddGymFormWrapper onSubmit={handleAddEmployment}>
-            <SingleInputWrapper>
-              <h4>Title</h4>
-              <input
-                type="text"
-                name="title"
-                placeholder="Title"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-              />
-            </SingleInputWrapper>
-            <SingleInputWrapper>
-              <h4>Gym Name</h4>
-              <select value={gymId} onChange={(e) => setGymId(e.target.value)}>
-                <option value="">--Select Gym</option>
-                {gyms.map((gym) => (
-                  <option key={gym.id} value={gym.id}>
-                    {gym.name}
-                  </option>
-                ))}
-              </select>
-              <span>*</span>
-            </SingleInputWrapper>
-            <SingleInputWrapper>
-              <h4>Start Date</h4>
-              <select
-                value={startMonth}
-                onChange={(e) => setStartMonth(e.target.value)}
-              >
-                <option value="">--Select Start Month</option>
-                {months.map((month, idx) => (
-                  <option key={month} value={idx + 1}>
-                    {month}
-                  </option>
-                ))}
-              </select>
-              <YearPicker
-                value={startYear}
-                onChange={(year) => setStartYear(year)}
-                defaultValue={"--Select Start Year"}
-                start={1990}
-                end={2020}
-              />
-              <span>*</span>
-            </SingleInputWrapper>
-            <SingleInputWrapper>
-              <h4>End Date</h4>
+          </Experience>
+          <AddGymButtonWrapper>{addGymButtonDisable}</AddGymButtonWrapper>
+        </EmploymentFeedTitle>
+      </WithoutModal>
+
+      <WithModal>
+        <ReactModal
+          isOpen={showModal}
+          contentLabel="Add Gym"
+          ariaHideApp={false}
+          onRequestClose={() => setShowModal(false)}
+        >
+          <AddGymModalWrapper>
+            <AddModalTitle>
+              <h2>Add Gym</h2>
               <p>
-                <em>If still at current gym leave this area blank.</em>
+                <em>* Required fields.</em>
               </p>
-              <select
-                value={endMonth}
-                onChange={(e) => setEndMonth(e.target.value)}
-              >
-                <option value="">--Select End Month</option>
-                {months.map((month, idx) => (
-                  <option key={month} value={idx + 1}>
-                    {month}
-                  </option>
-                ))}
-              </select>
-              <YearPicker
-                value={endYear}
-                onChange={(year) => setEndYear(year)}
-                defaultValue={"--Select End Year"}
-                start={1990}
-                end={2020}
-              />
-            </SingleInputWrapper>
-            <ButtonWrapper>
-              <Button type="submit">Save</Button>
-              <Button onClick={() => setShowModal(false)}>Exit</Button>
-            </ButtonWrapper>
-          </AddGymFormWrapper>
-        </AddGymModalWrapper>
-      </ReactModal>
+            </AddModalTitle>
+            <AddGymFormWrapper onSubmit={handleAddEmployment}>
+              <SingleInputWrapper>
+                <h4>Title</h4>
+                <input
+                  type="text"
+                  name="title"
+                  placeholder="Title"
+                  value={title}
+                  onChange={(e) => setTitle(e.target.value)}
+                />
+                <span>*</span>
+              </SingleInputWrapper>
+              <SingleInputWrapper>
+                <h4>Gym Name</h4>
+                <select
+                  value={gymId}
+                  onChange={(e) => setGymId(e.target.value)}
+                >
+                  <option value="">--Select Gym</option>
+                  {gyms.map((gym) => (
+                    <option key={gym.id} value={gym.id}>
+                      {gym.name}
+                    </option>
+                  ))}
+                </select>
+                <span>*</span>
+              </SingleInputWrapper>
+              <SingleInputWrapper>
+                <h4>Start Date</h4>
+                <select
+                  value={startMonth}
+                  onChange={(e) => setStartMonth(e.target.value)}
+                >
+                  <option value="">--Select Start Month</option>
+                  {months.map((month, idx) => (
+                    <option key={month} value={idx + 1}>
+                      {month}
+                    </option>
+                  ))}
+                </select>
+                <YearPicker
+                  value={startYear}
+                  onChange={(year) => setStartYear(year)}
+                  defaultValue={"--Select Start Year"}
+                  start={1990}
+                  end={2020}
+                />
+                <span>*</span>
+              </SingleInputWrapper>
+              <SingleInputWrapper>
+                <h4>End Date</h4>
+                <p>
+                  <em>If still at current gym leave this area blank.</em>
+                </p>
+                <select
+                  value={endMonth}
+                  onChange={(e) => setEndMonth(e.target.value)}
+                >
+                  <option value="">--Select End Month</option>
+                  {months.map((month, idx) => (
+                    <option key={month} value={idx + 1}>
+                      {month}
+                    </option>
+                  ))}
+                </select>
+                <YearPicker
+                  value={endYear}
+                  onChange={(year) => setEndYear(year)}
+                  defaultValue={"--Select End Year"}
+                  start={1990}
+                  end={2020}
+                />
+              </SingleInputWrapper>
+              <ButtonWrapper>
+                <Button type="submit">Save</Button>
+                <Button onClick={() => setShowModal(false)}>Exit</Button>
+              </ButtonWrapper>
+            </AddGymFormWrapper>
+          </AddGymModalWrapper>
+        </ReactModal>
+      </WithModal>
     </MainWrapper>
   );
 };

@@ -60,6 +60,7 @@ const Button = styled.button`
 
 const ContactInfo = styled.p`
   color: #0a66c2;
+  cursor: pointer;
 `;
 
 // MODAL
