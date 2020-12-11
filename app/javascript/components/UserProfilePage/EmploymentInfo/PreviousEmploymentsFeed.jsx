@@ -8,7 +8,6 @@ import { userThunk } from "../../../reducers/ViewUserReducer";
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: purple;
   font-family: -apple-system, system-ui, BlinkMacSystemFont, Segoe UI, Roboto,
     Helvetica Neue, Fira Sans, Ubuntu, Oxygen, Oxygen Sans, Cantarell,
     Droid Sans, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol,

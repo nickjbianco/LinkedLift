@@ -9,9 +9,10 @@ import { userThunk } from "../../../reducers/ViewUserReducer";
 import { alreadyConnected } from "../../../reducers/UsersReducer";
 import ReactModal from "react-modal";
 import ProfileStrength from "./ProfileStrength";
+import YourDashboard from "./YourDashboard";
 
 const MainUserWrapper = styled.div`
-  background-color: green;
+  background-color: transparent;
   width: 31%;
   display: flex;
   flex-direction: column;
@@ -256,6 +257,7 @@ export default () => {
         </ReactModal>
       </Wrapper>
       <ProfileStrength />
+      <YourDashboard />
       <EmploymentInfo />
     </MainUserWrapper>
   );

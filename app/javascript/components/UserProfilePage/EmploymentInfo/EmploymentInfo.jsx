@@ -7,10 +7,13 @@ const Wrapper = styled.div`
   width: 216px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  background-color: white;
+  align-items: flex-start;
+  align-self: flex-end;
+  background-color: red;
   border-radius: 25px;
   border: 2px solid #d6cec2;
+
+  width: 550px;
 `;
 
 export default () => {

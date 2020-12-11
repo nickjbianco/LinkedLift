@@ -98,9 +98,7 @@ const SingleInputWrapper = styled.div`
   line-height: 5px;
 `;
 
-const MainWrapper = styled.div`
-  background-color: gray;
-`;
+const MainWrapper = styled.div``;
 
 export default () => {
   const dispatch = useDispatch();
