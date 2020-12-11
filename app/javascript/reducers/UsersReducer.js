@@ -45,6 +45,12 @@ export const suggestedConnections = (store) => {
     .slice(0, 5);
 };
 
+export const peopleAlsoViewed = (store) => {
+  return mapUserIdToObject(store)
+    .filter((user) => user.connected !== true)
+    .slice(5, 10);
+};
+
 export const alreadyConnected = (store) => {
   return mapUserIdToObject(store).filter((user) => user.connected);
 };

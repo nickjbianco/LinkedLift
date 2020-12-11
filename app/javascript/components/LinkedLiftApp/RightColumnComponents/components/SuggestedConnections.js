@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import NewsFeed from "./NewsFeed";
 import { useSelector, useDispatch } from "react-redux";
 import {
   usersThunk,

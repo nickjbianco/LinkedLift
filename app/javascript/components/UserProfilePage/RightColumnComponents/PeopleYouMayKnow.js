@@ -9,6 +9,8 @@ import {
 import styled from "styled-components";
 import axios from "axios";
 import AdvancedProfileTools from "./AdvancedProfileTools";
+import LatestIndustryNews from "./LatestIndustryNews";
+import PeopleAlsoViewed from "./PeopleAlsoViewed";
 
 const Wrapper = styled.div`
   display: flex;
@@ -24,6 +26,7 @@ const Wrapper = styled.div`
   border-radius: 25px;
   border: 2px solid #d6cec2;
   margin-left: 20px;
+  margin-bottom: 30px;
   width: 350px;
 `;
 
@@ -34,23 +37,6 @@ const BottomLine = styled.hr`
 const SuggestedUserInfo = styled.ul`
   line-height: 10px;
   font-weight: 600;
-`;
-
-const Button = styled.button`
-  border-radius: 2px;
-  border: 2px solid var(--blue-70, #0073b1);
-  background-color: var(--blue-70, #0073b1);
-  color: white;
-  font-weight: 600;
-  padding: 0;
-  font-size: 100%;
-  cursor: pointer;
-  margin-left: 8px;
-  line-height: 1.2;
-  font-family: -apple-system, system-ui, BlinkMacSystemFont, Segoe UI, Roboto,
-    Helvetica Neue, Fira Sans, Ubuntu, Oxygen, Oxygen Sans, Cantarell,
-    Droid Sans, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol,
-    Lucida Grande, Helvetica, Arial, sans-serif;
 `;
 
 const ConnectButton = styled.button`
@@ -107,8 +93,10 @@ export default () => {
   return (
     <div>
       <AdvancedProfileTools />
+      <LatestIndustryNews />
+      <PeopleAlsoViewed />
       <Wrapper>
-        <Title>People You May Know</Title>
+        <Title>People you may know</Title>
         {suggestedUsers.map((suggestedUser) => (
           <SuggestedUserInfo key={suggestedUser.id}>
             <div>
