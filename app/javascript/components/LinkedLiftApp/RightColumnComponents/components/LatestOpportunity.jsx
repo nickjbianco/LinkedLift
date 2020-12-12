@@ -46,7 +46,6 @@ export default () => {
   const dispath = useDispatch();
   const allGyms = useSelector((state) => state.gyms);
   const firstThreeGyms = allGyms.slice(0, 3);
-  console.log(firstThreeGyms);
 
   useEffect(() => {
     dispath(gymsThunk());

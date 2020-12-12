@@ -12,19 +12,20 @@ import PendingInvitations from "./PendingInvitations";
 
 const Wrapper = styled.div`
   background-color: white;
-  width: 600px;
+  width: 610px;
   border-radius: 15px;
   border: 2px solid #d6cec2;
   display: flex;
   flex-direction: column;
   margin-bottom: 30px;
+  margin-left: 12px;
 `;
 
 const SingleSuggestedConnection = styled.ul`
   background-color: transparent;
   border-radius: 15px;
   border: 2px solid #d6cec2;
-  width: 20%;
+  width: 19.6%;
   line-height: 0px;
 
   font-size: 14px;

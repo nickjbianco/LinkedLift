@@ -29,10 +29,10 @@ const ManageMyNetwork = styled.div`
 const ManageMyNetworkTitle = styled.p`
   font-size: 16px;
   color: #00000099;
-  margin-top: 8px;
+  margin-top: 20px;
 `;
 
-const ManageMyNetworkBody = styled.p`
+const ManageMyNetworkBody = styled.div`
   font-size: 14px;
   display: flex;
   flex-direction: column;
