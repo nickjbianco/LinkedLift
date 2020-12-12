@@ -9,23 +9,20 @@ import axios from "axios";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-  background-color: white;
-  width: 50%;
+  background-color: yellow;
+  width: 600px;
   border-radius: 15px;
   border: 2px solid #d6cec2;
-  margin-top: 20px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  margin-left: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-family: -apple-system, system-ui, BlinkMacSystemFont, Segoe UI, Roboto,
-    Helvetica Neue, Fira Sans, Ubuntu, Oxygen, Oxygen Sans, Cantarell,
-    Droid Sans, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol,
-    Lucida Grande, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
 `;
 
 const SingleSuggestedConnection = styled.ul`
-  background-color: white;
+  background-color: green;
   border-radius: 15px;
   border: 2px solid #d6cec2;
   width: 50%;
@@ -52,10 +49,6 @@ const Button = styled.button`
   cursor: pointer;
   margin-left: 8px;
   line-height: 1.2;
-  font-family: -apple-system, system-ui, BlinkMacSystemFont, Segoe UI, Roboto,
-    Helvetica Neue, Fira Sans, Ubuntu, Oxygen, Oxygen Sans, Cantarell,
-    Droid Sans, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol,
-    Lucida Grande, Helvetica, Arial, sans-serif;
 `;
 
 const BottomLine = styled.hr`
