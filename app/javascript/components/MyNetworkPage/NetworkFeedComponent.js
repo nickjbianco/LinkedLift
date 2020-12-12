@@ -7,54 +7,63 @@ import {
 } from "../../reducers/UsersReducer";
 import axios from "axios";
 import styled from "styled-components";
+import Survey from "./Survey";
+import PendingInvitations from "./PendingInvitations";
 
 const Wrapper = styled.div`
-  background-color: yellow;
+  background-color: white;
   width: 600px;
   border-radius: 15px;
   border: 2px solid #d6cec2;
-  margin-top: 30px;
-  margin-bottom: 30px;
-  margin-left: 10px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  margin-bottom: 30px;
 `;
 
 const SingleSuggestedConnection = styled.ul`
-  background-color: green;
+  background-color: transparent;
   border-radius: 15px;
   border: 2px solid #d6cec2;
-  width: 50%;
-  text-align: center;
-  padding-bottom: 20px;
-  padding-left: 20px;
-  padding-right: 20px;
-  width: 30%;
+  width: 20%;
+  line-height: 0px;
+
+  font-size: 14px;
+  color: #00000099;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  padding-right: 30px;
+  padding-bottom: 10px;
 `;
 
-const ComponentTitle = styled.h1`
-  background-color: white;
-  text-align: center;
+const ComponentTitle = styled.p`
+  background-color: transparent;
+  margin-top: 10px;
+  margin-left: 10px;
+  font-size: 16px;
+  color: #000000e6;
 `;
 
-const Button = styled.button`
-  border-radius: 2px;
+const RemoveConnectionButton = styled.button`
+  border-radius: 25px;
   border: 2px solid var(--blue-70, #0073b1);
   background-color: var(--blue-70, #0073b1);
   color: white;
   font-weight: 600;
-  padding: 2px;
-  font-size: 100%;
+  font-size: 90%;
   cursor: pointer;
-  margin-left: 8px;
-  line-height: 1.2;
+  width: 130%;
+  height: 20%;
 `;
 
-const BottomLine = styled.hr`
-  border-bottom: 1px solid var(--warm-gray-40, #cfcfcf);
-  width: calc(100% - 48px);
-  margin: 8px -8px 8px 64px;
+const NetworkFeed = styled.div`
+  background-color: transparent;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 `;
 
 export default () => {
@@ -84,22 +93,34 @@ export default () => {
   };
 
   return (
-    <Wrapper>
-      <ComponentTitle>Lifters in Network</ComponentTitle>
-      {allConnections.map((user) => {
-        const fullName = `${user.first_name} ${user.last_name}`;
+    <div>
+      <Survey />
+      <PendingInvitations />
+      <Wrapper>
+        <ComponentTitle>
+          <b>Lifters in Network</b>
+        </ComponentTitle>
+        <NetworkFeed>
+          {allConnections.map((user) => {
+            const fullName = `${user.first_name} ${user.last_name}`;
 
-        return (
-          <SingleSuggestedConnection key={user.id}>
-            <h4>{fullName}</h4>
-            <p>{user.title}</p>
-            <p>{user.location}</p>
-            <Button onClick={(e) => handleDeleteConnection(e, user.id)}>
-              Remove Connection
-            </Button>
-          </SingleSuggestedConnection>
-        );
-      })}
-    </Wrapper>
+            return (
+              <SingleSuggestedConnection key={user.id}>
+                <p>
+                  <b>{fullName}</b>
+                </p>
+                <p>{user.title}</p>
+                <p>{user.location}</p>
+                <RemoveConnectionButton
+                  onClick={(e) => handleDeleteConnection(e, user.id)}
+                >
+                  Remove Connection
+                </RemoveConnectionButton>
+              </SingleSuggestedConnection>
+            );
+          })}
+        </NetworkFeed>
+      </Wrapper>
+    </div>
   );
 };

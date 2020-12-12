@@ -67,6 +67,7 @@ const FollowButton = styled.button`
   cursor: pointer;
   width: 20%;
   height: 40%;
+  padding-right: 50px;
 `;
 
 const PersonalContacts = styled.div`
