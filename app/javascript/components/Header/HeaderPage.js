@@ -41,13 +41,6 @@ const Navbar = styled.nav`
   margin-left: 145px;
 `;
 
-const Wrapper = styled.div`
-  display: flex;
-  justify-content: space-evenly;
-  min-width: 800px;
-  padding-top: 15px;
-`;
-
 const LinkedLift = styled.h1`
   border-radius: 5px;
   border: 2px solid var(--blue-70, #0073b1);

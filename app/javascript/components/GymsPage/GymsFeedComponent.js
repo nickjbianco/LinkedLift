@@ -9,6 +9,8 @@ const GymList = styled.div`
   border: 2px solid #d6cec2;
   display: flex;
   margin-bottom: 10px;
+  width: 930px;
+  margin-left: 40px;
 `;
 
 const Wrapper = styled.div`
