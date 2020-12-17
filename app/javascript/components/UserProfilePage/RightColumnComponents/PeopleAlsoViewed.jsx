@@ -1,6 +1,8 @@
 import React from "react";
 import { peopleAlsoViewed } from "../../../reducers/UsersReducer";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import axios from "axios";
+import { receivedConnection } from "../../../reducers/UsersReducer";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
@@ -60,6 +62,25 @@ const UserTitle = styled.div`
 
 export default () => {
   const alsoViewedUsers = useSelector(peopleAlsoViewed);
+  const dispatch = useDispatch();
+
+  const handleConnectUsers = (e, connectedUserId) => {
+    e.preventDefault();
+    axios
+      .post(
+        "http://localhost:3000/user_connections",
+        {
+          user_connection: { connected_user_id: connectedUserId },
+        },
+        { withCredentials: true }
+      )
+      .then((response) => {
+        dispatch(receivedConnection(response.data));
+      })
+      .catch((error) => {
+        console.log("connection error", error);
+      });
+  };
 
   return (
     <Wrapper>
@@ -70,14 +91,18 @@ export default () => {
         return (
           <AlsoViewedUser key={user.id}>
             <UserFullName>
-              <b>
-                <p>{fullName}</p>
-              </b>
+              <Link to={`/profile/${user.id}`}>
+                <b>
+                  <p>{fullName}</p>
+                </b>
+              </Link>
             </UserFullName>
             <UserTitle>
               <p>{user.title}</p>
             </UserTitle>
-            <ConnectButton disabled={true}>connect</ConnectButton>
+            <ConnectButton onClick={(e) => handleConnectUsers(e, user.id)}>
+              connect
+            </ConnectButton>
             <hr />
           </AlsoViewedUser>
         );

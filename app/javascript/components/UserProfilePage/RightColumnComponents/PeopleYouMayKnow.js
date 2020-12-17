@@ -6,6 +6,8 @@ import {
   suggestedConnections,
   receivedConnection,
 } from "../../../reducers/UsersReducer";
+import { userThunk } from "../../../reducers/ViewUserReducer";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
 import AdvancedProfileTools from "./AdvancedProfileTools";
@@ -67,10 +69,12 @@ const SuggestedConnectionName = styled.p`
 export default () => {
   const dispatch = useDispatch();
   const suggestedUsers = useSelector(suggestedConnections);
+  const params = useParams();
 
   useEffect(() => {
     dispatch(usersThunk());
-  }, []);
+    dispatch(userThunk(params.id));
+  }, [params]);
 
   const handleConnectUsers = (e, connectedUserId) => {
     e.preventDefault();

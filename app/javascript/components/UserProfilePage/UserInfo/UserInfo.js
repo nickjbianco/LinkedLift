@@ -151,7 +151,7 @@ export default () => {
     setLocation(currentUser.location);
     setTitle(currentUser.title);
     dispatch(userThunk(params.id));
-  }, [currentUser]);
+  }, []); // currentUser
 
   const handleCloseModal = (e) => {
     e.preventDefault();

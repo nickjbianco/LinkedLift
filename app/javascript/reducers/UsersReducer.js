@@ -42,13 +42,13 @@ const mapUserIdToObject = (store) => {
 export const suggestedConnections = (store) => {
   return mapUserIdToObject(store)
     .filter((user) => user.connected !== true)
-    .slice(0, 5);
+    .slice(0, 3);
 };
 
 export const peopleAlsoViewed = (store) => {
   return mapUserIdToObject(store)
     .filter((user) => user.connected !== true)
-    .slice(5, 10);
+    .slice(3, 6);
 };
 
 export const alreadyConnected = (store) => {

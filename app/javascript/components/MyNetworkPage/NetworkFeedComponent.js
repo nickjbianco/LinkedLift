@@ -25,10 +25,10 @@ const SingleSuggestedConnection = styled.ul`
   background-color: transparent;
   border-radius: 15px;
   border: 2px solid #d6cec2;
-  width: 19.6%;
-  line-height: 0px;
+  width: 19%;
+  line-height: 1px;
 
-  font-size: 14px;
+  font-size: 12px;
   color: #00000099;
 
   display: flex;
