@@ -44,8 +44,8 @@ const Input = styled.input`
 
 export default (props) => {
   const dispatch = useDispatch();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("demouser@email.com");
+  const [password, setPassword] = useState("password");
   const [loginErrors, setLoginErrors] = useState("");
 
   const handleSubmit = (e) => {
@@ -98,7 +98,7 @@ export default (props) => {
         </FormInput>
 
         <FormInput>
-          <Button type="submit">Login</Button>
+          <Button type="submit">Demo User</Button>
         </FormInput>
       </form>
     </FormWrapper>
