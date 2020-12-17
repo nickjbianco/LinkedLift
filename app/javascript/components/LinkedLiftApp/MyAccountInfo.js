@@ -16,7 +16,7 @@ const MyAccountInfo = styled.div`
   border-radius: 15px;
   border: 2px solid #d6cec2;
 
-  height: 20%;
+  height: 220px;
   width: 216px;
 
   margin-top: 30px;

@@ -11,6 +11,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   margin: 0 25px;
   margin-top: 30px;
+  width: 22.3%;
 `;
 
 const Form = styled.form`
@@ -31,7 +32,7 @@ const Button = styled.button`
     Helvetica Neue, Fira Sans, Ubuntu, Oxygen, Oxygen Sans, Cantarell,
     Droid Sans, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol,
     Lucida Grande, Helvetica, Arial, sans-serif;
-  width: 12%;
+  width: 49px;
   display: flex;
   align-self: center;
   align-items: center;

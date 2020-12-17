@@ -52,7 +52,7 @@ const Button = styled.button`
     Helvetica Neue, Fira Sans, Ubuntu, Oxygen, Oxygen Sans, Cantarell,
     Droid Sans, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol,
     Lucida Grande, Helvetica, Arial, sans-serif;
-  width: 26%;
+  width: 80px;
   height: 20%;
   display: flex;
   align-items: center;

@@ -13,7 +13,7 @@ const MainWrapper = styled.div`
   border-radius: 15px;
   border: 2px solid #d6cec2;
 
-  height: 15%;
+  height: 170px;
   width: 216px;
 
   margin-top: 10px;

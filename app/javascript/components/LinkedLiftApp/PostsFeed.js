@@ -110,7 +110,7 @@ export default () => {
               <p>
                 <b>{fullName}</b>
                 <br />
-                <em>{postTitle}</em> - 22 hr ago
+                <em>{postTitle}</em> - 1 hr ago
               </p>
             </PostTitle>
             <PostBody>{postBody}</PostBody>
