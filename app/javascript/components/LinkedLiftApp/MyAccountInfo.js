@@ -45,13 +45,20 @@ const CurrentUserSubTitle = styled.p`
   font-size: 12px;
 `;
 
+const MainWrapper = styled.div`
+  width: 12%;
+  display: flex;
+  flex-direction: column;
+  margin-left: 100px;
+`;
+
 export default () => {
   const currentUser = useSelector((state) => state.currentUser);
   const connections = useSelector((state) => alreadyConnected(state));
   const fullName = `${currentUser.first_name} ${currentUser.last_name}`;
 
   return (
-    <div>
+    <MainWrapper>
       <MyAccountInfo>
         <CurrentUserTitle>
           <b>
@@ -77,6 +84,6 @@ export default () => {
         </CurrentUserSubTitle>
       </MyAccountInfo>
       <DiscoverMore />
-    </div>
+    </MainWrapper>
   );
 };

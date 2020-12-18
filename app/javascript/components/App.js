@@ -61,7 +61,8 @@ export default (props) => {
             )}
           />
           <Route
-            path="/home"
+            // path="/home"
+            path="/"
             render={(props) => (
               <AppRouter {...props} handleLogOut={handleLogOut} />
             )}

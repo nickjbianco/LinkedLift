@@ -6,7 +6,6 @@ import axios from "axios";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-  background-color: #f3f2ef;
   display: flex;
   flex-direction: column;
   margin: 0 25px;

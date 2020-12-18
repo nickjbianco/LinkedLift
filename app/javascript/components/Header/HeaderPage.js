@@ -144,7 +144,7 @@ export default (props) => {
         </form>
 
         <Navbar>
-          <NavLink exact to="/" className="navlink">
+          <NavLink exact to="/home" className="navlink">
             <HeaderLogo>Home</HeaderLogo>
           </NavLink>
           <NavLink to="/mynetwork" className="navlink">
