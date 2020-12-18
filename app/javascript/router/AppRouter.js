@@ -6,6 +6,7 @@ import GymsPage from "../components/GymsPage/GymsPage";
 import HeaderPage from "../components/Header/HeaderPage";
 import UserProfilePage from "../components/UserProfilePage/UserProfilePage";
 import NotFoundPage from "../components/NotFoundPage/NotFoundPage";
+import HomePage from "../components/auth/HomePage";
 
 export default (props) => {
   return (
@@ -13,7 +14,8 @@ export default (props) => {
       <div>
         <HeaderPage {...props} />
         <Switch>
-          <Route path="/" component={LinkedLiftApp} exact />
+          <Route path="/" component={HomePage} exact />
+          <Route path="/home" component={LinkedLiftApp} />
           <Route path="/mynetwork" component={MyNetworkPage} />
           <Route path="/gyms" component={GymsPage} />
           <Route path="/profile/:id" component={UserProfilePage} />

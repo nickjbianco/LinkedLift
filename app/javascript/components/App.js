@@ -10,6 +10,7 @@ export default (props) => {
   const dispatch = useDispatch();
   const [loggedInStatus, setLoggedIn] = useState("NOT_LOGGED_IN");
   const [user, setUser] = useState({});
+  console.log(loggedInStatus);
 
   useEffect(() => {
     checkLoginStatus();
@@ -49,7 +50,7 @@ export default (props) => {
         <Switch>
           <Route
             exact
-            path="/login"
+            path="/"
             render={(props) => (
               <Home
                 {...props}
@@ -60,7 +61,7 @@ export default (props) => {
             )}
           />
           <Route
-            path="/"
+            path="/home"
             render={(props) => (
               <AppRouter {...props} handleLogOut={handleLogOut} />
             )}

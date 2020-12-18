@@ -123,7 +123,7 @@ export default (props) => {
       .then((response) => {
         props.handleLogOut();
         dispatch(logoutCurrentUser());
-        props.history.push("/login");
+        props.history.push("/");
       })
       .catch((error) => {
         console.log("logout error", error);

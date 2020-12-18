@@ -54,7 +54,7 @@ const LinkedLift = styled.h1`
 export default (props) => {
   const handleSuccessfulAuth = (data) => {
     props.handleLogIn(data);
-    props.history.push("/");
+    props.history.push("/home");
   };
 
   const handleLogoutClick = () => {
