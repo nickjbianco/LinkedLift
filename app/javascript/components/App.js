@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { receivedCurrentUser } from "../reducers/CurrentUserReducer";
 import Home from "./auth/HomePage";
 import AppRouter from "../router/AppRouter";
+// HEROKU DEPLOYMENT LINK: https://rocky-plateau-63509.herokuapp.com/
 
 export default (props) => {
   const dispatch = useDispatch();
