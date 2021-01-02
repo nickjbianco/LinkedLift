@@ -10,7 +10,6 @@ const Wrapper = styled.div`
   flex-direction: column;
   margin: 0 25px;
   margin-top: 30px;
-  width: 22.3%;
 `;
 
 const Form = styled.form`
@@ -76,7 +75,7 @@ export default () => {
     e.preventDefault();
     axios
       .post(
-        "http://localhost:3000/api/posts",
+        "/api/posts",
         {
           post: { body },
         },

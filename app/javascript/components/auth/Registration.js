@@ -55,7 +55,7 @@ export default (props) => {
     e.preventDefault();
     axios
       .post(
-        "http://localhost:3000/api/registrations",
+        "/api/registrations",
         {
           user: {
             first_name: firstName,

@@ -2,9 +2,7 @@ import axios from "axios";
 
 // Current User
 const fetchUser = (id) => {
-  return axios
-    .get(`http://localhost:3000/api/users/${id}`)
-    .then((response) => response.data);
+  return axios.get(`/api/users/${id}`).then((response) => response.data);
 };
 
 const RECEIVED_CURRENT_USER = "RECEIVED_CURRENT_USER";

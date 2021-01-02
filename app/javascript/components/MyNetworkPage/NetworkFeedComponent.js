@@ -79,7 +79,7 @@ export default () => {
     e.preventDefault();
     axios
       .delete(
-        `http://localhost:3000/api/user_connections/${connectedUserId}`,
+        `/api/user_connections/${connectedUserId}`,
         {
           user_connection: { connected_user_id: connectedUserId },
         },

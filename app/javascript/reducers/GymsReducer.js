@@ -1,9 +1,7 @@
 import axios from "axios";
 
 const fetchGyms = () => {
-  return axios
-    .get("http://localhost:3000/api/gyms")
-    .then((response) => response.data);
+  return axios.get("/api/gyms").then((response) => response.data);
 };
 
 const RECEIVED_GYMS = "RECEIVED_GYMS";

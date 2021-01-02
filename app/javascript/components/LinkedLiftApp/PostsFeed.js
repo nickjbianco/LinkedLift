@@ -83,7 +83,7 @@ export default () => {
     setPostBody(postBody);
     axios
       .delete(
-        `http://localhost:3000/api/posts/${postId}`,
+        `/api/posts/${postId}`,
         {
           post: { body: postBody, user: currentUser },
         },

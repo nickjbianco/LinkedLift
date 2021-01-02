@@ -1,9 +1,7 @@
 import axios from "axios";
 
 const fetchEmployments = () => {
-  return axios
-    .get("http://localhost:3000/api/employments")
-    .then((response) => response.data);
+  return axios.get("/api/employments").then((response) => response.data);
 };
 
 const RECEIVED_EMPLOYMENTS = "RECEIVED_EMPLOYMENTS";

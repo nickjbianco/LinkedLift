@@ -1,9 +1,7 @@
 import axios from "axios";
 
 const fetchPosts = () => {
-  return axios
-    .get("http://localhost:3000/api/posts")
-    .then((response) => response.data);
+  return axios.get("/api/posts").then((response) => response.data);
 };
 
 export const postsThunk = () => {

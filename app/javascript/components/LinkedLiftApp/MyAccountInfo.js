@@ -17,7 +17,7 @@ const MyAccountInfo = styled.div`
   border: 2px solid #d6cec2;
 
   height: 220px;
-  width: 216px;
+  max-width: 85%;
 
   margin-top: 30px;
 `;
@@ -46,10 +46,8 @@ const CurrentUserSubTitle = styled.p`
 `;
 
 const MainWrapper = styled.div`
-  width: 12%;
   display: flex;
   flex-direction: column;
-  margin-left: 100px;
 `;
 
 export default () => {

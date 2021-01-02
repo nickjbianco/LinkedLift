@@ -3,9 +3,7 @@ import { receivedEmployments } from "./EmploymentsReducer";
 
 // One User NOT CURRENT USER
 const fetchUser = (id) => {
-  return axios
-    .get(`http://localhost:3000/api/users/${id}`)
-    .then((response) => response.data);
+  return axios.get(`/api/users/${id}`).then((response) => response.data);
 };
 
 const RECEIVED_USER = "RECEIVED_USER";

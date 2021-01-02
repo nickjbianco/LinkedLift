@@ -7,7 +7,7 @@ import RightColumn from "./RightColumnComponents/RightColumn";
 const Wrapper = styled.div`
   display: flex;
   justify-content: center;
-  width: 100%
+  width: 100%;
   height: 100%;
   background-color: #f3f2ef;
   font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto,

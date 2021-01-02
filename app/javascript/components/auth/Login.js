@@ -52,7 +52,7 @@ export default (props) => {
     e.preventDefault();
     axios
       .post(
-        "http://localhost:3000/api/sessions",
+        "/api/sessions",
         {
           user: {
             email,

@@ -29,7 +29,7 @@ export default (props) => {
 
   const checkLoginStatus = () => {
     axios
-      .get("http://localhost:3000/api/logged_in", { withCredentials: true })
+      .get("/api/logged_in", { withCredentials: true })
       .then((response) => {
         if (response.data.logged_in && loggedInStatus === "NOT_LOGGED_IN") {
           setLoggedIn("LOGGED_IN");
