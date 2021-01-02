@@ -3,7 +3,7 @@ import axios from "axios";
 // Multiple Users
 const fetchUsers = () => {
   return axios
-    .get("http://localhost:3000/users")
+    .get("http://localhost:3000/api/users")
     .then((response) => response.data);
 };
 

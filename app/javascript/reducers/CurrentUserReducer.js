@@ -3,7 +3,7 @@ import axios from "axios";
 // Current User
 const fetchUser = (id) => {
   return axios
-    .get(`http://localhost:3000/users/${id}.json`)
+    .get(`http://localhost:3000/api/users/${id}`)
     .then((response) => response.data);
 };
 

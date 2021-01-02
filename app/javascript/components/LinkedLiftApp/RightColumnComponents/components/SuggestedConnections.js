@@ -87,7 +87,7 @@ export default () => {
     e.preventDefault();
     axios
       .post(
-        "http://localhost:3000/user_connections",
+        "http://localhost:3000/api/user_connections",
         {
           user_connection: { connected_user_id: connectedUserId },
         },

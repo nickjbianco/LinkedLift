@@ -59,7 +59,7 @@ export default (props) => {
 
   const handleLogoutClick = () => {
     axios
-      .delete("http://localhost:3000/logout", { withCredentials: true })
+      .delete("http://localhost:3000/api/logout", { withCredentials: true })
       .then((response) => {
         props.handleLogOut();
       })

@@ -1,30 +1,32 @@
-import axios from 'axios'
+import axios from "axios";
 
 const fetchGyms = () => {
-    return axios.get('http://localhost:3000/gyms/index.json').then(response => response.data)
-}
+  return axios
+    .get("http://localhost:3000/api/gyms")
+    .then((response) => response.data);
+};
 
-const RECEIVED_GYMS = 'RECEIVED_GYMS'
+const RECEIVED_GYMS = "RECEIVED_GYMS";
 const receivedGyms = (payload) => ({
-    type: RECEIVED_GYMS,
-    payload
-})
+  type: RECEIVED_GYMS,
+  payload,
+});
 
 export const gymsThunk = () => {
-    return (dispatch) => {
-        fetchGyms().then((gyms) => {
-            dispatch(receivedGyms(gyms))
-        })
-    }
-}
+  return (dispatch) => {
+    fetchGyms().then((gyms) => {
+      dispatch(receivedGyms(gyms));
+    });
+  };
+};
 
-const defaultState = []
+const defaultState = [];
 
 export default (state = defaultState, action) => {
-    switch (action.type) {
-        case RECEIVED_GYMS:
-            return action.payload
-        default:
-            return state
-    }
-}
+  switch (action.type) {
+    case RECEIVED_GYMS:
+      return action.payload;
+    default:
+      return state;
+  }
+};

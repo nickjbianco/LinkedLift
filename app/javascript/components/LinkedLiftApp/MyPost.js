@@ -76,7 +76,7 @@ export default () => {
     e.preventDefault();
     axios
       .post(
-        "http://localhost:3000/posts",
+        "http://localhost:3000/api/posts",
         {
           post: { body },
         },

@@ -2,7 +2,7 @@ import axios from "axios";
 
 const fetchPosts = () => {
   return axios
-    .get("http://localhost:3000/posts")
+    .get("http://localhost:3000/api/posts")
     .then((response) => response.data);
 };
 

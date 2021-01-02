@@ -136,7 +136,7 @@ export default (props) => {
     e.preventDefault();
     axios
       .patch(
-        `http://localhost:3000/employments/${currentEmployment.id}`,
+        `http://localhost:3000/api/employments/${currentEmployment.id}`,
         {
           employment: {
             title,

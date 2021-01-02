@@ -153,7 +153,7 @@ export default () => {
     e.preventDefault();
     axios
       .post(
-        "http://localhost:3000/employments",
+        "http://localhost:3000/api/employments",
         {
           employment: {
             title,

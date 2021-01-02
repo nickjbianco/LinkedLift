@@ -157,7 +157,7 @@ export default () => {
     e.preventDefault();
     axios
       .patch(
-        `http://localhost:3000/users/${currentUser.id}`,
+        `http://localhost:3000/api/users/${currentUser.id}`,
         {
           user: {
             first_name: firstName,
