@@ -44,3 +44,42 @@
 - Gems
   - JBuilder for custom JSON responses
   - Bcrypt for user authentication
+
+# Sample Code
+
+```javascript
+export default (state = defaultState, action) => {
+  switch (action.type) {
+    case RECEIVED_EMPLOYMENTS:
+      const allIds = action.payload.map((employment) => employment.id);
+
+      const byIds = {};
+      action.payload.forEach((employment) => {
+        byIds[employment.id] = employment;
+      });
+
+      return {
+        byIds,
+        allIds,
+      };
+    case ADD_EMPLOYMENT:
+      return {
+        byIds: {
+          ...state.byIds,
+          [action.payload.id]: action.payload,
+        },
+        allIds: [...state.allIds, action.payload.id],
+      };
+    case EDIT_EMPLOYMENT:
+      return {
+        byIds: {
+          ...state.byIds,
+          [action.payload.id]: action.payload,
+        },
+        allIds: state.allIds,
+      };
+    default:
+      return state;
+  }
+};
+```
