@@ -6,36 +6,41 @@
 
 # The app operates as follows
 
-    - User creates an account.
-    - User lists their title, location and past gym (employment) histroy.
-    - User is free to browse the site looking at Gyms (employment opportunities) as well as other lifters (professionals).
+- User creates an account.
+- User lists their title, location and past gym (employment) histroy.
+- User is free to browse the site looking at Gyms (employment opportunities) as well as other lifters (professionals).
 
 # Features
 
-    - User Authentication
-        - Users will be greeted by a registration/login page upon first navigating to website. Existing users can login while new users can sign up.
-        - Users who have not signed up or who have not logged in with proper info will not gain access to the website.
+- User Authentication
 
-    - Posts
-        - Users can share their thoughts via posts and choose to delete them, as well.
+  - Users will be greeted by a registration/login page upon first navigating to website. Existing users can login while new users can sign up.
+  - Users who have not signed up or who have not logged in with proper info will not gain access to the website.
 
-    - Connections
-        - Users can interact with one another via making a connection.
-        - Making a connection then puts both connected users in the same network.
+- Posts
 
-    - Employments
-        - Users can create a previous employment histroy consisting of the gym they lifted at, their title at that gym, as well as the starting and end dates.
+  - Users can share their thoughts via posts and choose to delete them, as well.
+
+- Connections
+
+  - Users can interact with one another via making a connection.
+  - Making a connection then puts both connected users in the same network.
+
+- Employments
+  - Users can create a previous employment histroy consisting of the gym they lifted at, their title at that gym, as well as the starting and end dates.
 
 # Languages, Frameworks, and Libraries
 
-    - Backend
-        - Ruby on Rails framework
-        - PostgreSQL database
+- Backend
 
-    - Frontend
-        - React.js for visual components
-        - Redux for state management
+  - Ruby on Rails framework
+  - PostgreSQL database
 
-    - Gems
-        - JBuilder for custom JSON responses
-        - Bcrypt for user authentication
+- Frontend
+
+  - React.js for visual components
+  - Redux for state management
+
+- Gems
+  - JBuilder for custom JSON responses
+  - Bcrypt for user authentication
