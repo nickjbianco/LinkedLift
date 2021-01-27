@@ -2,6 +2,8 @@
 
 # LinkedLift
 
+- Play Live: https://rocky-plateau-63509.herokuapp.com/
+
 - LinkedLift is a clone of the popular professional newtworking site LinkedIn. The app allows users to create past employments, posts, as well as connect to other professionals.
 
 # The app operates as follows
