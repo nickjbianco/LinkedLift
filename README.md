@@ -1,18 +1,18 @@
-# README
-
 # LinkedLift
 
-- Live App: https://rocky-plateau-63509.herokuapp.com/
+![MainPage](/LinkedLiftMainPage.png)
 
-- LinkedLift is a clone of the popular professional newtworking site LinkedIn. The app allows users to create past employments, posts, as well as connect to other professionals.
+Live App: https://rocky-plateau-63509.herokuapp.com/
 
-# The app operates as follows
+LinkedLift is a clone of the popular professional networking site LinkedIn. The app allows weight lifters to create an account, register past employments, and write posts. They can also connect to other lifters. The app allows users to create past employments, posts, as well as connect to other professionals. This app is built with Ruby on Rails, React/Redux and a PostgreSQL database.
 
-- User creates an account.
-- User lists their title, location and past gym (employment) histroy.
+## The app operates as follows
+
+- User creates or logs in to an account.
+- User lists their full name, title, location and past gym (employment) history.
 - User is free to browse the site looking at Gyms (employment opportunities) as well as other lifters (professionals).
 
-# Features
+## Features
 
 - User Authentication
 
@@ -31,7 +31,7 @@
 - Employments
   - Users can create a previous employment histroy consisting of the gym they lifted at, their title at that gym, as well as the starting and end dates.
 
-# Languages, Frameworks, and Libraries
+## Languages, Frameworks, and Libraries
 
 - Backend
 
@@ -47,7 +47,7 @@
   - JBuilder for custom JSON responses
   - Bcrypt for user authentication
 
-# Sample Code
+## Sample Code
 
 ```javascript
 export default (state = defaultState, action) => {
