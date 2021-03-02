@@ -11,7 +11,6 @@ export default (props) => {
   const dispatch = useDispatch();
   const [loggedInStatus, setLoggedIn] = useState("NOT_LOGGED_IN");
   const [user, setUser] = useState({});
-  console.log(loggedInStatus);
 
   useEffect(() => {
     checkLoginStatus();
@@ -28,21 +27,19 @@ export default (props) => {
   };
 
   const checkLoginStatus = () => {
-    axios
-      .get("/api/logged_in", { withCredentials: true })
-      .then((response) => {
-        if (response.data.logged_in && loggedInStatus === "NOT_LOGGED_IN") {
-          setLoggedIn("LOGGED_IN");
-          setUser({ user: response.data.user });
-          dispatch(receivedCurrentUser(response.data.user));
-        } else if (!response.data.logged_in && loggedInStatus === "LOGGED_IN") {
-          setLoggedIn("NOT_LOGGED_IN");
-          setUser({});
-        }
-      })
-      .catch((error) => {
-        console.log("check login error", error);
-      });
+    axios.get("/api/logged_in", { withCredentials: true }).then((response) => {
+      if (response.data.logged_in && loggedInStatus === "NOT_LOGGED_IN") {
+        setLoggedIn("LOGGED_IN");
+        setUser({ user: response.data.user });
+        dispatch(receivedCurrentUser(response.data.user));
+      } else if (!response.data.logged_in && loggedInStatus === "LOGGED_IN") {
+        setLoggedIn("NOT_LOGGED_IN");
+        setUser({});
+      }
+    });
+    // .catch((error) => {
+    //   console.log("check login error", error);
+    // });
   };
 
   return (

@@ -87,10 +87,10 @@ export default () => {
       )
       .then((response) => {
         dispatch(deleteConnection(connectedUserId));
-      })
-      .catch((error) => {
-        console.log("delete connection error", error);
       });
+    // .catch((error) => {
+    //   console.log("delete connection error", error);
+    // });
   };
 
   return (

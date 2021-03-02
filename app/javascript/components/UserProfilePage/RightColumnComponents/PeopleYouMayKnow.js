@@ -88,10 +88,10 @@ export default () => {
       )
       .then((response) => {
         dispatch(receivedConnection(response.data));
-      })
-      .catch((error) => {
-        console.log("connection error", error);
       });
+    // .catch((error) => {
+    //   console.log("connection error", error);
+    // });
   };
 
   return (

@@ -66,10 +66,10 @@ export default (props) => {
           props.handleSuccessfulAuth(response.data);
           dispatch(receivedCurrentUser(response.data.user));
         }
-      })
-      .catch((error) => {
-        console.log("login error", error);
       });
+    // .catch((error) => {
+    //   console.log("login error", error);
+    // });
     setEmail("");
     setPassword("");
   };

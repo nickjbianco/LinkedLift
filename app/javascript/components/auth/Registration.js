@@ -72,10 +72,10 @@ export default (props) => {
           props.handleSuccessfulAuth(response.data);
           dispatch(receivedCurrentUser(response.data.user));
         }
-      })
-      .catch((error) => {
-        console.log("registrarion error", error);
       });
+    // .catch((error) => {
+    //   console.log("registrarion error", error);
+    // });
     setFirstName("");
     setLastName("");
     setEmail("");

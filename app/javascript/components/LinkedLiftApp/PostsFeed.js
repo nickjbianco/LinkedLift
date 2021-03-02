@@ -91,10 +91,10 @@ export default () => {
       )
       .then((response) => {
         dispatch(deletePost(response.data.id));
-      })
-      .catch((error) => {
-        console.log("login error", error);
       });
+    // .catch((error) => {
+    //   console.log("login error", error);
+    // });
   };
 
   return (

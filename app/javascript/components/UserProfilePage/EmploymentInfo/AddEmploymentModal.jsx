@@ -173,10 +173,10 @@ export default () => {
         setEndMonth(undefined);
         setEndYear(undefined);
         setShowModal(false);
-      })
-      .catch((error) => {
-        console.log("login error", error);
       });
+    // .catch((error) => {
+    //   console.log("login error", error);
+    // });
   };
 
   return (

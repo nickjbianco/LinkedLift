@@ -171,10 +171,10 @@ export default () => {
       .then((response) => {
         dispatch(receivedCurrentUser(response.data));
         setShowModal(false);
-      })
-      .catch((error) => {
-        console.log("login error", error);
       });
+    // .catch((error) => {
+    //   console.log("login error", error);
+    // });
   };
 
   return (

@@ -58,14 +58,12 @@ export default (props) => {
   };
 
   const handleLogoutClick = () => {
-    axios
-      .delete("/api/logout", { withCredentials: true })
-      .then((response) => {
-        props.handleLogOut();
-      })
-      .catch((error) => {
-        console.log("logout error", error);
-      });
+    axios.delete("/api/logout", { withCredentials: true }).then((response) => {
+      props.handleLogOut();
+    });
+    // .catch((error) => {
+    //   console.log("logout error", error);
+    // });
   };
 
   return (

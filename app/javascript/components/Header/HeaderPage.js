@@ -114,12 +114,7 @@ export default (props) => {
   const [users, setUsers] = useState([]);
   const [singleUser, setSingleUser] = useState("");
 
-  useEffect(() => {
-    axios
-      .get("api/user_search")
-      .then((response) => response.data)
-      .then((data) => setUsers(data));
-  }, []);
+  console.log("inputItems: ", inputItems);
 
   const {
     isOpen,
@@ -128,6 +123,7 @@ export default (props) => {
     getComboboxProps,
     highlightedIndex,
     getItemProps,
+    inputValue,
   } = useCombobox({
     items: inputItems,
     onInputValueChange: ({ inputValue }) => {
@@ -139,17 +135,21 @@ export default (props) => {
     },
   });
 
-  const handleLogoutClick = () => {
+  useEffect(() => {
     axios
-      .delete("/api/logout", { withCredentials: true })
-      .then((response) => {
-        props.handleLogOut();
-        dispatch(logoutCurrentUser());
-        props.history.push("/");
-      })
-      .catch((error) => {
-        console.log("logout error", error);
-      });
+      .get("api/users")
+      .then((response) => response.data)
+      .then((data) => setUsers(data));
+  }, []);
+
+  console.log(users);
+
+  const handleLogoutClick = () => {
+    axios.delete("/api/logout", { withCredentials: true }).then((response) => {
+      props.handleLogOut();
+      dispatch(logoutCurrentUser());
+      props.history.push("/");
+    });
   };
 
   return (
@@ -157,11 +157,8 @@ export default (props) => {
       <Header>
         <LinkedLift>lift</LinkedLift>
         <div {...getComboboxProps()}>
-          <Input
-            {...getInputProps()}
-            placeholder="Search Users"
-            enterbutton="Search"
-          />
+          <Input placeholder="Search Users" {...getInputProps()} />
+
           <ul {...getMenuProps()}>
             {isOpen &&
               inputItems.map((item, index) => (
@@ -202,20 +199,3 @@ export default (props) => {
     </MainWrapper>
   );
 };
-
-// const [searchText, setSearchText] = useState("");
-
-// const handleSearch = (e) => {
-//   e.preventDefault();
-//   setSearchText(e.target.value);
-//   // searching users
-//   setSearchText("");
-// };
-
-// <form onSubmit={handleSearch}>
-//   <Input
-//     value={searchText}
-//     onChange={(e) => setSearchText(e.target.value)}
-//   />
-//   <Button>Search</Button>
-// </form>;

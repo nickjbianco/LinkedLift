@@ -18,6 +18,7 @@ class Api::UsersController < ApplicationController
   end 
   
   def search 
+    debugger
     @users = User.where("first_name LIKE ?", "%#{params[:search]}%").limit(5)
   end 
 

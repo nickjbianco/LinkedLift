@@ -150,10 +150,10 @@ export default (props) => {
       .then((response) => {
         dispatch(editEmployment(response.data));
         setShowModal(false);
-      })
-      .catch((error) => {
-        console.log("login error", error);
       });
+    // .catch((error) => {
+    //   console.log("login error", error);
+    // });
   };
 
   return (

@@ -84,10 +84,10 @@ export default () => {
       .then((response) => {
         dispatch(addMyNewPost(response.data));
         setBody("Start a post");
-      })
-      .catch((error) => {
-        console.log("post error", error);
       });
+    // .catch((error) => {
+    //   console.log("post error", error);
+    // });
   };
 
   return (
