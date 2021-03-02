@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { logoutCurrentUser } from "../../reducers/CurrentUserReducer";
 import axios from "axios";
 import styled from "styled-components";
+import { useCombobox } from "downshift";
 import "./HeaderPage.scss";
 
 const Header = styled.header`
@@ -109,14 +110,34 @@ const MainWrapper = styled.div`
 export default (props) => {
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.currentUser);
-  const [searchText, setSearchText] = useState("");
+  const [inputItems, setInputItems] = useState([]);
+  const [users, setUsers] = useState([]);
+  const [singleUser, setSingleUser] = useState("");
 
-  const handleSearch = (e) => {
-    e.preventDefault();
-    setSearchText(e.target.value);
+  useEffect(() => {
+    axios
+      .get("api/user_search")
+      .then((response) => response.data)
+      .then((data) => setUsers(data));
+  }, []);
 
-    setSearchText("");
-  };
+  const {
+    isOpen,
+    getMenuProps,
+    getInputProps,
+    getComboboxProps,
+    highlightedIndex,
+    getItemProps,
+  } = useCombobox({
+    items: inputItems,
+    onInputValueChange: ({ inputValue }) => {
+      setInputItems(
+        users.filter((item) =>
+          item.first_name.toLowerCase().startsWith(inputValue.toLowerCase())
+        )
+      );
+    },
+  });
 
   const handleLogoutClick = () => {
     axios
@@ -135,15 +156,29 @@ export default (props) => {
     <MainWrapper>
       <Header>
         <LinkedLift>lift</LinkedLift>
-        <form onSubmit={handleSearch}>
+        <div {...getComboboxProps()}>
           <Input
-            disabled={false}
-            value={searchText}
-            onChange={(e) => setSearchText(e.target.value)}
+            {...getInputProps()}
+            placeholder="Search Users"
+            enterbutton="Search"
           />
-          <Button>Search</Button>
-        </form>
-
+          <ul {...getMenuProps()}>
+            {isOpen &&
+              inputItems.map((item, index) => (
+                <span
+                  key={item.id}
+                  {...getItemProps({ item, index })}
+                  onClick={() =>
+                    setSingleUser(`${item.first_name} ${item.last_name}`)
+                  }
+                >
+                  <li>
+                    <h4>{`${item.first_name} ${item.last_name}`}</h4>
+                  </li>
+                </span>
+              ))}
+          </ul>
+        </div>
         <Navbar>
           <NavLink exact to="/home" className="navlink">
             <HeaderLogo>Home</HeaderLogo>
@@ -158,7 +193,6 @@ export default (props) => {
             <HeaderLogo>My Profile</HeaderLogo>
           </NavLink>
         </Navbar>
-
         <LogoutButtonWrapper>
           <LogoutButton onClick={() => handleLogoutClick()}>
             Logout
@@ -168,3 +202,20 @@ export default (props) => {
     </MainWrapper>
   );
 };
+
+// const [searchText, setSearchText] = useState("");
+
+// const handleSearch = (e) => {
+//   e.preventDefault();
+//   setSearchText(e.target.value);
+//   // searching users
+//   setSearchText("");
+// };
+
+// <form onSubmit={handleSearch}>
+//   <Input
+//     value={searchText}
+//     onChange={(e) => setSearchText(e.target.value)}
+//   />
+//   <Button>Search</Button>
+// </form>;

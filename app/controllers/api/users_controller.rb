@@ -17,6 +17,10 @@ class Api::UsersController < ApplicationController
     end 
   end 
   
+  def search 
+    @users = User.where("first_name LIKE ?", "%#{params[:search]}%").limit(5)
+  end 
+
   private 
 
   def update_params 
