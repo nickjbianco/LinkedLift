@@ -114,6 +114,7 @@ export default (props) => {
   const handleSearch = (e) => {
     e.preventDefault();
     setSearchText(e.target.value);
+
     setSearchText("");
   };
 
@@ -136,7 +137,7 @@ export default (props) => {
         <LinkedLift>lift</LinkedLift>
         <form onSubmit={handleSearch}>
           <Input
-            disabled={true}
+            disabled={false}
             value={searchText}
             onChange={(e) => setSearchText(e.target.value)}
           />
