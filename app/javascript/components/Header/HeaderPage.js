@@ -137,7 +137,7 @@ export default (props) => {
 
   useEffect(() => {
     axios
-      .get("api/users")
+      .get("api/users_search")
       .then((response) => response.data)
       .then((data) => setUsers(data));
   }, []);
