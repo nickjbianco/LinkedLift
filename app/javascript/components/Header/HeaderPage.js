@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import { logoutCurrentUser } from "../../reducers/CurrentUserReducer";
 import axios from "axios";
 import styled from "styled-components";
-import { useCombobox } from "downshift";
+import SearchBar from "./SearchBar";
 import "./HeaderPage.scss";
 
 const Header = styled.header`
@@ -19,16 +19,6 @@ const Header = styled.header`
     Helvetica Neue, Fira Sans, Ubuntu, Oxygen, Oxygen Sans, Cantarell,
     Droid Sans, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol,
     Lucida Grande, Helvetica, Arial, sans-serif;
-`;
-
-const Input = styled.input`
-  color: rgba(var(--cool-gray-80, #283e4a), 0.75);
-  font-weight: 400;
-  font-size: 14px;
-  background-color: var(--cool-gray-30, #e1e9ee);
-  border-color: var(--cool-gray-30, #e1e9ee);
-  border: 0.1rem solid rgba(0, 0, 0, 0.6);
-  line-height: 20px;
 `;
 
 const Navbar = styled.nav`
@@ -110,39 +100,13 @@ const MainWrapper = styled.div`
 export default (props) => {
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.currentUser);
-  const [inputItems, setInputItems] = useState([]);
-  const [users, setUsers] = useState([]);
-  const [singleUser, setSingleUser] = useState("");
-
-  console.log("inputItems: ", inputItems);
-
-  const {
-    isOpen,
-    getMenuProps,
-    getInputProps,
-    getComboboxProps,
-    highlightedIndex,
-    getItemProps,
-    inputValue,
-  } = useCombobox({
-    items: inputItems,
-    onInputValueChange: ({ inputValue }) => {
-      setInputItems(
-        users.filter((item) =>
-          item.first_name.toLowerCase().startsWith(inputValue.toLowerCase())
-        )
-      );
-    },
-  });
 
   useEffect(() => {
     axios
-      .get("api/users_search")
+      .get("api/users")
       .then((response) => response.data)
       .then((data) => setUsers(data));
   }, []);
-
-  console.log(users);
 
   const handleLogoutClick = () => {
     axios.delete("/api/logout", { withCredentials: true }).then((response) => {
@@ -156,26 +120,7 @@ export default (props) => {
     <MainWrapper>
       <Header>
         <LinkedLift>lift</LinkedLift>
-        <div {...getComboboxProps()}>
-          <Input placeholder="Search Users" {...getInputProps()} />
-
-          <ul {...getMenuProps()}>
-            {isOpen &&
-              inputItems.map((item, index) => (
-                <span
-                  key={item.id}
-                  {...getItemProps({ item, index })}
-                  onClick={() =>
-                    setSingleUser(`${item.first_name} ${item.last_name}`)
-                  }
-                >
-                  <li>
-                    <h4>{`${item.first_name} ${item.last_name}`}</h4>
-                  </li>
-                </span>
-              ))}
-          </ul>
-        </div>
+        <SearchBar />
         <Navbar>
           <NavLink exact to="/home" className="navlink">
             <HeaderLogo>Home</HeaderLogo>
