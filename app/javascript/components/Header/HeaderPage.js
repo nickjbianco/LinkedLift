@@ -101,13 +101,6 @@ export default (props) => {
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.currentUser);
 
-  useEffect(() => {
-    axios
-      .get("api/users")
-      .then((response) => response.data)
-      .then((data) => setUsers(data));
-  }, []);
-
   const handleLogoutClick = () => {
     axios.delete("/api/logout", { withCredentials: true }).then((response) => {
       props.handleLogOut();

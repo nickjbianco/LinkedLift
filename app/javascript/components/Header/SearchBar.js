@@ -13,22 +13,66 @@ const Input = styled.input`
 `;
 
 export default () => {
-  const [display, setDispaly] = useState(false);
-  const [options, setOptions] = useState([]);
+  const [display, setDisplay] = useState(false);
+  const [users, setUsers] = useState([]);
   const [search, setSearch] = useState("");
   const wrapperRef = useRef(null);
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    axios
+      .get("api/users")
+      .then((response) => response.data)
+      .then((data) => setUsers(data));
+  }, []);
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
 
-  const handleClickOutside = (e) => {};
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
-  const setSearchVal = (user) => {};
+  const handleClickOutside = (e) => {
+    const { current: wrap } = wrapperRef;
+
+    if (wrap && !wrap.contains(e.target)) {
+      setDisplay(false);
+    }
+  };
+
+  const setSearchVal = (username) => {
+    setSearch(username);
+    setDisplay(false);
+  };
 
   return (
-    <div>
-      <Input />
+    <div ref={wrapperRef}>
+      <Input
+        onClick={() => setDisplay(!display)}
+        placeholder="Search Lifters"
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+      />
+      {display && (
+        <div>
+          {users
+            .filter(({ first_name }) => first_name.indexOf(search) > -1)
+            .map((user) => {
+              return (
+                <ul
+                  onClick={() =>
+                    setSearchVal(`${user.first_name} ${user.last_name}`)
+                  }
+                  key={user.id}
+                  tabIndex="0"
+                >
+                  <li>{`${user.first_name} ${user.last_name}`}</li>
+                </ul>
+              );
+            })}
+        </div>
+      )}
     </div>
   );
 };
