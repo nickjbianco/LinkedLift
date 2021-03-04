@@ -61,23 +61,6 @@ const LogoutButton = styled.div`
     Lucida Grande, Helvetica, Arial, sans-serif;
 `;
 
-const Button = styled.button`
-  border-radius: 5px;
-  border: 2px solid var(--blue-70, #0073b1);
-  background-color: var(--blue-70, #0073b1);
-  color: white;
-  font-weight: 800;
-  padding: 2px;
-  font-size: 100%;
-  cursor: pointer;
-  margin-left: 8px;
-  line-height: 1.2;
-  font-family: -apple-system, system-ui, BlinkMacSystemFont, Segoe UI, Roboto,
-    Helvetica Neue, Fira Sans, Ubuntu, Oxygen, Oxygen Sans, Cantarell,
-    Droid Sans, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol,
-    Lucida Grande, Helvetica, Arial, sans-serif;
-`;
-
 const HeaderLogo = styled.b`
   background-color: transparent;
   color: #000000e6;
@@ -137,3 +120,10 @@ export default (props) => {
     </MainWrapper>
   );
 };
+
+/**
+ * Make a new main div
+ * take linkedlift and search bar and put it on the left
+ * remaining features on the right
+ * these are connected by the main div
+ */

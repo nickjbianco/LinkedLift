@@ -1,0 +1,17 @@
+.autocomplete-dropdown-container {
+  padding-top: 15px;
+  background-color: white;
+  height: fit-content;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.autocomplete-dropdown-container .dropdown {
+  min-height: 40px;
+  overflow: scroll;
+  display: flex;
+  align-items: center;
+}

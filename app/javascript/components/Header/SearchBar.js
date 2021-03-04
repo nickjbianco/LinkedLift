@@ -1,6 +1,8 @@
 import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
+import "./SearchBar.scss";
 
 const Input = styled.input`
   color: rgba(var(--cool-gray-80, #283e4a), 0.75);
@@ -55,20 +57,22 @@ export default () => {
         onChange={(e) => setSearch(e.target.value)}
       />
       {display && (
-        <div>
+        <div className="autocomplete-dropdown-container">
           {users
             .filter(({ first_name }) => first_name.indexOf(search) > -1)
             .map((user) => {
               return (
-                <ul
+                <Link
+                  className="dropdown"
                   onClick={() =>
                     setSearchVal(`${user.first_name} ${user.last_name}`)
                   }
                   key={user.id}
                   tabIndex="0"
+                  to={`/profile/${user.id}`}
                 >
-                  <li>{`${user.first_name} ${user.last_name}`}</li>
-                </ul>
+                  <b>{`${user.first_name} ${user.last_name}`}</b>
+                </Link>
               );
             })}
         </div>
