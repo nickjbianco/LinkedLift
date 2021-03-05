@@ -68,7 +68,7 @@ export default () => {
   return (
     <div ref={wrapperRef}>
       <Input
-        onClick={() => setDisplay(!display)}
+        onKeyDown={() => setDisplay(!display)}
         placeholder="Search Lifters"
         value={search}
         onChange={(e) => setSearch(e.target.value)}

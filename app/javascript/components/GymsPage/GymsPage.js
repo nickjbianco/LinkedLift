@@ -79,8 +79,6 @@ export default () => {
     dispatch(gymsThunk());
   }, []);
 
-  console.log(allGyms);
-
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
 
@@ -103,11 +101,11 @@ export default () => {
   };
 
   return (
-    <Wrapper>
-      <SearchWrapper ref={wrapperRef}>
+    <Wrapper ref={wrapperRef}>
+      <SearchWrapper>
         <SearchGymTitle>Search for your next gym</SearchGymTitle>
         <SearchInput
-          onClick={() => setDisplay(!display)}
+          onKeyDown={() => setDisplay(!display)}
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           placeholder="Search by Gym Name"
