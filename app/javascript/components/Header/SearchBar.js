@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import "./SearchBar.scss";
+// import "./SearchBar.scss";
 
 const Input = styled.input`
   color: rgba(var(--cool-gray-80, #283e4a), 0.75);
@@ -12,6 +12,24 @@ const Input = styled.input`
   border-color: var(--cool-gray-30, #e1e9ee);
   border: 0.1rem solid rgba(0, 0, 0, 0.6);
   line-height: 20px;
+`;
+
+const AutoCompleteContainer = styled.div`
+  padding-top: 15px;
+  background-color: white;
+  height: fit-content;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const Dropdown = styled.div`
+  min-height: 40px;
+  overflow: scroll;
+  display: flex;
+  align-items: center;
 `;
 
 export default () => {
@@ -57,13 +75,12 @@ export default () => {
         onChange={(e) => setSearch(e.target.value)}
       />
       {display && (
-        <div className="autocomplete-dropdown-container">
+        <AutoCompleteContainer>
           {users
             .filter(({ first_name }) => first_name.indexOf(search) > -1)
             .map((user) => {
               return (
                 <Link
-                  className="dropdown"
                   onClick={() =>
                     setSearchVal(`${user.first_name} ${user.last_name}`)
                   }
@@ -71,11 +88,11 @@ export default () => {
                   tabIndex="0"
                   to={`/profile/${user.id}`}
                 >
-                  <b>{`${user.first_name} ${user.last_name}`}</b>
+                  <Dropdown>{`${user.first_name} ${user.last_name}`}</Dropdown>
                 </Link>
               );
             })}
-        </div>
+        </AutoCompleteContainer>
       )}
     </div>
   );
