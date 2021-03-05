@@ -27,54 +27,53 @@ const Gym = styled.ul`
 `;
 
 export default () => {
-  const dispatch = useDispatch();
-  const allGyms = useSelector((state) => state.gyms);
+  // const dispatch = useDispatch();
+  // const allGyms = useSelector((state) => state.gyms);
 
-  useEffect(() => {
-    dispatch(gymsThunk());
-  }, []);
+  // useEffect(() => {
+  //   dispatch(gymsThunk());
+  // }, []);
 
   return (
     <GymList>
       <Wrapper>
-        {allGyms
-          .map((gym) => (
-            <Gym key={gym.id}>
-              <h3>{gym.name}</h3>
-              <div>
-                <p>{gym.location}</p>
-                <p>{gym.description}</p>
-              </div>
-            </Gym>
-          ))
-          .slice(0, 4)}
-      </Wrapper>
-      <Wrapper>
-        {allGyms
-          .map((gym) => (
-            <Gym key={gym.id}>
-              <h3>{gym.name}</h3>
-              <div>
-                <p>{gym.location}</p>
-                <p>{gym.description}</p>
-              </div>
-            </Gym>
-          ))
-          .slice(4, 8)}
-      </Wrapper>
-      <Wrapper>
-        {allGyms
-          .map((gym) => (
-            <Gym key={gym.id}>
-              <h3>{gym.name}</h3>
-              <div>
-                <p>{gym.location}</p>
-                <p>{gym.description}</p>
-              </div>
-            </Gym>
-          ))
-          .slice(8, 12)}
+        {allGyms.map((gym) => (
+          <Gym key={gym.id}>
+            <h3>{gym.name}</h3>
+            <div>
+              <p>{gym.location}</p>
+              <p>{gym.description}</p>
+            </div>
+          </Gym>
+        ))}
       </Wrapper>
     </GymList>
   );
 };
+
+// <Wrapper>
+//   {allGyms
+//     .map((gym) => (
+//       <Gym key={gym.id}>
+//         <h3>{gym.name}</h3>
+//         <div>
+//           <p>{gym.location}</p>
+//           <p>{gym.description}</p>
+//         </div>
+//       </Gym>
+//     ))
+//     .slice(4, 8)}
+// </Wrapper>
+// <Wrapper>
+//   {allGyms
+//     .map((gym) => (
+//       <Gym key={gym.id}>
+//         <h3>{gym.name}</h3>
+//         <div>
+//           <p>{gym.location}</p>
+//           <p>{gym.description}</p>
+//         </div>
+//       </Gym>
+//     ))
+//     .slice(8, 12)}
+// </Wrapper>

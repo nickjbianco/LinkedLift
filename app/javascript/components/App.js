@@ -37,9 +37,6 @@ export default (props) => {
         setUser({});
       }
     });
-    // .catch((error) => {
-    //   console.log("check login error", error);
-    // });
   };
 
   return (

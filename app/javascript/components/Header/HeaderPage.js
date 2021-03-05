@@ -120,10 +120,3 @@ export default (props) => {
     </MainWrapper>
   );
 };
-
-/**
- * Make a new main div
- * take linkedlift and search bar and put it on the left
- * remaining features on the right
- * these are connected by the main div
- */
