@@ -2,7 +2,6 @@ import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-// import "./SearchBar.scss";
 
 const Input = styled.input`
   color: rgba(var(--cool-gray-80, #283e4a), 0.75);
